@@ -8,7 +8,7 @@ var = 0
 # set up page sections
 pageNav = tk.Frame(main)
 pageNav.grid(row=0, column=0)
-pageNavTitle = tk.Label(pageNav, text="Devices", font="30").grid(row=0, column=0)
+pageNavTitle = tk.Label(pageNav, text="Devices", font="40").grid(row=0, column=0)
 
 # set up page window
 pageWindow = tk.Frame(main)
@@ -23,21 +23,24 @@ def pageclear(object):
 # buttons on different menus
 def page1():
     pageclear(pageWindow)
-    tk.Label(pageWindow, text="Controls", font="30").grid(row=0, column=0, columnspan=3)
-    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m)).grid(row=1, column=0)
-    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m)).grid(row=2, column=0)
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m)).grid(row=1, column=1)
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m)).grid(row=2, column=1)
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m)).grid(row=1, column=2)
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m)).grid(row=2, column=2)
+    tk.Label(pageWindow, text="Controls", font="40").grid(row=0, column=0, columnspan=3)
+    tk.Label(pageWindow, text="Fader 1", font="30").grid(row=1, column=0, padx=(20, 0))
+    tk.Label(pageWindow, text="Fader 2", font="30").grid(row=1, column=1, padx=(20, 0))
+    tk.Label(pageWindow, text="Fader 3", font="30").grid(row=1, column=2, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=0, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=2, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=2, padx=(20, 0))
 
 def page2():
     pageclear(pageWindow)
     tk.Label(pageWindow, text="Controls", font="30").grid(row=0, column=0, columnspan=2)
-    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1 GO", font="20").grid(row=1, column=0)
-    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2 GO", font="20").grid(row=1, column=1)
-    buttonPause = tk.Button(pageWindow, text="Pause", font="20").grid(row=2, column=0)
-    buttonOops = tk.Button(pageWindow, text="Oops", font="20").grid(row=2, column=1)
+    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1 GO", font="20", height= 2, width=15).grid(row=1, column=0, padx=(20, 0))
+    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2 GO", font="20", height= 2, width=15).grid(row=1, column=1)
+    buttonPause = tk.Button(pageWindow, text="Pause", font="20", height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonOops = tk.Button(pageWindow, text="Oops", font="20", height= 2, width=8).grid(row=2, column=1)
 
 # volume control function
 def volume_change(x):   
@@ -52,8 +55,8 @@ def volume_change(x):
     print(var)
        
 # page navigation buttons
-pageNavButton1 = tk.Button(pageNav, text="Yamaha QL1", font ="30", command=page1).grid(row=1, column=0)
-pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", command=page2).grid(row=3, column=0)
+pageNavButton1 = tk.Button(pageNav, text="Yamaha QL1", font ="30", command=page1, height= 2, width=10).grid(row=1, column=0)
+pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", command=page2, height= 2, width=10).grid(row=3, column=0)
 
 page1()
 main.mainloop()
