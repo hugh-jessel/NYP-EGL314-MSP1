@@ -21,10 +21,10 @@ def send_message(receiver_ip, receiver_port, address, message):
 		print("Message not sent")
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-PI_A_ADDR = "127.0.0.1"		# wlan ip
-PORT = 8111
+# PI_A_ADDR = "127.0.0.1"		# wlan ip
+# PORT = 8111
 
-addr = "/print"
-msg = "fuck shit piss"
+# addr = "/print"
+# msg = "Message from pi client"
 
-send_message(PI_A_ADDR, PORT, addr, msg)
+# send_message(PI_A_ADDR, PORT, addr, msg)
