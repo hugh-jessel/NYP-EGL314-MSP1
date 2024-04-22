@@ -19,5 +19,5 @@ if __name__ == "__main__":
     PORT = 8000                     # laptop w grandMA3 port number
     addr = "/gma3/Page1/Fader201"
 
-    send_message(LAPTOP_IP, PORT, addr, "Go ")
+    send_message(LAPTOP_IP, PORT, addr, "Go to Sequence 1")
 	
