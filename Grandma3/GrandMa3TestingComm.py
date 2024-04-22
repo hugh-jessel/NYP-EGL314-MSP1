@@ -9,7 +9,7 @@ def send_message(receiver_ip, receiver_port, address, message):
 		# Send an OSC message to the receiver
 		client.send_message(address, message)   
 
-		print("Message sent successfully.")
+		print("Message sent successfull	y.")
 	except:
 		print("Message not sent")
 
