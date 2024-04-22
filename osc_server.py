@@ -2,8 +2,8 @@
 from pythonosc import osc_server, dispatcher
 
 # change the receiver_ip value to your RPi's IP address
-receiver_ip = "127.0.0.1"
-receiver_port = 8111
+receiver_ip = "192.168.254.94"
+receiver_port = 8000
 
 # this function prints the arguments in received OSC messages 
 def print_args(addr, *args):

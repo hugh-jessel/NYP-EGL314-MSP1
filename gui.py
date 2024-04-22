@@ -3,7 +3,9 @@ import osc_client
 
 main = tk.Tk()
 main.title
-var = 0
+var1 = 50
+var2 = 50
+var3 = 50
 
 # set up page sections
 pageNav = tk.Frame(main)
@@ -27,33 +29,68 @@ def page1():
     tk.Label(pageWindow, text="Fader 1", font="30").grid(row=1, column=0, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 2", font="30").grid(row=1, column=1, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 3", font="30").grid(row=1, column=2, padx=(20, 0))
-    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
-    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=0, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=1, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=2, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=2, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change1(m), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change1(m), height= 2, width=8).grid(row=3, column=0, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda n=1:volume_change2(n), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda n=0:volume_change2(n), height= 2, width=8).grid(row=3, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda o=1:volume_change3(o), height= 2, width=8).grid(row=2, column=2, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda o=0:volume_change3(o), height= 2, width=8).grid(row=3, column=2, padx=(20, 0))
 
 def page2():
     pageclear(pageWindow)
     tk.Label(pageWindow, text="Controls", font="30").grid(row=0, column=0, columnspan=2)
-    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1 GO", font="20", height= 2, width=15).grid(row=1, column=0, padx=(20, 0))
-    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2 GO", font="20", height= 2, width=15).grid(row=1, column=1)
-    buttonPause = tk.Button(pageWindow, text="Pause", font="20", height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
-    buttonOops = tk.Button(pageWindow, text="Oops", font="20", height= 2, width=8).grid(row=2, column=1)
+    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1 GO", font="20", command=sequence1, height= 2, width=15).grid(row=1, column=0, padx=(20, 0))
+    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2 GO", font="20", command=sequence2, height= 2, width=15).grid(row=1, column=1)
+    buttonPause = tk.Button(pageWindow, text="Pause", font="20", command=pause, height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonOops = tk.Button(pageWindow, text="Oops", font="20", command=oops, height= 2, width=8).grid(row=2, column=1)
 
 # volume control function
-def volume_change(x):   
-    global var
+def volume_change1(x):   
+    global var1
     if x >= 1:
-        if var >= 100:
-            var = 100
-        else: var = var + 1
-    elif var <= 0:
-        var = 0
-    else: var = var - 1
-    print(var)
+        if var1 >= 100:
+            var1 = 100
+        else: var1 = var1 + 1
+    elif var1 <= 0:
+        var1 = 0
+    else: var1 = var1 - 1
+    print(var1)
+
+def volume_change2(x):   
+    global var2
+    if x >= 1:
+        if var2 >= 100:
+            var2 = 100
+        else: var2 = var2 + 1
+    elif var2 <= 0:
+        var2 = 0
+    else: var2 = var2 - 1
+    print(var2)
+
+def volume_change3(x):   
+    global var3
+    if x >= 1:
+        if var3 >= 100:
+            var3 = 100
+        else: var3 = var3 + 1
+    elif var3 <= 0:
+        var3 = 0
+    else: var3 = var3 - 1
+    print(var3)
        
+def sequence1():
+    print("Sequence 1 pressed")
+    osc_client.sequence1_osc
+
+def sequence2():
+    print("Sequence 2 pressed")
+
+def pause():
+    print("Pause pressed")
+
+def oops():
+    print("Oops pressed")
+
 # page navigation buttons
 pageNavButton1 = tk.Button(pageNav, text="Yamaha QL1", font ="30", command=page1, height= 2, width=10).grid(row=1, column=0)
 pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", command=page2, height= 2, width=10).grid(row=3, column=0)
