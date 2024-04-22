@@ -17,7 +17,7 @@ def send_message(receiver_ip, receiver_port, address, message):
 if __name__ == "__main__":
     LAPTOP_IP = "192.168.254.142"		# send to laptop w grandMA3
     PORT = 8000                     # laptop w grandMA3 port number
-    addr = "/gma3/cmd"
+    addr = "/gma3/Page1/Fader201"
 
     send_message(LAPTOP_IP, PORT, addr, "Go ")
 	
