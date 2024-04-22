@@ -1,16 +1,49 @@
 import tkinter as tk
 import osc_client
 
-def function1():
-    print("This is function 1")
+main = tk.Tk()
+main.title
+var = 0
 
-def function2():
-    print("This is function 2")
+# set up page sections
+pageNav = tk.Frame(main)
+pageNav.grid(row=0, column=0)
+pageNavTitle = tk.Label(pageNav, text="Devices", font="40").grid(row=0, column=0)
 
-def function3():
-    print("This is function 3")
+# set up page window
+pageWindow = tk.Frame(main)
+pageWindow.grid(row=0, column=1)
 
-def volume_change(x):
+# clear page function
+def pageclear(object):
+    rdmshit = object.grid_slaves()
+    for x in rdmshit:
+        x.destroy()
+
+# buttons on different menus
+def page1():
+    pageclear(pageWindow)
+    tk.Label(pageWindow, text="Controls", font="40").grid(row=0, column=0, columnspan=3)
+    tk.Label(pageWindow, text="Fader 1", font="30").grid(row=1, column=0, padx=(20, 0))
+    tk.Label(pageWindow, text="Fader 2", font="30").grid(row=1, column=1, padx=(20, 0))
+    tk.Label(pageWindow, text="Fader 3", font="30").grid(row=1, column=2, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=0, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change(m), height= 2, width=8).grid(row=2, column=2, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change(m), height= 2, width=8).grid(row=3, column=2, padx=(20, 0))
+
+def page2():
+    pageclear(pageWindow)
+    tk.Label(pageWindow, text="Controls", font="30").grid(row=0, column=0, columnspan=2)
+    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1 GO", font="20", height= 2, width=15).grid(row=1, column=0, padx=(20, 0))
+    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2 GO", font="20", height= 2, width=15).grid(row=1, column=1)
+    buttonPause = tk.Button(pageWindow, text="Pause", font="20", height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonOops = tk.Button(pageWindow, text="Oops", font="20", height= 2, width=8).grid(row=2, column=1)
+
+# volume control function
+def volume_change(x):   
     global var
     if x >= 1:
         if var >= 100:
@@ -21,27 +54,9 @@ def volume_change(x):
     else: var = var - 1
     print(var)
        
-def  osc_call():
-    osc_client.shitass()
+# page navigation buttons
+pageNavButton1 = tk.Button(pageNav, text="Yamaha QL1", font ="30", command=page1, height= 2, width=10).grid(row=1, column=0)
+pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", command=page2, height= 2, width=10).grid(row=3, column=0)
 
-main = tk.Tk()
-var = 0
-
-title = tk.Label(main, text="NYPOSC DEMO CLASS", font="20")
-title.grid(row=0, column=0, columnspan=3)
-
-button1 = tk.Button(main, text="Function 1", font ="20", command=function1)
-button2 = tk.Button(main, text="Function 2", font ="20", command=function2)
-button3 = tk.Button(main, text="Function 3", font ="20", command=function3)
-buttonosc = tk.Button(main, text="OSC", font="20", command=osc_call)
-volumeup = tk.Button(main, text="Volume +", font="20", command=lambda m=1:volume_change(m))
-volumedown = tk.Button(main, text="Volume -", font="20", command=lambda m=0:volume_change(m))
-
-button1.grid(row=1, column=0)
-button2.grid(row=1, column=1)
-button3.grid(row=1, column=2)
-buttonosc.grid(row=3, column=1)
-volumeup.grid(row=2, column=0)
-volumedown.grid(row=2, column=2)
-
+page1()
 main.mainloop()
