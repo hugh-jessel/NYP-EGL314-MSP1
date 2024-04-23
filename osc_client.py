@@ -13,36 +13,22 @@ def send_message(receiver_ip, receiver_port, address, message):
 	except:
 		print("Message not sent")
 
-def sequence1_osc():
-	receiver_ip1 = "192.168.254.94" 
-	receiver_port1 = 8000
-	address1 = "/print"
-	message1 = "OSC Sequence 1 from pi"	
-	send_message(receiver_ip1, receiver_port1, address1, message1)
-def sequence2_osc():
-	receiver_ip1 = "192.168.254.94" 
-	receiver_port1 = 8000
-	address1 = "/print"
-	message1 = "OSC Sequence 1 from pi"	
-	send_message(receiver_ip1, receiver_port1, address1, message1)
-def pause_osc():
-	receiver_ip1 = "192.168.254.94" 
-	receiver_port1 = 8000
-	address1 = "/print"
-	message1 = "OSC Sequence 1 from pi"	
-	send_message(receiver_ip1, receiver_port1, address1, message1)
-def oops_osc():
-	receiver_ip1 = "192.168.254.94" 
-	receiver_port1 = 8000
-	address1 = "/print"
-	message1 = "OSC Sequence 1 from pi"	
-	send_message(receiver_ip1, receiver_port1, address1, message1)
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-# PI_A_ADDR = "127.0.0.1"		# wlan ip
-# PORT = 8111
+PI_A_ADDR = "127.0.0.1"		# wlan ip
+PORT = 22
+addr = "/print"
+# send_message(PI_A_ADDR, PORT, addr, msg
 
-# addr = "/print"
-# msg = "Message from pi client"
-
-# send_message(PI_A_ADDR, PORT, addr, msg)
+def sequence1_osc():
+	msg = "OSC Sequence 1 from pi"	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+def sequence2_osc():
+	msg = "OSC Sequence 2 from pi"	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+def pause_osc():
+	msg = "OSC Pause from pi"	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+def oops_osc():
+	msg = "OSC Oops from pi"	
+	send_message(PI_A_ADDR, PORT, addr, msg)
