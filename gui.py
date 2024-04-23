@@ -3,9 +3,6 @@ import osc_client
 
 main = tk.Tk()
 main.title
-var1 = 50
-var2 = 50
-var3 = 50
 
 # set up page sections
 pageNav = tk.Frame(main)
@@ -29,12 +26,15 @@ def page1():
     tk.Label(pageWindow, text="Fader 1", font="30").grid(row=1, column=0, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 2", font="30").grid(row=1, column=1, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 3", font="30").grid(row=1, column=2, padx=(20, 0))
-    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda m=1:volume_change1(m), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
-    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda m=0:volume_change1(m), height= 2, width=8).grid(row=3, column=0, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda n=1:volume_change2(n), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda n=0:volume_change2(n), height= 2, width=8).grid(row=3, column=1, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda o=1:volume_change3(o), height= 2, width=8).grid(row=2, column=2, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda o=0:volume_change3(o), height= 2, width=8).grid(row=3, column=2, padx=(20, 0))
+    tk.Label(pageWindow, text=var1, font="30").grid(row=3, column=0, padx=(20, 0))
+    tk.Label(pageWindow, text=var2, font="30").grid(row=3, column=1, padx=(20, 0))
+    tk.Label(pageWindow, text=var3, font="30").grid(row=3, column=2, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change1(x), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change1(x), height= 2, width=8).grid(row=4, column=0, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change2(x), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change2(x), height= 2, width=8).grid(row=4, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change3(x), height= 2, width=8).grid(row=2, column=2 ,padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change3(x), height= 2, width=8).grid(row=4, column=2, padx=(20, 0))
 
 def page2():
     pageclear(pageWindow)
@@ -45,6 +45,10 @@ def page2():
     buttonOops = tk.Button(pageWindow, text="Oops", font="20", command=oops, height= 2, width=8).grid(row=2, column=1)
 
 # volume control function
+var1 = 50
+var2 = 50
+var3 = 50
+
 def volume_change1(x):   
     global var1
     if x >= 1:
