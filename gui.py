@@ -88,12 +88,15 @@ def sequence1():
 
 def sequence2():
     print("Sequence 2 pressed")
+    osc_client.sequence2_osc
 
 def pause():
     print("Pause pressed")
+    osc_client.pause_osc
 
 def oops():
     print("Oops pressed")
+    osc_client.oops_osc
 
 # page navigation buttons
 pageNavButton1 = tk.Button(pageNav, text="Yamaha QL1", font ="30", command=page1, height= 2, width=10).grid(row=1, column=0)
