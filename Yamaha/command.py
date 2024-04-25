@@ -8,7 +8,7 @@ import sys
 import socket
 
 # Host is console's IP
-host ="192.168.0.128"
+host ="192.168.1.128"
 # Port must be 49280
 port =49280
 
