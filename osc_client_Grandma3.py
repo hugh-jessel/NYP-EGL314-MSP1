@@ -29,39 +29,35 @@ def startupmsg():
 
 def sequence1_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 1 from pi"
-	PORT = 8000
 	msg = "Go+ Exec 201 Executor 202 At 0 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
 
 def sequence2_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
 	msg = "Go+ Exec 202 Executor 201 At 0 "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
 
 def pause_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
 	msg = "Pause "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
 def oops_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Oops from pi"
-	PORT = 8000
 	msg = "Oof "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
