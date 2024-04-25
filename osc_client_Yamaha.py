@@ -15,9 +15,9 @@ def send_message(receiver_ip, receiver_port, address, message):
 
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-PI_A_ADDR = "192.168.254.142"		# ip of granma3 (When swapping network please check)
-PORT = 22
-addr = "/gma3/cmd/"
+PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check)
+PORT = 23
+addr = "/print"
 # send_message(PI_A_ADDR, PORT, addr, msg
 
 def startupmsg():
@@ -27,42 +27,52 @@ def startupmsg():
 	msg = "Client pi is online"
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
-def sequence1_osc():
+def yamahafader1Up():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 1 from pi"
-	PORT = 8000
-	msg = "Go+ Exec 201 Executor 202 At 0 "	
+	msg = "set MIXER:Current/InCh/Fader/Level 0 0 1000 "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def yamahafader1Down():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 1 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 0 0 500 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
-
-def sequence2_osc():
+def yamahafader2Up():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
-	msg = "Go+ Exec 202 Executor 201 At 0 "
+	msg = "set MIXER:Current/InCh/Fader/Level 1 0 1000 "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
-
-def pause_osc():
+def yamahafader2Down():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
-	msg = "Pause "	
+	msg = "set MIXER:Current/InCh/Fader/Level 1 0 500 "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
-def oops_osc():
+def yamahafader3Up():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
-	#msg = "OSC Oops from pi"
-	PORT = 8000
-	msg = "Oof "
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 2 0 1000 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	
+
+def yamahafader3Down():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 2 0 500 "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
 startupmsg()
