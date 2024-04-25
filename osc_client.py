@@ -1,13 +1,6 @@
 # Huats 2023 oscstarterkit
 from pythonosc import udp_client
 
-def shitass():
-	receiver_ip1 = "127.0.0.1"
-	receiver_port1 = 8111
-	address1 = "/print"
-	message1 = "sjdkjsdjlksfd"	
-	send_message(receiver_ip1, receiver_port1, address1, message1)
-
 def send_message(receiver_ip, receiver_port, address, message):
 	try:
 		# Create an OSC client to send messages
@@ -20,11 +13,56 @@ def send_message(receiver_ip, receiver_port, address, message):
 	except:
 		print("Message not sent")
 
+
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-# PI_A_ADDR = "127.0.0.1"		# wlan ip
-# PORT = 8111
+PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check)
+PORT = 23
+addr = "/print"
+# send_message(PI_A_ADDR, PORT, addr, msg
 
-# addr = "/print"
-# msg = "Message from pi client"
+def startupmsg():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	msg = "Client pi is online"
+	send_message(PI_A_ADDR, PORT, addr, msg)
 
-# send_message(PI_A_ADDR, PORT, addr, msg)
+def sequence1_osc():
+	global PI_A_ADDR
+	#global PORT
+	global addr
+	#msg = "OSC Sequence 1 from pi"
+	PORT = 8000
+	msg = "Go+ Exec 201 Executor 202 At 0 "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	
+
+def sequence2_osc():
+	global PI_A_ADDR
+	#global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	PORT = 8000
+	msg = "Go+ Exec 202 Executor 201 At 0 "
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	
+
+def pause_osc():
+	global PI_A_ADDR
+	#global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	PORT = 8000
+	msg = "Pause "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def oops_osc():
+	global PI_A_ADDR
+	#global PORT
+	global addr
+	#msg = "OSC Oops from pi"
+	PORT = 8000
+	msg = "Oof "
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	
+startupmsg()
