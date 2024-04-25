@@ -37,7 +37,7 @@ print(f"Error: {e.returncode}, {e.output.decode('utf-8')}")'''
     run_command(command)'''
     
 if __name__ == "__main__":
+    # Demo (To adjust channel 1, 2, 3 faders' to +10dB)
     command = 'osc_server.print_args'
-    print(command)
     run_command(command)
     time.sleep(1)
