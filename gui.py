@@ -27,12 +27,12 @@ def page1():
     tk.Label(pageWindow, text="Fader 1", font="30").grid(row=1, column=0, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 2", font="30").grid(row=1, column=1, padx=(20, 0))
     tk.Label(pageWindow, text="Fader 3", font="30").grid(row=1, column=2, padx=(20, 0))
-    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change1(x), height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
-    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change1(x), height= 2, width=8).grid(row=4, column=0, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change2(x), height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change2(x), height= 2, width=8).grid(row=4, column=1, padx=(20, 0))
-    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=lambda x=1:volume_change3(x), height= 2, width=8).grid(row=2, column=2 ,padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=lambda x=0:volume_change3(x), height= 2, width=8).grid(row=4, column=2, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="Fader +", font="20", command=fader1volumeUp, height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="Fader -", font="20", command=fader1volumedown, height= 2, width=8).grid(row=4, column=0, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=fader2volumeUp, height= 2, width=8).grid(row=2, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=fader2volumedown, height= 2, width=8).grid(row=4, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="Fader +", font="20", command=fader3volumeUp, height= 2, width=8).grid(row=2, column=2 ,padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="Fader -", font="20", command=fader3volumedown, height= 2, width=8).grid(row=4, column=2, padx=(20, 0))
 
 def page2():
     pageclear(pageWindow)
@@ -42,51 +42,64 @@ def page2():
     buttonPause = tk.Button(pageWindow, text="Pause", font="20", command=pause, height= 2, width=8).grid(row=2, column=0, padx=(20, 0))
     buttonOops = tk.Button(pageWindow, text="Oops", font="20", command=oops, height= 2, width=8).grid(row=2, column=1)
 
-# volume control function
-var1 = 50
-var2 = 50
-var3 = 50
+var1 = 0
+var2 = 0
+var3 = 0
 
-def volume_change1(x):   
+def fader1volumeUp():
     global var1
-    if x >= 1:
-        if var1 >= 100:
-            var1 = 100
-        else: var1 = var1 + 1
-        osc_client_Yamaha.yamahafader1Up()
-    elif var1 <= 0:
-        var1 = 0
-    else: var1 = var1 - 1
-    osc_client_Yamaha.yamahafader1Down()
+    if var1 >= 100:
+        var1 = 100
+    else: var1 = var1 + 10
     print(var1)
+    osc_client_Yamaha.yamahafader1Up()
     
 
-def volume_change2(x):   
-    global var2
-    if x >= 1:
-        if var2 >= 100:
-            var2 = 100
-        else: var2 = var2 + 1
-        osc_client_Yamaha.yamahafader2Up()
-    elif var2 <= 0:
-        var2 = 0
-    else: var2 = var2 - 1
-    osc_client_Yamaha.yamahafader2Down()
-    print(var2)
+def fader1volumedown():
+    global var1
+    if var1 <= 0:
+        var1 = 0
+    else: var1 = var1 - 10
+    print(var1)
+    osc_client_Yamaha.yamahafader1Down()
+   
 
-def volume_change3(x):   
+def fader2volumeUp():
+    global var2
+    if var2 >= 100:
+        var2 = 100
+    else: var2 = var2 + 10
+    print(var2)
+    osc_client_Yamaha.yamahafader2Up()
+    
+
+def fader2volumedown():
+    global var2
+    if var2 <= 0:
+        var2 = 0
+    else: var2 = var2 - 10
+    print(var2)
+    osc_client_Yamaha.yamahafader2Down()
+    
+
+def fader3volumeUp():
     global var3
-    if x >= 1:
-        if var3 >= 100:
-            var3 = 100
-        else: var3 = var3 + 1
-        osc_client_Yamaha.yamahafader3Up()
-    elif var3 <= 0:
-        var3 = 0
-    else: var3 = var3 - 1
-    osc_client_Yamaha.yamahafader3Down()
+    if var3 >= 100:
+        var3 = 100
+    else: var3 = var3 + 10
     print(var3)
-       
+    osc_client_Yamaha.yamahafader3Up()
+    
+
+def fader3volumedown():
+    global var3
+    if var3 <= 0:
+        var3 = 0
+    else: var3 = var3 - 10
+    print(var3)
+    osc_client_Yamaha.yamahafader3Down()
+    
+    
 def sequence1():
     print("Sequence 1 pressed")
     osc_client_Grandma3.sequence1_osc()

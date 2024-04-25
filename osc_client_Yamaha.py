@@ -15,7 +15,7 @@ def send_message(receiver_ip, receiver_port, address, message):
 
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check)
+PI_A_ADDR = "192.168.254.72"		# ip of GrandMA3 ras pi (When swapping network please check)
 PORT = 23
 addr = "/print"
 # send_message(PI_A_ADDR, PORT, addr, msg
@@ -76,3 +76,4 @@ def yamahafader3Down():
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
 startupmsg()
+yamahafader1Up()
