@@ -3,7 +3,7 @@ import osc_client_Grandma3
 import osc_client_Yamaha
 
 main = tk.Tk()
-main.title
+main.title("OSC Control GUI")
 main.geometry('400x200')
 
 # set up page sections
