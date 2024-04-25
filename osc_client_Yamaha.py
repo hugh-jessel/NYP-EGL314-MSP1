@@ -15,8 +15,8 @@ def send_message(receiver_ip, receiver_port, address, message):
 
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-PI_A_ADDR = "192.168.254.94"		# wlan ip
-PORT = 22
+PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check)
+PORT = 23
 addr = "/print"
 # send_message(PI_A_ADDR, PORT, addr, msg
 
@@ -26,29 +26,53 @@ def startupmsg():
 	global addr
 	msg = "Client pi is online"
 	send_message(PI_A_ADDR, PORT, addr, msg)
-def sequence1_osc():
+
+def yamahafader1Up():
 	global PI_A_ADDR
 	global PORT
 	global addr
-	msg = "OSC Sequence 1 from pi"	
+	#msg = "OSC Sequence 1 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 0 0 1000 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
-def sequence2_osc():
+
+def yamahafader1Down():
 	global PI_A_ADDR
 	global PORT
 	global addr
-	msg = "OSC Sequence 2 from pi"	
-	send_message(PI_A_ADDR, PORT, addr, msg)
-def pause_osc():
-	global PI_A_ADDR
-	global PORT
-	global addr
-	msg = "OSC Pause from pi"	
-	send_message(PI_A_ADDR, PORT, addr, msg)
-def oops_osc():
-	global PI_A_ADDR
-	global PORT
-	global addr
-	msg = "OSC Oops from pi"	
+	#msg = "OSC Sequence 1 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 0 0 500 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
+def yamahafader2Up():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 1 0 1000 "
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	
+def yamahafader2Down():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 1 0 500 "
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def yamahafader3Up():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 2 0 1000 "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def yamahafader3Down():
+	global PI_A_ADDR
+	global PORT
+	global addr
+	#msg = "OSC Sequence 2 from pi"
+	msg = "set MIXER:Current/InCh/Fader/Level 2 0 500 "	
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
 startupmsg()

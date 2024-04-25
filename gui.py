@@ -1,5 +1,6 @@
 import tkinter as tk
-import osc_client
+import osc_client_Grandma3
+import osc_client_Yamaha
 
 main = tk.Tk()
 main.title
@@ -71,10 +72,13 @@ def volume_change1(x):
         if var1 >= 100:
             var1 = 100
         else: var1 = var1 + 1
+        osc_client_Yamaha.yamahafader1Up()
     elif var1 <= 0:
         var1 = 0
     else: var1 = var1 - 1
+    osc_client_Yamaha.yamahafader1Down()
     print(var1)
+    
 
 def volume_change2(x):   
     global var2
@@ -82,9 +86,11 @@ def volume_change2(x):
         if var2 >= 100:
             var2 = 100
         else: var2 = var2 + 1
+        osc_client_Yamaha.yamahafader2Up()
     elif var2 <= 0:
         var2 = 0
     else: var2 = var2 - 1
+    osc_client_Yamaha.yamahafader2Down()
     print(var2)
 
 def volume_change3(x):   
@@ -93,26 +99,28 @@ def volume_change3(x):
         if var3 >= 100:
             var3 = 100
         else: var3 = var3 + 1
+        osc_client_Yamaha.yamahafader3Up()
     elif var3 <= 0:
         var3 = 0
     else: var3 = var3 - 1
+    osc_client_Yamaha.yamahafader3Down()
     print(var3)
        
 def sequence1():
     print("Sequence 1 pressed")
-    osc_client.sequence1_osc()
+    osc_client_Grandma3.sequence1_osc()
 
 def sequence2():
     print("Sequence 2 pressed")
-    osc_client.sequence2_osc()
+    osc_client_Grandma3.sequence2_osc()
 
 def pause():
     print("Pause pressed")
-    osc_client.pause_osc()
+    osc_client_Grandma3.pause_osc()
 
 def oops():
     print("Oops pressed")
-    osc_client.oops_osc()
+    osc_client_Grandma3.oops_osc()
 
 page1()
 main.mainloop()
