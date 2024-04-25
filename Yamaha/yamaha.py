@@ -34,6 +34,6 @@ def run_recall(command):
 
 if __name__ == "__main__":
     # Demo (To adjust channel 1, 2, 3 faders' to +10dB)
-    command = 'osc_server.fetch_args'
+    command = 'osc_server.print_args'
     run_command(command)
     time.sleep(1)
