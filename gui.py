@@ -4,7 +4,10 @@ import osc_client_Yamaha
 
 main = tk.Tk()
 main.title("OSC Control GUI")
-main.geometry('400x250')
+main.geometry('360x220')
+fontL = "helvetica 14 bold"
+fontM = "helvetica 12 bold"
+fontS = "helvetica 12"
 
 # set up page sections
 pageNav = tk.Frame(main)
@@ -31,22 +34,22 @@ def page1():
     tk.Label(pageWindow, text="Fader 2", font="30").grid(row=4, column=1, padx=(20, 0), pady=(10, 0))
     tk.Label(pageWindow, text="Fader 3", font="30").grid(row=4, column=2, padx=(20, 0), pady=(10, 0))
 
-    buttonFaderUp1 = tk.Button(pageWindow, text="+", font="30", bg="black", fg="white", command=lambda x=1:volume_change1(x), height= 2, width=5).grid(row=1, column=0, padx=(20, 0))
-    buttonFaderDown1 = tk.Button(pageWindow, text="-", font="30", bg="black", fg="white", command=lambda x=0:volume_change1(x), height= 2, width=5).grid(row=3, column=0, padx=(20, 0))
+    buttonFaderUp1 = tk.Button(pageWindow, text="+", font=fontM, bg="black", fg="white", command=lambda x=1:volume_change1(x), height= 2, width=5).grid(row=1, column=0, padx=(20, 0))
+    buttonFaderDown1 = tk.Button(pageWindow, text="-", font=fontM, bg="black", fg="white", command=lambda x=0:volume_change1(x), height= 2, width=5).grid(row=3, column=0, padx=(20, 0))
     global faderdisplay1
-    faderdisplay1 = tk.Label(pageWindow, text=var1, font="30")
+    faderdisplay1 = tk.Label(pageWindow, text=var1, font=fontS)
     faderdisplay1.grid(row=2, column=0, padx=(20, 0), pady=(5, 5))
 
-    buttonFaderUp2 = tk.Button(pageWindow, text="+", font="30", bg="black", fg="white", command=lambda x=1:volume_change2(x), height= 2, width=5).grid(row=1, column=1, padx=(20, 0))
-    buttonFaderDown2 = tk.Button(pageWindow, text="-", font="30", bg="black", fg="white", command=lambda x=0:volume_change2(x), height= 2, width=5).grid(row=3, column=1, padx=(20, 0))
+    buttonFaderUp2 = tk.Button(pageWindow, text="+", font=fontM, bg="black", fg="white", command=lambda x=1:volume_change2(x), height= 2, width=5).grid(row=1, column=1, padx=(20, 0))
+    buttonFaderDown2 = tk.Button(pageWindow, text="-", font=fontM, bg="black", fg="white", command=lambda x=0:volume_change2(x), height= 2, width=5).grid(row=3, column=1, padx=(20, 0))
     global faderdisplay2
-    faderdisplay2 = tk.Label(pageWindow, text=var2, font="30")
+    faderdisplay2 = tk.Label(pageWindow, text=var2, font=fontS)
     faderdisplay2.grid(row=2, column=1, padx=(20, 0), pady=(5, 5))
     
-    buttonFaderUp3 = tk.Button(pageWindow, text="+", font="30", bg="black", fg="white", command=lambda x=1:volume_change3(x), height= 2, width=5).grid(row=1, column=2 ,padx=(20, 0))
-    buttonFaderDown3 = tk.Button(pageWindow, text="-", font="30", bg="black", fg="white", command=lambda x=0:volume_change3(x), height= 2, width=5).grid(row=3, column=2, padx=(20, 0))
+    buttonFaderUp3 = tk.Button(pageWindow, text="+", font=fontM, bg="black", fg="white", command=lambda x=1:volume_change3(x), height= 2, width=5).grid(row=1, column=2 ,padx=(20, 0))
+    buttonFaderDown3 = tk.Button(pageWindow, text="-", font=fontM, bg="black", fg="white", command=lambda x=0:volume_change3(x), height= 2, width=5).grid(row=3, column=2, padx=(20, 0))
     global faderdisplay3
-    faderdisplay3 = tk.Label(pageWindow, text=var3, font="30")
+    faderdisplay3 = tk.Label(pageWindow, text=var3, font=fontS)
     faderdisplay3.grid(row=2, column=2, padx=(20, 0), pady=(5, 5))
 
 def page2():
@@ -54,8 +57,8 @@ def page2():
     button_active(pageNavButton2)
     button_inactive(pageNavButton1)
     tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
-    buttonSequence1 = tk.Button(pageWindow, text="Sequence 1\n GO", font="20", bg="black", fg="white", command=sequence1, height= 2, width=10).grid(row=1, column=0, padx=(20, 0))
-    buttonSequence2 = tk.Button(pageWindow, text="Sequence 2\n GO", font="20", bg="black", fg="white", command=sequence2, height= 2, width=10).grid(row=1, column=1)
+    buttonSequence1 = tk.Button(pageWindow, text="Sequence \n1 GO", font="20", bg="black", fg="white", command=sequence1, height= 2, width=10).grid(row=1, column=0, padx=(20, 0))
+    buttonSequence2 = tk.Button(pageWindow, text="Sequence \n2 GO", font="20", bg="black", fg="white", command=sequence2, height= 2, width=10).grid(row=1, column=1)
     buttonPause = tk.Button(pageWindow, text="Pause", font="20", bg="black", fg="white", command=pause, height= 2, width=10).grid(row=2, column=0, padx=(20, 0))
     buttonOops = tk.Button(pageWindow, text="Oops", font="20", bg="black", fg="white", command=oops, height= 2, width=10).grid(row=2, column=1)
 
@@ -77,6 +80,7 @@ var1 = 50
 var2 = 50
 var3 = 50
 
+# Yamaha QL1 button functions
 def volume_change1(x):   
     global var1
     var1display = var1
@@ -92,7 +96,6 @@ def volume_change1(x):
     print(var1)
     faderdisplay1.config(text=var1)
     
-
 def volume_change2(x):   
     global var2
     if x >= 1:
@@ -120,7 +123,8 @@ def volume_change3(x):
     osc_client_Yamaha.yamahafader3Down()
     print(var3)
     faderdisplay3.config(text=var3)
-       
+
+# GrandMA3 button functions
 def sequence1():
     print("Sequence 1 pressed")
     osc_client_Grandma3.sequence1_osc()
@@ -137,5 +141,6 @@ def oops():
     print("Oops pressed")
     osc_client_Grandma3.oops_osc()
 
+#default page on start-up
 page1()
 main.mainloop()
