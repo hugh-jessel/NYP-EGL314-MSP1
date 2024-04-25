@@ -8,6 +8,7 @@
 
 import subprocess
 import time 
+import osc_server
 
 def run_command(command):
     text = 'python3 command.py '
@@ -33,12 +34,6 @@ def run_recall(command):
 
 if __name__ == "__main__":
     # Demo (To adjust channel 1, 2, 3 faders' to +10dB)
-    command = 'set MIXER:Current/InCh/Fader/Level 0 0 1000'
-    run_command(command)
-    time.sleep(1)
-    command = 'set MIXER:Current/InCh/Fader/Level 1 0 1000'
-    run_command(command)
-    time.sleep(1)
-    command = 'set MIXER:Current/InCh/Fader/Level 2 0 1000'
+    command = 'osc_server.fetch_args'
     run_command(command)
     time.sleep(1)
