@@ -18,51 +18,47 @@ def send_message(receiver_ip, receiver_port, address, message):
 PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check)
 PORT = 23
 addr = "/print"
-# send_message(PI_A_ADDR, PORT, addr, msg
+# send_message(PI_A_ADDR, PORT, addr, msg)
 
-def startupmsg():
+'''def startupmsg():
 	global PI_A_ADDR
 	global PORT
 	global addr
 	msg = "Client pi is online"
-	send_message(PI_A_ADDR, PORT, addr, msg)
+	send_message(PI_A_ADDR, PORT, addr, msg)'''
 
 def sequence1_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 1 from pi"
-	PORT = 8000
 	msg = "Go+ Exec 201 Executor 202 At 0 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
 
 def sequence2_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
 	msg = "Go+ Exec 202 Executor 201 At 0 "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
 
 def pause_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	PORT = 8000
 	msg = "Pause "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
 def oops_osc():
 	global PI_A_ADDR
-	#global PORT
+	global PORT
 	global addr
 	#msg = "OSC Oops from pi"
-	PORT = 8000
 	msg = "Oof "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
-startupmsg()
+#startupmsg()

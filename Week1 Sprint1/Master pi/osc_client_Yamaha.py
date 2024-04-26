@@ -20,12 +20,12 @@ PORT = 23
 addr = "/print"
 # send_message(PI_A_ADDR, PORT, addr, msg
 
-def startupmsg():
+'''def startupmsg():
 	global PI_A_ADDR
 	global PORT
 	global addr
 	msg = "Client pi is online"
-	send_message(PI_A_ADDR, PORT, addr, msg)
+	send_message(PI_A_ADDR, PORT, addr, msg)'''
 
 def yamahafader1Up():
 	global PI_A_ADDR
@@ -40,7 +40,7 @@ def yamahafader1Down():
 	global PORT
 	global addr
 	#msg = "OSC Sequence 1 from pi"
-	msg = "set MIXER:Current/InCh/Fader/Level 0 0 500 "	
+	msg = "set MIXER:Current/InCh/Fader/Level 0 0 -32768 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	
 def yamahafader2Up():
@@ -56,7 +56,7 @@ def yamahafader2Down():
 	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	msg = "set MIXER:Current/InCh/Fader/Level 1 0 500 "
+	msg = "set MIXER:Current/InCh/Fader/Level 1 0 -32768 "
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
 def yamahafader3Up():
@@ -72,8 +72,7 @@ def yamahafader3Down():
 	global PORT
 	global addr
 	#msg = "OSC Sequence 2 from pi"
-	msg = "set MIXER:Current/InCh/Fader/Level 2 0 500 "	
+	msg = "set MIXER:Current/InCh/Fader/Level 2 0 -32768 "	
 	send_message(PI_A_ADDR, PORT, addr, msg)
 
-startupmsg()
-yamahafader1Up()
+#startupmsg()
