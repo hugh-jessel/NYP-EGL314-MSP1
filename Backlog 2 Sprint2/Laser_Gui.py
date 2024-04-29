@@ -47,6 +47,7 @@ pageNavButton1 = tk.Button(pageNav, text="Laser", font ="30", bg="#1f2a70", fg="
 pageNavButton1.grid(row=1, column=0)
 pageNavButton2 = tk.Button(pageNav, text="Page 2", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page2, height= 2, width=10)
 pageNavButton2.grid(row=2, column=0)
+
 # button colour change on press
 def button_active(x):
     x.config(bg="#7d8adb")
