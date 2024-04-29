@@ -29,8 +29,6 @@ def pageclear(object):
 # buttons on different menus
 def page1():
     pageclear(pageWindow)
-    button_active(pageNavButton1)
-    button_inactive(pageNavButton2)
     tk.Label(pageWindow, text="Laser Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=3, pady=(0, 10))
 
     buttonLaserOn = tk.Button(pageWindow, text="Laser On", font=fontM, bg="black", fg="white", command=laser_on, height= 2, width=5).grid(row=1, column=0, padx=(20, 0))
@@ -49,7 +47,6 @@ pageNavButton1 = tk.Button(pageNav, text="Laser", font ="30", bg="#1f2a70", fg="
 pageNavButton1.grid(row=1, column=0)
 pageNavButton2 = tk.Button(pageNav, text="Page 2", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page2, height= 2, width=10)
 pageNavButton2.grid(row=2, column=0)
-
 # button colour change on press
 def button_active(x):
     x.config(bg="#7d8adb")
