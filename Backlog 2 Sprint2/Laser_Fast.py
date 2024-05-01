@@ -16,3 +16,13 @@ def laser_off():
     GPIO.cleanup()  
 
 def onBeat():
+    beat = [1,2,3,4]
+    measure = 1
+    while True:
+        for i in beat:
+            time.sleep(1)
+            print('At Beat :' + measure)
+        measure = measure + 1
+
+        if measure == 1:
+            laser_on
