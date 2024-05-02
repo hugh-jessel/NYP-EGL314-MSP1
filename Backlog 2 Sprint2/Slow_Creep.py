@@ -21,7 +21,7 @@ def counter(bpm, duration):
     while time.time() - start_time < duration :
         time.sleep(beat_gap)
         count += 1
-        if count + 1:
+        if count % 2 == 0:
             laser_off()
         else:
             laser_on()
