@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import audioowl
 
-data = audioowl.analyze_file(path='',sr=22050)
+data = audioowl.analyze_file(path='INSERT MUSIC FILE LOCATION HERE',sr=22050)
 
 def laser_on():
     GPIO.setmode(GPIO.BCM)
@@ -20,7 +20,6 @@ def countdown(t):
     while t > 0:
         time.sleep(1)
         t-=1
-
 
 def onBeat():
     countdowns = countdown(30)
