@@ -72,12 +72,12 @@ def laser_off():
     
 def laser_Slow():
     print("Laser slow")
-    counter = Slow_Creep.counter(bpm, duration)
+    counter = Slow_Creep.counter(47, 30)
     counter
 
 def laser_Fast():
     print("Laser fast")
-    counter = Fast_Violin.counter(bpm, duration)
+    counter = Fast_Violin.counter(115, 30)
     counter
 
 #default page on start-up
