@@ -20,8 +20,8 @@ def counter(bpm, duration):
     count = 0
     start_time = time.time()
     while time.time() - start_time < duration :
-        laser_on()
         time.sleep(beat_gap)
         count += 1
         laser_off()
+        laser_on
     print(f"Counted {count} beats in {duration} seconds.")
