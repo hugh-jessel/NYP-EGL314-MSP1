@@ -25,6 +25,3 @@ def counter(bpm, duration):
         count += 1
         laser_off()
     print(f"Counted {count} beats in {duration} seconds.")
-
-def onBeat():
-    counter(70,30)
