@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
-from playsound import playsound
+from pygame import mixer
+
+sound = mixer.Sound('INSERT FILE HERE')
 
 def laser_on():
     GPIO.setmode(GPIO.BCM)
@@ -19,7 +21,7 @@ def counter(bpm, duration):
     beat_gap = 60/bpm # Time interval between beats / 47 BPM For Creep
     count = 0
     start_time = time.time()
-    playsound('INSERT PATH HERE')
+    sound.play()
     while time.time() - start_time < duration :
         time.sleep(beat_gap)
         count += 1
@@ -29,3 +31,4 @@ def counter(bpm, duration):
             laser_on()
     print(f"Counted {count} beats in {duration} seconds.")
     laser_off()
+    sound.stop()
