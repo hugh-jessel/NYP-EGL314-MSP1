@@ -15,4 +15,21 @@ def laser_off():
     print('Relay OFF - Cleaning up GPIO.')
     GPIO.cleanup()  
 
+def counter(bpm, duration):
+    beat_gap = 60/bpm # Time interval between beats
+    count = 0
+    start_time = time.time()
+    while time.time() - start_time < duration :
+        time.sleep(beat_gap)
+        count += 1
+        onBeat()
+    print(f"Counted {count} beats in {duration} seconds.")
+
 def onBeat():
+    counter(70,30)
+
+    if count == 1:
+        laser_off()
+
+    else:
+        laser_on
