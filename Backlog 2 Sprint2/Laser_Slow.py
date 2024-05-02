@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import time
+import audioowl
+
+data = audioowl.analyze_file(path='',sr=22050)
 
 def laser_on():
     GPIO.setmode(GPIO.BCM)
@@ -12,17 +15,23 @@ def laser_off():
     GPIO.setup(21, GPIO.OUT)
     
     GPIO.output(21, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()  
+
+def countdown(t):
+    while t > 0:
+        time.sleep(1)
+        t-=1
+
 
 def onBeat():
-    beat = [1,2,3,4]
-    measure = 1
-    while True:
-        for i in beat:
-            time.sleep(1)
+    countdowns = countdown(30)
+    measure = data['beat_samples']
+    while countdowns > 0:
+        for beat_sample in measure:
+            time.sleep(beat_sample/measure)
             print('At Beat :' + measure)
-        measure = measure + 1
+            laser_off()
+            laser_on()
 
-        if measure == 1:
-            laser_on
+    else:
+        laser_off()
+        GPIO.cleanup()  
