@@ -1,6 +1,7 @@
 import tkinter as tk
 import RPi.GPIO as GPIO
 import time
+import Slow_Creep
 
 main = tk.Tk()
 main.title("Laser GUI")
@@ -70,7 +71,9 @@ def laser_off():
     
 def laser_Slow():
     print("Laser slow")
-
+    counter = Slow_Creep.counter()
+    counter
+    
 def laser_Fast():
     print("Laser fast")
 

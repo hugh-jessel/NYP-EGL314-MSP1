@@ -15,7 +15,7 @@ def laser_off():
     GPIO.cleanup()
 
 def counter(bpm, duration):
-    beat_gap = 60/bpm # Time interval between beats
+    beat_gap = 60/bpm # Time interval between beats / 47 BPM For Creep
     count = 0
     start_time = time.time()
     while time.time() - start_time < duration :
