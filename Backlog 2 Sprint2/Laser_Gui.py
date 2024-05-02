@@ -2,6 +2,7 @@ import tkinter as tk
 import RPi.GPIO as GPIO
 import time
 import Slow_Creep
+import Fast_Violin
 
 main = tk.Tk()
 main.title("Laser GUI")
