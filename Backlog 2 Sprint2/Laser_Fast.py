@@ -29,3 +29,4 @@ def counter(bpm, duration):
         else:
             laser_on()
     print(f"Counted {count} beats in {duration} seconds.")
+    laser_off()
