@@ -19,7 +19,16 @@ def send_message(receiver_ip, receiver_port, address, message):
 PI_A_ADDR = "192.168.254.18"		# isaac's laptop ip
 PORT = 6800
 
-addr = "/action/40044" # Play/Stop Function in Reaper
+'''addr = "/action/40044" # Play/Stop Function in Reaper
 msg = float(1) # Trigger TRUE Value
 
-send_message(PI_A_ADDR, PORT, addr, msg)
+send_message(PI_A_ADDR, PORT, addr, msg)'''
+
+def play_stop():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40044" # Jump to Marker One
+	msg = float(1) # Trigger TRUE Value
+
+	send_message(PI_A_ADDR, PORT, addr, msg)
+

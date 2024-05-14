@@ -1,4 +1,6 @@
 import tkinter as tk
+import marker_1
+import play_stop
 
 main = tk.Tk()
 main.title("OSC Control GUI")
@@ -20,11 +22,11 @@ def page1():
 
     tk.Label(pageWindow, text="Gui Page", font="helvetica 12 bold").grid(row=0, column=1, columnspan=3, pady=(0, 10))
 
-    PlayStopBTN = tk.Button(pageWindow, text="Play/Stop", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=1, column=1, padx=(20, 0), pady=(20, 0))
-    Marker1 = tk.Button(pageWindow, text="Marker1", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=1, column=3, padx=(0, 20), pady=(20, 0))
-    Marker2 = tk.Button(pageWindow, text="Marker2", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=2, column=1, padx=(20, 0), pady=(20, 0))
-    Marker3 = tk.Button(pageWindow, text="Marker3", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=2, column=3, padx=(0, 20), pady=(20, 0))
-    Marker4 = tk.Button(pageWindow, text="Marker4", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=3, column=2, padx=(20, 0), pady=(20, 0))
+    playstopBTN = tk.Button(pageWindow, text="Play/Stop", font=fontM, bg="black", fg="white", command=PlayStopBTN, height= 2, width=8).grid(row=1, column=1, padx=(20, 0), pady=(20, 0))
+    marker1 = tk.Button(pageWindow, text="Marker1", font=fontM, bg="black", fg="white", command=Marker1, height= 2, width=8).grid(row=1, column=3, padx=(0, 20), pady=(20, 0))
+    marker2 = tk.Button(pageWindow, text="Marker2", font=fontM, bg="black", fg="white", command=Marker2, height= 2, width=8).grid(row=2, column=1, padx=(20, 0), pady=(20, 0))
+    marker3 = tk.Button(pageWindow, text="Marker3", font=fontM, bg="black", fg="white", command=Marker3, height= 2, width=8).grid(row=2, column=3, padx=(0, 20), pady=(20, 0))
+    marker4 = tk.Button(pageWindow, text="Marker4", font=fontM, bg="black", fg="white", command=Marker4, height= 2, width=8).grid(row=3, column=2, padx=(20, 0), pady=(20, 0))
 
 
 # button colour change on press
@@ -37,20 +39,19 @@ def button_inactive(x):
 # Yamaha QL1 button functions
 
 def PlayStopBTN():
-    print("Play/Stop Press")
+    play_stop.play_stop()
 
 def Marker1():
-    print("marker1 Press")
+    marker_1.marker_1()
 
 def Marker2():
-    print("marker2 Press")
+    marker_1.marker_2()
 
 def Marker3():
-    print("marker3 Press")
+    marker_1.marker_3()
 
 def Marker4():
-
-    print("marker4 Press")
+    marker_1.marker_4()
 
 #default page on start-up
 page1()

@@ -19,7 +19,36 @@ def send_message(receiver_ip, receiver_port, address, message):
 PI_A_ADDR = "192.168.254.18"		# wlan ip
 PORT = 6800
 
-addr = "/action/40161" # Jump to Marker One
+#addr = "/action/40161" # Jump to Marker One
+
 msg = float(1) # Trigger TRUE Value
 
-send_message(PI_A_ADDR, PORT, addr, msg)
+#send_message(PI_A_ADDR, PORT, addr, msg)
+
+def marker_1():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40161" # Jump to Marker One
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def marker_2():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40162" # Jump to Marker One
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def marker_3():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40163" # Jump to Marker One
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def marker_4():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40164" # Jump to Marker One
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
