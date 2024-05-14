@@ -37,11 +37,6 @@ def button_active(x):
 def button_inactive(x):
     x.config(bg="#1f2a70")
 
-# volume control function
-var1 = 0
-var2 = 0
-var3 = 0
-
 # Yamaha QL1 button functions
 
 def PlayStopBTN():
