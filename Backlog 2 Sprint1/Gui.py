@@ -29,7 +29,6 @@ def page1():
     Marker4 = tk.Button(pageWindow, text="Marker4", font=fontM, bg="black", fg="white", height= 2, width=8).grid(row=3, column=2, padx=(20, 0), pady=(20, 0))
 
 
-
 # button colour change on press
 def button_active(x):
     x.config(bg="#7d8adb")
