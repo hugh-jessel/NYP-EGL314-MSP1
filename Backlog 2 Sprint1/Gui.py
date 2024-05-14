@@ -15,8 +15,6 @@ pageNav.grid(row=0, column=0, sticky='N')
 pageWindow = tk.Frame(main)
 pageWindow.grid(row=0, column=1)
 
-# clear page function
-
 # buttons on different menus
 def page1():
 
