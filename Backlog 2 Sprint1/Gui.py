@@ -1,5 +1,5 @@
 import tkinter as tk
-import marker_1
+import markers
 import play_stop
 
 main = tk.Tk()
@@ -42,16 +42,16 @@ def PlayStopBTN():
     play_stop.play_stop()
 
 def Marker1():
-    marker_1.marker_1()
+    markers.marker_1()
 
 def Marker2():
-    marker_1.marker_2()
+    markers.marker_2()
 
 def Marker3():
-    marker_1.marker_3()
+    markers.marker_3()
 
 def Marker4():
-    marker_1.marker_4()
+    markers.marker_4()
 
 #default page on start-up
 page1()

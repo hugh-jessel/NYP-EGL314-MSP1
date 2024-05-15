@@ -16,18 +16,13 @@ def send_message(receiver_ip, receiver_port, address, message):
 		print("Message not sent")
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
-PI_A_ADDR = "192.168.254.18"		# isaac's laptop ip
+PI_A_ADDR = "192.168.254.18"		# Laptop with Reaper's Ip Address
 PORT = 6800
-
-'''addr = "/action/40044" # Play/Stop Function in Reaper
-msg = float(1) # Trigger TRUE Value
-
-send_message(PI_A_ADDR, PORT, addr, msg)'''
 
 def play_stop():
 	global PI_A_ADDR
 	global port
-	addr = "/action/40044" # Jump to Marker One
+	addr = "/action/40044" # Start Stop
 	msg = float(1) # Trigger TRUE Value
 
 	send_message(PI_A_ADDR, PORT, addr, msg)
