@@ -6,7 +6,19 @@
   <i align="center">Train to be a ninja with the use of modern technologies 🥷</i>
 </p>
 
-## Overview
+<h2 id="table-of-contents">Table of Contents</h2>
+<details open="open">
+  <summary>Table Of Contents</summary>
+  <ol>
+    <li><a href="#Overview">Overview</a></li>
+    <li><a href="#Station4">Station Overview</a></li>
+    <li><a href="#Resources">Resources</a></li>
+    <li><a href="#References">References</a></li>
+    <li><a href="#Contributors">Contributors</a></li>
+  </ol>
+</details>
+
+<h2 id="Overview">Overview</h2>
 Project S.O.N.I.C (Sensory Observation Ninja Immersive Challenge) is an experiential/exploratory initiative designed to blend the ancient "ninja training techniques" with modern technologies. Students are to design a range of interactive stations that simulate ninja training scenarios, designed to test and enhance your listening abilities, reaction times and strategic thinking. The stations include:
 1. Stealth Walking
 2. The Blindfold Challenge
@@ -18,7 +30,7 @@ Project S.O.N.I.C (Sensory Observation Ninja Immersive Challenge) is an experien
   In this repository, the focus will be strictly on Station 4 - Reaction Training.
 </p>
 
-## Station 4 - Reaction Training
+<h2 id="Station4">Station 4 - Reaction Training</h2>
 Reaction Training challenges you to respond swiftly and accurately to sudden cues (e.g Auditory, Visual). Testing the participants' ability to process information quickly and react most effectively.
 
 <details open>
@@ -32,18 +44,18 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 </ul>
 </details>
 
-## Resources
+<h2 id="Resources">Resources</h2>
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog1%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
 - **[Backlog 2 Sprint 1](./Backlog2%20Sprint1/B2S1.md)** - Raspberry Pi to Reaper DAW via OSC, Reaper DAW to L-ISA Controller via MTC
 - **[Backlog 2 Sprint 2](./Backlog2%20Sprint2/B2S2.md)** - Configuring of LaunchPad, LaunchPad MIDI to Raspberry Pi, MIDI to Reaper DAW, Foundation code for Reaction Training Game 
 
-## References
+<h2 id="References">References</h2>
 - **[rpistarterkit](https://github.com/huats-club/rpistarterkit)** - Getting started on configuring your Raspberry Pi
 - **[oscstarterkit](https://github.com/huats-club/oscstarterkit)** - Getting started on using Python Open Sound Control
 - **[mts_sensor_cookbook](https://github.com/huats-club/mts_sensor_cookbook)** - Foundation codes on common sensors
   
-## Contributors
+<h2 id="Contributors">Contributors</h2>
 [//]: contributor-faces
 <a href="https://github.com/hugh-jessel"><img src="https://avatars.githubusercontent.com/u/167043880?v=4" title="hugh-jessel" width="50" height="50"></a>
 <a href="https://github.com/Anestesiaa-0512"><img src="https://avatars.githubusercontent.com/u/87161335?v=4" title="Anestesiaa-0512" width="50" height="50"></a>
