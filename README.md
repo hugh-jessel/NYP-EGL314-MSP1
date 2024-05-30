@@ -1,4 +1,8 @@
 <h1 align="center">
+  <img src="./Assets/NanyangPolyLogo.png" width = 350px height=170px>
+</h1>
+
+<h1 align="center">
   Project S.O.N.I.C - Reaction Training
 </h1>
 
