@@ -9,7 +9,7 @@ between different devices such as:
 4. LaunchPad
 
 In this repository, there are multiple backlogs and their respective sprints with different requirements for each to allow for the installation to be functional:
-1. **Backlog 1 Sprint 1**: Installation of OSC on Raspberry Pi, OSC Communication with Various Hardware, Creation of GUI using tkinter - Click [Here](./Backlog1 Sprint1/B1S1.md)
+1. **Backlog 1 Sprint 1**: Installation of OSC on Raspberry Pi, OSC Communication with Various Hardware, Creation of GUI using tkinter - Click [Here](./Backlog1Sprint1/B1S1.md)
 2. **Backlog 1 Sprint 2**: Configuring of Laser Modules using GPIO Pinouts - Click [Here]
 3. **Backlog 2 Sprint 1**: OSC Control for Reaper DAW, Reaper DAW MTC to L-ISA Controller - Click [Here]
 4. **Backlog 2 Sprint 2**: Launchpad MIDI to Raspberry Pi, MIDI to Reaper DAW, Configuring of Launchpad, Foundation for a Reaction Time Game - Click [Here]
