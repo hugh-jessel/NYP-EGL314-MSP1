@@ -1,4 +1,7 @@
+<h1 align="center">
 # NYP-EGL314-MSP1
+</h1>
+
 This repository contains resources to fulfill various requirements for an audio-visual installation via use the use of multiple protocols including:
 1. Python Open Sound Control (OSC)
 2. MIDI Timecode (MTC)
