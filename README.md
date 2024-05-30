@@ -1,22 +1,51 @@
 <h1 align="center">
-  Project S.O.N.I.C
+  Project S.O.N.I.C - Reaction Training
 </h1>
 
 <p align="center">
-  <i align="center">Become a ninja</i>
+  <i align="center">Train to be a ninja with the use of modern technologies 🥷</i>
 </p>
 
-This repository contains resources to fulfill various requirements for an audio-visual installation via use the use of multiple protocols including:
-1. Python Open Sound Control (OSC)
-2. MIDI Timecode (MTC)
-between different devices such as:
-1. Raspberry Pi
-2. Desktop/Laptop
-3. Audio Visual Equipment
-4. LaunchPad
+## Overview
+Project S.O.N.I.C (Sensory Observation Ninja Immersive Challenge) is an experiential/exploratory initiative designed to blend the ancient "ninja training techniques" with modern technologies. Students are to design a range of interactive stations that simulate ninja training scenarios, designed to test and enhance your listening abilities, reaction times and strategic thinking. The stations include:
+1. Stealth Walking
+2. The Blindfold Challenge
+3. Art Of Hearing
+4. **Reaction Training**
+5. Memory Sequence
+6. Graduation Sequence
+<p>
+  In this repository, the focus will be strictly on Station 4 - Reaction Training.
+</p>
 
-In this repository, there are multiple backlogs and their respective sprints with different requirements for each to allow for the installation to be functional:
-1. **Backlog 1 Sprint 1**: Installation of OSC on Raspberry Pi, OSC Communication with Various Hardware, Creation of GUI using tkinter - Click [Here](./Backlog1%20Sprint1/B1S1.md)
-2. **Backlog 1 Sprint 2**: Configuring of Laser Modules using GPIO Pinouts - Click [Here]
-3. **Backlog 2 Sprint 1**: OSC Control for Reaper DAW, Reaper DAW MTC to L-ISA Controller - Click [Here]
-4. **Backlog 2 Sprint 2**: Launchpad MIDI to Raspberry Pi, MIDI to Reaper DAW, Configuring of Launchpad, Foundation for a Reaction Time Game - Click [Here]
+## Station 4 - Reaction Training
+Reaction Training challenges you to respond swiftly and accurately to sudden cues (e.g Auditory, Visual). Testing the participants' ability to process information quickly and react most effectively.
+
+<details open>
+<summary>
+  Features
+</summary>
+<ul>
+  <li>L-ISA to create a soundscape of incoming projectiles.</li>
+  <li>Players are to touch/press buttons with the correct direction.</li>
+  <li>Station to measure accuracy and reaction time, best result wins!</li>
+</ul>
+</details>
+
+## Resources
+- **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
+- **[Backlog 1 Sprint 2](./Backlog1%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
+- **[Backlog 2 Sprint 1](./Backlog2%20Sprint1/B2S1.md)** - Raspberry Pi to Reaper DAW via OSC, Reaper DAW to L-ISA Controller via MTC
+- **[Backlog 2 Sprint 2](./Backlog2%20Sprint2/B2S2.md)** - Configuring of LaunchPad, LaunchPad MIDI to Raspberry Pi, MIDI to Reaper DAW, Foundation code for Reaction Training Game 
+
+## References
+- **[rpistarterkit](https://github.com/huats-club/rpistarterkit)** - Getting started on configuring your Raspberry Pi
+- **[oscstarterkit](https://github.com/huats-club/oscstarterkit)** - Getting started on using Python Open Sound Control
+- **[mts_sensor_cookbook](https://github.com/huats-club/mts_sensor_cookbook)** - Foundation codes on common sensors
+  
+## Contributors
+[//]: contributor-faces
+<a href="https://github.com/hugh-jessel"><img src="https://avatars.githubusercontent.com/u/167043880?v=4" title="hugh-jessel" width="50" height="50"></a>
+<a href="https://github.com/Anestesiaa-0512"><img src="https://avatars.githubusercontent.com/u/87161335?v=4" title="Anestesiaa-0512" width="50" height="50"></a>
+<a href="https://github.com/isaacgsm"><img src="https://avatars.githubusercontent.com/u/106132526?v=4" title="isaacgsm" width="50" height="50"></a>
+<a href="https://github.com/FinnishAnya"><img src="https://avatars.githubusercontent.com/u/167286639?v=4" title="FinnishAnya" width="50" height="50"></a>
