@@ -12,9 +12,6 @@
 
 <p align="center">
   <a href="https://github.com/hugh-jessel/NYP-EGL314-MSP1/commits/master"><img src="https://img.shields.io/github/last-commit/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr"/></a>
-  <a href="https://github.com/sulu/sulu/graphs/contributors" target="_blank">
-        <img src="https://img.shields.io/github/contributors-anon/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr" alt="GitHub contributors">
-    </a>
 </p>
 
 ## Overview
