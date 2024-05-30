@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/hugh-jessel/NYP-EGL314-MSP1/commits/master"><img src="https://img.shields.io/github/last-commit/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr"/></a>
+  <a href="https://github.com/hugh-jessel/NYP-EGL314-MSP1/commits/main"><img src="https://img.shields.io/github/last-commit/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr"/></a>
 </p>
 
 ## Overview
