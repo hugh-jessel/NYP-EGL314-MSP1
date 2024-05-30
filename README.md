@@ -1,6 +1,10 @@
 <h1 align="center">
-# NYP-EGL314-MSP1
+  Project S.O.N.I.C
 </h1>
+
+<p align="center">
+  <i align="center">Become a ninja</i>
+</p>
 
 This repository contains resources to fulfill various requirements for an audio-visual installation via use the use of multiple protocols including:
 1. Python Open Sound Control (OSC)
