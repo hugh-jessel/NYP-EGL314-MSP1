@@ -36,6 +36,9 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 </ul>
 </details>
 
+## Dependencies
+The codes in this repository had been made using **Python 3.9 or higher**.
+
 ## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog1%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
