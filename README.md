@@ -32,7 +32,7 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 </ul>
 </details>
 
-## Resources
+## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog1%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
 - **[Backlog 2 Sprint 1](./Backlog2%20Sprint1/B2S1.md)** - Raspberry Pi to Reaper DAW via OSC, Reaper DAW to L-ISA Controller via MTC
