@@ -10,6 +10,13 @@
   <i align="center">Train to be a ninja with the use of modern technologies 🥷</i>
 </p>
 
+<p align="center">
+  <a href="https://github.com/hugh-jessel/NYP-EGL314-MSP1/commits/master"><img src="https://img.shields.io/github/last-commit/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr"/></a>
+  <a href="https://github.com/sulu/sulu/graphs/contributors" target="_blank">
+        <img src="https://img.shields.io/github/contributors-anon/hugh-jessel/NYP-EGL314-MSP1.svg?style=plasticr" alt="GitHub contributors">
+    </a>
+</p>
+
 ## Overview
 Project S.O.N.I.C (Sensory Observation Ninja Immersive Challenge) is an experiential/exploratory initiative designed to blend the ancient "ninja training techniques" with modern technologies. Students are to design a range of interactive stations that simulate ninja training scenarios, designed to test and enhance your listening abilities, reaction times and strategic thinking. The stations include:
 1. Stealth Walking
