@@ -58,19 +58,6 @@ To set up your Raspberry Pi for the various tutorials, please follow these steps
    sudo date -s 'YYYY-MM-DD HH:MM:SS"
    ```
    
-2. Enable SSH
-
-   To enable SSH, follow the steps below:
-   Type in:
-      
-      ```
-      sudo raspi-config
-      ```
-
-   Select `3 Interface Options` <br>
-   Select `P2 SSH` <br>
-   **Enable SSH**
-   
 ## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog%201%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
