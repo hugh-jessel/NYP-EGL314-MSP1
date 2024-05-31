@@ -46,16 +46,31 @@ The codes in this repository had been made using **Python 3.9 or higher**.
 ## Setting Up
 To set up your Raspberry Pi for the various tutorials, please follow these steps:
 1. Update your Raspberry Pi
+   
    ```
    sudo apt update
    sudo apt upgrade
    ```
+   
    If update and/or upgrade is unsuccesful, manually set the date and time by
+   
    ```
    sudo date -s 'YYYY-MM-DD HH:MM:SS"
    ```
+   
 2. Enable SSH
-   To enable SSH, 
+
+   To enable SSH, follow the steps below:
+   Type in:
+      
+      ```
+      sudo raspi-config
+      ```
+
+   Select `3 Interface Options` <br>
+   Select `P2 SSH` <br>
+   **Enable SSH**
+   
 ## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog%201%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
