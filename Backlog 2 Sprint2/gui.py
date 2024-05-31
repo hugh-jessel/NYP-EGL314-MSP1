@@ -50,10 +50,10 @@ def page2():
 
     tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
-    buttonSequence1 = tk.Button(pageWindow, text="Spotlight", font=fontS, bg="black", fg="white", command=sequence1, height= 2, width=12).grid(row=1, column=0, padx=(20, 0))
+    buttonSequence1 = tk.Button(pageWindow, text="Show Directions", font=fontS, bg="black", fg="white", command=sequence1, height= 2, width=12).grid(row=1, column=0, padx=(20, 0))
     buttonSequence2 = tk.Button(pageWindow, text="Stage Failed", font=fontS, bg="black", fg="white", command=sequence2, height= 2, width=12).grid(row=2, column=0, padx=(20, 0))
     buttonSequence3 = tk.Button(pageWindow, text="Stage Passed", font=fontS, bg="black", fg="white", command=sequence3, height= 2, width=12).grid(row=3, column=0, padx=(20, 0))
-    buttonSequence4 = tk.Button(pageWindow, text="Station Marker", font=fontS, bg="black", fg="white", command=sequence4, height= 2, width=12).grid(row=4, column=0, padx=(20, 0))
+    buttonSequence4 = tk.Button(pageWindow, text="Show Station", font=fontS, bg="black", fg="white", command=sequence4, height= 2, width=12).grid(row=4, column=0, padx=(20, 0))
     buttonSequence5 = tk.Button(pageWindow, text="Game Light", font=fontS, bg="black", fg="white", command=sequence5, height= 2, width=12).grid(row=5, column=0, padx=(20, 0))
     buttonPause = tk.Button(pageWindow, text="Pause", font=fontS, bg="black", fg="white", command=pause, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
     buttonOops = tk.Button(pageWindow, text="Oops", font=fontS, bg="black", fg="white", command=oops, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
