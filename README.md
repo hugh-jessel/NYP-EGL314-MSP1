@@ -43,6 +43,49 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 ## Dependencies
 The codes in this repository had been made using **Python 3.9 or higher**.
 
+## Setting Up
+1. Update your Raspberry Pi
+   
+   ```
+   sudo apt update
+   sudo apt upgrade
+   ```
+   
+   If update and/or upgrade is unsuccesful, manually set the date and time by
+   
+   ```
+   sudo date -s 'YYYY-MM-DD HH:MM:SS"
+   ```
+2. Setting up Virtual Environment
+   
+   To install Virtual Environment
+
+   ```
+   sudo apt install virtualenv python3-virtualenv -y
+   ```
+   To create a new virtual environment
+
+   ```
+   virtualenv -p /usr/bin/python3 <environment_name>
+   ```
+   **THE VIRUTAL ENVIRONMENT IS A FOLDER**
+   
+   To activate the virtual environment
+
+   ```
+   source <environment_folder>/bin/activate
+   ```
+   To install a package
+
+   ```
+   pip3 install python-osc
+   ```
+   To deactivate environment
+   
+   ```
+   deactivate
+   ```
+   
 ## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog%201%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
