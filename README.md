@@ -43,6 +43,11 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 ## Dependencies
 The codes in this repository had been made using **Python 3.9 or higher**.
 
+## Pre-Requisites
+1. Reaper DAW - Click [Here](https://www.reaper.fm/download.php)
+2. L-ISA Studio - Click [Here](https://www.l-acoustics.com/products/l-isa-studio/#)
+3. loopMIDI - Click [Here](https://www.tobias-erichsen.de/software/loopmidi.html)
+
 ## Setting Up
 1. Update your Raspberry Pi
    
