@@ -7,4 +7,22 @@
 </p>
 
 ## Overview
-This repository contains all the notable assets, codes and others for our Proof Of Concept in Week 8.
+This repository contains all the notable assets, codes and others for our Proof Of Concept in Week 8 that covers Station 4 - Reaction Training.
+
+In the Proof Of Concept, we will be using a Master Station, shared with the other teams. In which in the venue, there are 12 Speakers and the participant will be standing in the middle of the room to play their game.
+
+## Hardware & Software Setup
+```mermaid
+graph LR
+A[Raspberry Pi 2] --LAN--> B[GrandMA3]
+A --WiFi--> H
+B --SACN--> C[Moving Heads]
+D[LaunchPad] --USB C--> E[Raspberry Pi 1]
+E --WiFi--> F[Reaper DAW]
+F --DANTE VSC--> G[LISA Processor]
+G --Meta Data--> H[LISA Controller]
+H --DANTE--> I[Yamaha QL1]
+I --DANTE--> J[Speakers]
+```
+
+## Assets
