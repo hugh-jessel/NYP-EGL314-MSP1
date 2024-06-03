@@ -11,6 +11,8 @@ This repository contains all the notable assets, codes and others for our Proof 
 
 In the Proof Of Concept, we will be using a Master Station, shared with the other teams. In which in the venue, there are 12 Speakers and the participant will be standing in the middle of the room to play their game.
 
+For the Proof Of Concept, the demonstration will only last a stage long (e.g. The Tutorial Stage) to make it swift, short and simple.
+
 ## Hardware & Software Setup
 ```mermaid
 graph LR
