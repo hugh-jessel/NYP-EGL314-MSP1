@@ -29,4 +29,4 @@ I --DANTE--> J[Speakers]
 
 ## Assets
 Here, are all the varying assets used for the POC. This includes:
-1. **[Digital Posters](./Assets/Posters)** - Includes a GIF and JPG version of the Digital Poster
+1. **[Digital Posters](./Assets/Poster)** - Includes a GIF and JPG version of the Digital Poster
