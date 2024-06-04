@@ -30,3 +30,4 @@ I --DANTE--> J[Speakers]
 ## Assets
 Here, are all the varying assets used for the POC. This includes:
 1. **[Digital Posters](./Assets/Poster)** - Includes a GIF and JPG version of the Digital Poster
+2. **[Audio Assets](./Assets/Audio%20Assets)** - Includes a Master Reaper File, a Master L-ISA Controller File and the varying audio assets.
