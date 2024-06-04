@@ -16,10 +16,9 @@ For the Proof Of Concept, the demonstration will only last a stage long (e.g. Th
 ## Hardware & Software Setup
 ```mermaid
 graph LR
-A[Raspberry Pi 2] --LAN--> B[GrandMA3]
-A --WiFi--> H
-B --SACN--> C[Moving Heads]
+B[GrandMA3] --SACN--> C[Moving Heads]
 D[LaunchPad] --USB C--> E[Raspberry Pi 1]
+E --WiFi --> B
 E --WiFi--> F[Reaper DAW]
 F --DANTE VSC--> G[LISA Processor]
 G --Meta Data--> H[LISA Controller]
