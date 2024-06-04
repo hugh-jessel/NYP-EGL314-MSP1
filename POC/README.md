@@ -44,3 +44,47 @@ In this folder, there are 5 python files, in which all are needed to run this on
 3. **[osc_client_LISA.py](./Codes/osc_client_LISA.py)** - A file containing the controls to trigger varying snaps, for the POC, it will only be for snapshots 1 - 4.
 4. **[StartGame.py](./Codes/StartGame.py)** - The main file that is to be ran. In which, pressing the start on the LaunchPad will run the game by calling midi.py
 5. **[midi.py](./Codes/midi.py)** - The in-depth game file that includes marker jumping, counter before projectile hits the player and dictates if the stage is passed, if the player failed the stage etc.
+
+<details><summary><b>The Specifics</b></summary>
+  
+  1. **[gui.py](./Codes/gui.py)**
+  
+  In [gui.py](./Codes/gui.py), there are 2 pages. One for L-ISA Controller and the other for GrandMA3. 
+  
+  For the L-ISA Controller page, it is calling functions from [osc_client_LISA.py](./Codes/osc_client_LISA.py) where it's firing various snapshots. As said earlier, the snapshots that can be called in [gui.py](./Codes/gui.py) range from snapshots 1-4.
+
+  For the GrandMA3 page, it is calling functions from [osc_client_Grandma3.py](./Codes/osc_client_Grandma3.py) where it's able to execute various sequences to be used and being able to turn off all sequences being carried out.
+
+  2. **[osc_client_Grandma3.py](./Codes/osc_client_Grandma3.py)**
+
+     In **[osc_client_Grandma3.py](./Codes/osc_client_Grandma3.py)** you will have to adjust the IP address and Port number to that of your GrandMA3 console. This can be found on line 18 and 19:
+     
+     ```
+     # FOR INFO: IP address and port of the receiving Raspberry Pi
+     PI_A_ADDR = "192.168.254.137"		# ip of GrandMA3 ras pi (When swapping network please check) Line 18
+     PORT = 23                        # Line 19
+     addr = "/print"
+     ```
+
+     Following this, there are multiple functions that include:
+     - Executing the various sequences
+     - Pausing
+     - Oops
+     - Everything Off
+    
+     Which all can be called via the GUI and also called during the gameplay.
+
+  3. **[osc_client_LISA.py](./Codes/osc_client_LISA.py)**
+
+     In **[osc_client_LISA.py](./Codes/osc_client_LISA.py)**, you will also have to adjust the IP address and ensure that the Port Number is 8880 (L-ISA receives on this port) to that of your device running L-ISA Controller at line 35.
+
+     ```
+     # FOR INFO: IP address and port of the receiving Raspberry Pi
+
+     PI_A_ADDR = "192.168.254.30"		# ip of L-ISA controller(When swapping network please check) Line 35
+
+     PORT = 8880
+     ```
+     Following this, you will be able to fire snapshots from 1 to 4. If you choose to uncomment snapshots 1 to 10, then it will be able to fire snapshots 1 to 10.
+  
+</details>
