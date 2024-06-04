@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  <i align="center">Train to be a ninja with the use of modern technologies 🥷</i>
+  <i align="center">Train to be a ninja with the use of modern technologies </i>🥷
 </p>
 
 <p align="center">
@@ -43,8 +43,12 @@ Reaction Training challenges you to respond swiftly and accurately to sudden cue
 ## Dependencies
 The codes in this repository had been made using **Python 3.9 or higher**.
 
+## Pre-Requisites
+1. Reaper DAW - Click [Here](https://www.reaper.fm/download.php)
+2. L-ISA Studio - Click [Here](https://www.l-acoustics.com/products/l-isa-studio/#)
+3. loopMIDI - Click [Here](https://www.tobias-erichsen.de/software/loopmidi.html)
+
 ## Setting Up
-To set up your Raspberry Pi for the various tutorials, please follow these steps:
 1. Update your Raspberry Pi
    
    ```
@@ -57,12 +61,42 @@ To set up your Raspberry Pi for the various tutorials, please follow these steps
    ```
    sudo date -s 'YYYY-MM-DD HH:MM:SS"
    ```
+2. Setting up Virtual Environment
+   
+   To install Virtual Environment
+
+   ```
+   sudo apt install virtualenv python3-virtualenv -y
+   ```
+   To create a new virtual environment
+
+   ```
+   virtualenv -p /usr/bin/python3 <environment_name>
+   ```
+   **THE VIRUTAL ENVIRONMENT IS A FOLDER**
+   
+   To activate the virtual environment
+
+   ```
+   source <environment_folder>/bin/activate
+   ```
+   To install a package
+
+   ```
+   pip3 install python-osc
+   ```
+   To deactivate environment
+   
+   ```
+   deactivate
+   ```
    
 ## Tutorials
 - **[Backlog 1 Sprint 1](./Backlog1%20Sprint1/B1S1.md)** - OSC Installation on Raspberry Pi, Creation of a UI via tkinter, OSC Communication to various devices
 - **[Backlog 1 Sprint 2](./Backlog%201%20Sprint2/B1S2.md)** - Configuration and usage of lasers and relay module.
 - **[Backlog 2 Sprint 1](./Backlog%202%20Sprint1/B2S1.md)** - Raspberry Pi to Reaper DAW via OSC, Reaper DAW to L-ISA Controller via MTC
-- **[Backlog 2 Sprint 2](./Backlog%202%20Sprint2/B2S2.md)** - Configuring of LaunchPad, LaunchPad MIDI to Raspberry Pi, MIDI to Reaper DAW, Foundation code for Reaction Training Game 
+- **[Backlog 2 Sprint 2](./Backlog%202%20Sprint2/B2S2.md)** - Configuring of LaunchPad, LaunchPad MIDI to Raspberry Pi, MIDI to Reaper DAW, Foundation code for Reaction Training Game
+- **[Proof Of Concept](./POC/README.md)** - All the resources needed to trial run the game for the Proof Of Concept Demonstration
 
 ## References
 - **[Huats Club - rpistarterkit](https://github.com/huats-club/rpistarterkit)** - Getting started on configuring your Raspberry Pi
