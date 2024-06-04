@@ -26,6 +26,10 @@ H --DANTE--> I[Yamaha QL1]
 I --DANTE--> J[Amplifier]
 J --Spk Cable--> K[Speakers]
 ```
+To setup the hardware and software connections, please read through the following:
+1. **[Backlog 1 Sprint 1](NYP-EGL314-MSP1/Backlog1%20Sprint1/B1S1.md)** - Base foundation on controlling the GrandMA3
+2. **[Backlog 2 Sprint 1](NYP-EGL314-MSP1/Backlog%202%20Sprint1/B2S1.md)** - Configuring L-ISA Studio and Reaper DAW for OSC and MTC control
+3. **[Backlog 2 Sprint 2](NYP-EGL314-MSP1/Backlog%202%20Sprint2/B2S2.md)** - Configuring a LaunchPad, sending MIDI commands to Reaper DAW, L-ISA Controller and GrandMA3
 
 ## Assets
 Here, are all the varying assets used for the POC. This includes:
