@@ -920,54 +920,6 @@
             IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
             IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
             Name="Team B - Audio Cues 1"/>
-    <Source SourceID="73" MadiIn="72" IsPaired="0" SourcePairID="-1" IsPairActive="0"
-            SourceCtrlID="-1" Pan="1.0" Width="0.0" Distance="1.0" Elevation="0.0"
-            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
-            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
-            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="255"
-            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="255"
-            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
-            SnapRecallIsolate="0" Colour="4" DelaySwitch="0" DelayMode="1"
-            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="1"
-            IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
-            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
-            Name="Team B - Audio Cues 2"/>
-    <Source SourceID="74" MadiIn="-1" IsPaired="0" SourcePairID="-1" IsPairActive="0"
-            SourceCtrlID="-1" Pan="0.0" Width="0.0" Distance="0.0" Elevation="0.0"
-            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
-            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
-            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="0"
-            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="0"
-            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
-            SnapRecallIsolate="0" Colour="1" DelaySwitch="0" DelayMode="1"
-            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="0"
-            IsDisplayedInSoundscape="0" IsDisplayedInTrackers="1" DesklinkEnabled="0"
-            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
-            Name=""/>
-    <Source SourceID="75" MadiIn="-1" IsPaired="0" SourcePairID="-1" IsPairActive="0"
-            SourceCtrlID="-1" Pan="0.0" Width="0.0" Distance="0.0" Elevation="0.0"
-            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
-            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
-            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="0"
-            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="0"
-            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
-            SnapRecallIsolate="0" Colour="1" DelaySwitch="0" DelayMode="1"
-            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="0"
-            IsDisplayedInSoundscape="0" IsDisplayedInTrackers="1" DesklinkEnabled="0"
-            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
-            Name=""/>
-    <Source SourceID="76" MadiIn="-1" IsPaired="0" SourcePairID="-1" IsPairActive="0"
-            SourceCtrlID="-1" Pan="0.0" Width="0.0" Distance="0.0" Elevation="0.0"
-            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
-            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
-            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="0"
-            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="0"
-            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
-            SnapRecallIsolate="0" Colour="1" DelaySwitch="0" DelayMode="1"
-            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="0"
-            IsDisplayedInSoundscape="0" IsDisplayedInTrackers="1" DesklinkEnabled="0"
-            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
-            Name=""/>
     <Source SourceID="77" MadiIn="-1" IsPaired="0" SourcePairID="-1" IsPairActive="0"
             SourceCtrlID="-1" Pan="0.0" Width="0.0" Distance="0.0" Elevation="0.0"
             Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
@@ -980,6 +932,56 @@
             IsDisplayedInSoundscape="0" IsDisplayedInTrackers="1" DesklinkEnabled="0"
             IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
             Name=""/>
+    <Source SourceID="73" MadiIn="72" IsPaired="0" SourcePairID="-1" IsPairActive="0"
+            SourceCtrlID="-1" Pan="1.0" Width="1.0" Distance="0.0" Elevation="0.0"
+            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
+            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
+            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="255"
+            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="255"
+            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
+            SnapRecallIsolate="0" Colour="4" DelaySwitch="0" DelayMode="1"
+            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="1"
+            IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
+            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
+            Name="Team B - Near Sound 1"/>
+    <Source SourceID="74" MadiIn="73" IsPaired="0" SourcePairID="-1" IsPairActive="0"
+            SourceCtrlID="-1" Pan="0.2531826794147491" Width="1.0" Distance="2.328306436538696e-10"
+            Elevation="0.0" Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1"
+            DistHFSwitch="1" ReverbEarlySwitch="1" ReverbClusterSwitch="1"
+            ReverbLateSwitch="1" PolarityInverted="0" LockedParamFlag="0"
+            SafeParamFlag="0" SnapshotParamFlag="255" PluginParamFlag="0"
+            OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="255"
+            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
+            SnapRecallIsolate="0" Colour="4" DelaySwitch="0" DelayMode="1"
+            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="1"
+            IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
+            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
+            Name="Team B - Near Sound 2"/>
+    <Source SourceID="75" MadiIn="74" IsPaired="0" SourcePairID="-1" IsPairActive="0"
+            SourceCtrlID="-1" Pan="0.75" Width="1.0" Distance="9.313225746154785e-10"
+            Elevation="0.0" Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1"
+            DistHFSwitch="1" ReverbEarlySwitch="1" ReverbClusterSwitch="1"
+            ReverbLateSwitch="1" PolarityInverted="0" LockedParamFlag="0"
+            SafeParamFlag="0" SnapshotParamFlag="255" PluginParamFlag="0"
+            OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="255"
+            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
+            SnapRecallIsolate="0" Colour="4" DelaySwitch="0" DelayMode="1"
+            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="1"
+            IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
+            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
+            Name="Team B - Near Sound 3"/>
+    <Source SourceID="76" MadiIn="75" IsPaired="0" SourcePairID="-1" IsPairActive="0"
+            SourceCtrlID="-1" Pan="0.5" Width="1.0" Distance="0.0" Elevation="0.0"
+            Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
+            ReverbEarlySwitch="1" ReverbClusterSwitch="1" ReverbLateSwitch="1"
+            PolarityInverted="0" LockedParamFlag="0" SafeParamFlag="0" SnapshotParamFlag="255"
+            PluginParamFlag="0" OSCParamFlag="0" TrackerParamFlag="0" DesklinkParamFlag="255"
+            SnapRecallCtrl="1" SnapRecallDisp="1" SnapRecallProc="1" SnapRecallDelay="1"
+            SnapRecallIsolate="0" Colour="4" DelaySwitch="0" DelayMode="1"
+            StaticDelay="0.0" DelayOffsetSwitch="0" DelayOffset="0.0" IsEnabled="1"
+            IsDisplayedInSoundscape="1" IsDisplayedInTrackers="1" DesklinkEnabled="0"
+            IsIsolated="0" ShowFX="1" SourceOscID="-1" ExtOscOutDevices="0"
+            Name="Team B - Near Sound 4"/>
     <Source SourceID="78" MadiIn="-1" IsPaired="0" SourcePairID="-1" IsPairActive="0"
             SourceCtrlID="-1" Pan="0.0" Width="0.0" Distance="0.0" Elevation="0.0"
             Sub="0.0" DirectSoundSwitch="1" DistGainSwitch="1" DistHFSwitch="1"
@@ -1334,9 +1336,12 @@
                   S="0.0"/>
           <Source ID="73" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -1679,9 +1684,12 @@
                   S="0.0"/>
           <Source ID="73" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -2024,9 +2032,12 @@
                   S="0.0"/>
           <Source ID="73" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -2369,9 +2380,12 @@
                   S="0.0"/>
           <Source ID="73" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -2714,9 +2728,12 @@
                   S="0.0"/>
           <Source ID="73" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="0.0" D="0.1500000059604645" E="0.0"
+                  S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -3056,11 +3073,12 @@
           <Source ID="71" Enabled="1" P="0.002628004644066095" W="1.0" D="1.0"
                   E="0.0" S="0.0"/>
           <Source ID="72" Enabled="1" P="0.5" W="0.0" D="1.0" E="0.0" S="0.0"/>
-          <Source ID="73" Enabled="1" P="0.5017510056495667" W="0.0" D="1.0" E="0.0"
+          <Source ID="73" Enabled="1" P="0.5" W="1.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.75" W="1.0" D="6.402842700481415e-10"
+                  E="0.0" S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.2531826794147491" W="1.0" D="0.0" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="76" Enabled="1" P="1.0" W="1.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -3254,7 +3272,7 @@
             <Source Index="70" Amount="1.0" Enabled="0"/>
             <Source Index="71" Amount="1.0" Enabled="0"/>
             <Source Index="72" Amount="1.0" Enabled="1"/>
-            <Source Index="73" Amount="1.0" Enabled="1"/>
+            <Source Index="73" Amount="1.0" Enabled="0"/>
             <Source Index="74" Amount="1.0" Enabled="0"/>
             <Source Index="75" Amount="1.0" Enabled="0"/>
             <Source Index="76" Amount="1.0" Enabled="0"/>
@@ -3401,11 +3419,12 @@
                   E="0.0" S="0.0"/>
           <Source ID="72" Enabled="1" P="0.2531826794147491" W="0.0" D="1.0" E="0.0"
                   S="0.0"/>
-          <Source ID="73" Enabled="1" P="0.2531826794147491" W="0.0" D="1.0" E="0.0"
+          <Source ID="73" Enabled="1" P="0.2531826794147491" W="1.0" D="0.0" E="0.0"
                   S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="1.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.75" W="1.0" D="6.402842700481415e-10"
+                  E="0.0" S="0.0"/>
+          <Source ID="76" Enabled="1" P="1.0" W="1.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -3599,7 +3618,7 @@
             <Source Index="70" Amount="1.0" Enabled="0"/>
             <Source Index="71" Amount="1.0" Enabled="0"/>
             <Source Index="72" Amount="1.0" Enabled="1"/>
-            <Source Index="73" Amount="1.0" Enabled="1"/>
+            <Source Index="73" Amount="1.0" Enabled="0"/>
             <Source Index="74" Amount="1.0" Enabled="0"/>
             <Source Index="75" Amount="1.0" Enabled="0"/>
             <Source Index="76" Amount="1.0" Enabled="0"/>
@@ -3628,7 +3647,7 @@
       </Sources>
     </Snapshot>
     <Snapshot Locked="0" Name="Snap 23" UUID="4042eaa60c6449e29de4467889dd0b11"
-              OscCtrlID="23" MidiChannel="-1" MidiProgChange="-1" MTCTime="00:10:17:12"
+              OscCtrlID="23" MidiChannel="-1" MidiProgChange="-1" MTCTime="00:10:17:13"
               XfadeTime="" MTCFlag="1" XfadeFlag="0">
       <Sources Enabled="1">
         <SourcesPositions>
@@ -3745,10 +3764,11 @@
           <Source ID="71" Enabled="1" P="0.002628004644066095" W="1.0" D="1.0"
                   E="0.0" S="0.0"/>
           <Source ID="72" Enabled="1" P="0.75" W="0.0" D="1.0" E="0.0" S="0.0"/>
-          <Source ID="73" Enabled="1" P="0.75" W="0.0" D="1.0" E="0.0" S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="73" Enabled="1" P="0.75" W="1.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.5" W="1.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.2531826794147491" W="1.0" D="0.0" E="0.0"
+                  S="0.0"/>
+          <Source ID="76" Enabled="1" P="1.0" W="1.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -3942,7 +3962,7 @@
             <Source Index="70" Amount="1.0" Enabled="0"/>
             <Source Index="71" Amount="1.0" Enabled="0"/>
             <Source Index="72" Amount="1.0" Enabled="1"/>
-            <Source Index="73" Amount="1.0" Enabled="1"/>
+            <Source Index="73" Amount="1.0" Enabled="0"/>
             <Source Index="74" Amount="1.0" Enabled="0"/>
             <Source Index="75" Amount="1.0" Enabled="0"/>
             <Source Index="76" Amount="1.0" Enabled="0"/>
@@ -4088,10 +4108,12 @@
           <Source ID="71" Enabled="1" P="0.002628004644066095" W="1.0" D="1.0"
                   E="0.0" S="0.0"/>
           <Source ID="72" Enabled="1" P="1.0" W="0.0" D="1.0" E="0.0" S="0.0"/>
-          <Source ID="73" Enabled="1" P="1.0" W="0.0" D="1.0" E="0.0" S="0.0"/>
-          <Source ID="74" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="75" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
-          <Source ID="76" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="73" Enabled="1" P="1.0" W="1.0" D="0.0" E="0.0" S="0.0"/>
+          <Source ID="74" Enabled="1" P="0.2531826794147491" W="1.0" D="2.328306436538696e-10"
+                  E="0.0" S="0.0"/>
+          <Source ID="75" Enabled="1" P="0.75" W="1.0" D="9.313225746154785e-10"
+                  E="0.0" S="0.0"/>
+          <Source ID="76" Enabled="1" P="0.5" W="1.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="77" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="78" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
           <Source ID="79" Enabled="0" P="0.0" W="0.0" D="0.0" E="0.0" S="0.0"/>
@@ -4285,7 +4307,7 @@
             <Source Index="70" Amount="1.0" Enabled="0"/>
             <Source Index="71" Amount="1.0" Enabled="0"/>
             <Source Index="72" Amount="1.0" Enabled="1"/>
-            <Source Index="73" Amount="1.0" Enabled="1"/>
+            <Source Index="73" Amount="1.0" Enabled="0"/>
             <Source Index="74" Amount="1.0" Enabled="0"/>
             <Source Index="75" Amount="1.0" Enabled="0"/>
             <Source Index="76" Amount="1.0" Enabled="0"/>
@@ -4504,9 +4526,9 @@
       <Device DeviceID="3" Enabled="1" Name="travis-pi" IP="192.168.254.214"
               Port="9000" SendEnabled="0" ReceiveEnabled="1" MasterLevelControl="1"
               CommsFormat="0" CoordMode="0" SendPostFX="0"/>
-      <Device DeviceID="4" Enabled="0" Name="" IP="0.0.0.0" Port="9000" SendEnabled="0"
-              ReceiveEnabled="1" MasterLevelControl="0" CommsFormat="0" CoordMode="0"
-              SendPostFX="0"/>
+      <Device DeviceID="4" Enabled="1" Name="alastair-pi" IP="192.168.254.137"
+              Port="9000" SendEnabled="0" ReceiveEnabled="1" MasterLevelControl="0"
+              CommsFormat="0" CoordMode="0" SendPostFX="0"/>
       <Device DeviceID="5" Enabled="0" Name="" IP="0.0.0.0" Port="9000" SendEnabled="0"
               ReceiveEnabled="1" MasterLevelControl="0" CommsFormat="0" CoordMode="0"
               SendPostFX="0"/>
@@ -4783,7 +4805,7 @@
         <Source Index="70" Amount="1.0" Enabled="0"/>
         <Source Index="71" Amount="1.0" Enabled="0"/>
         <Source Index="72" Amount="1.0" Enabled="1"/>
-        <Source Index="73" Amount="1.0" Enabled="1"/>
+        <Source Index="73" Amount="1.0" Enabled="0"/>
         <Source Index="74" Amount="1.0" Enabled="0"/>
         <Source Index="75" Amount="1.0" Enabled="0"/>
         <Source Index="76" Amount="1.0" Enabled="0"/>
