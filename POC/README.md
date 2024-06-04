@@ -24,7 +24,7 @@ F --DANTE VSC--> G[LISA Processor]
 G --Meta Data--> H[LISA Controller]
 H --DANTE--> I[Yamaha QL1]
 I --DANTE--> J[Amplifier]
-J --SpeakON--> K[Speakers]
+J --Spk Cable--> K[Speakers]
 ```
 
 ## Assets
