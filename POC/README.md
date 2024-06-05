@@ -100,7 +100,7 @@ In this folder, there are 5 python files, in which all are needed to run this on
   ```
   This code is run so that the participant can start the game when pressing the pad with the msg.note of 67
 
-  5. **[midi.py](./Codes/midi.py)**
+5. **[midi.py](./Codes/midi.py)**
 
   In [midi.py](./Codes/midi.py), majority of the code for the game is located here.
   
