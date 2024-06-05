@@ -110,8 +110,23 @@ In this folder, there are 5 python files, in which all are needed to run this on
         - Midi_LaunchPad_MK3; which is the main code that is run through **[StartGame.py](./Codes/StartGame.py)**
   Game over and deflect_Success are called when they are needed, e.g. when the incorrect pad is pressed 
   
-6. **[play_stop(1).py](./Codes/play_stop(1).py)**
+6. **[play_stop.py](./Codes/play_stop.py)**
 
-  
-  
+  In **[play_stop.py](./Codes/play_stop.py)**, you will also have to adjust the IP address and ensure that the Port Number is 6880 (Repear receives on this port) to that of your device running Reaper
+
+- Line 19 
+```
+PI_A_ADDR = "192.168.254.30"
+```
+ The play_stop on line 22 is called by **[StartGame.py](./Codes/StartGame.py)** to start or stop the Reaper track
+
+7. **[reaper_markers.py](./Codes/reaper_markers.py)**
+
+   In **[reaper_markers.py](./Codes/reaper_markers.py)**,you will also have to adjust the IP address and ensure that the Port Number is 6880 (Repear receives on this port) to that of your device running Reaper
+
+- Line 19 
+```
+PI_A_ADDR = "192.168.254.30"
+```
+  Multiple functions from lines 28 to 86 are called by  **[gui.py](./Codes/gui.py)** and **[midi.py](./Codes/midi.py)** to jump to certain markers on the Reaper track
 </details>
