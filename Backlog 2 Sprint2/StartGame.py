@@ -22,6 +22,8 @@ def Midi_LaunchPad_MK3():
                     if msg.note == 67: #start
                         print ('Game Start')
                         play_stop.play_stop()
+                        osc_client_Grandma3.clear_all()
+                        osc_client_Grandma3.clear_all()
                         osc_client_Grandma3.playing()
                         reaper_markers.startMk()
                         midi.Midi_LaunchPad_MK3()
