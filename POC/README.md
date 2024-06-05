@@ -105,9 +105,9 @@ In this folder, there are 5 python files, in which all are needed to run this on
   In **[midi.py](./Codes/midi.py)**, majority of the code for the game is located here. 
 
   There are multiple functions that include:
-        - Game Over
-        - deflect_Success
-        - Midi_LaunchPad_MK3; which is the main code that is run through **[StartGame.py](./Codes/StartGame.py)**
+  - Game Over
+  - deflect_Success
+  - Midi_LaunchPad_MK3; which is the main code that is run through **[StartGame.py](./Codes/StartGame.py)**
   Game over and deflect_Success are called when they are needed, e.g. when the incorrect pad is pressed 
   
 6. **[play_stop.py](./Codes/play_stop.py)**
