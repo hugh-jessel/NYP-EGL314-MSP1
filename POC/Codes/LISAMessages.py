@@ -195,3 +195,17 @@ def snapshot10_osc():
 	msg = ""
 
 	send_message(PI_A_ADDR, PORT, addr, msg)
+
+def soloSound():
+	
+	global PI_A_ADDR
+
+	global PORT
+
+	global addr
+
+	addr = "/ext/solo/grp/2 0"	
+
+	msg = ""
+
+	send_message(PI_A_ADDR, PORT, addr, msg)

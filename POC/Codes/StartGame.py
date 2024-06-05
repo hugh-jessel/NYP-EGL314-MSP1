@@ -21,8 +21,11 @@ def Midi_LaunchPad_MK3():
                     print(f'Note On: Note={msg.note}')
                     if msg.note == 67: #start
                         print ('Game Start')
-                        play_stop.play_stop()
-                        GrandMa3Messages.clear_all()
+                        
+                        play_stop.play_stop() # Stop any currently playing track 
+                        
+                        GrandMa3Messages.clear_all()   
+                                                              
                         GrandMa3Messages.clear_all()
                         GrandMa3Messages.playing()
                         reaper_markers.startMk()

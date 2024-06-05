@@ -4,6 +4,10 @@ import GrandMa3Messages
 
 import LISAMessages
 
+import reaper_markers
+
+import play_stop
+
 
 
 main = tk.Tk()
@@ -60,6 +64,8 @@ def page1():
 
     button_inactive(pageNavButton2)
 
+    button_inactive(pageNavButton3)
+
 
 
     tk.Label(pageWindow, text="L-ISA Snapshots", font="helvetica 12 bold").grid(row=0, column=0, columnspan=5, pady=(0, 10))
@@ -73,6 +79,8 @@ def page1():
     buttonSnapshot23 = tk.Button(pageWindow, text="East", font=fontS, bg="black", fg="white", command=snapshot23, height= 2, width=5).grid(row=1, column=2, padx=(0, 0))
 
     buttonSnapshot24 = tk.Button(pageWindow, text="South", font=fontS, bg="black", fg="white", command=snapshot24, height= 2, width=5).grid(row=1, column=3, padx=(0, 0))
+    
+    # buttonSolo = tk.Button(pageWindow, text="Solo", font=fontS, bg="black", fg="white", command=solo, height= 2, width=5).grid(row=1, column=4, padx=(0, 0))
 
     # buttonSnapshot5 = tk.Button(pageWindow, text="5", font=fontS, bg="black", fg="white", command=snapshot5, height= 2, width=5).grid(row=1, column=4, padx=(0, 20))
 
@@ -96,7 +104,7 @@ def page2():
 
     button_inactive(pageNavButton1)
 
-
+    button_inactive(pageNavButton3)
 
     tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
@@ -112,13 +120,43 @@ def page2():
 
     buttonSequence5 = tk.Button(pageWindow, text="Game Light", font=fontS, bg="black", fg="white", command=gamelightsMa3, height= 2, width=12).grid(row=5, column=0, padx=(20, 0))
 
-    buttonPause = tk.Button(pageWindow, text="Pause", font=fontS, bg="black", fg="white", command=pause, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
+    buttonDirections = tk.Button(pageWindow, text="Directions", font=fontS, bg="black", fg="white", command=directions, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
+    
+    buttonPause = tk.Button(pageWindow, text="Pause", font=fontS, bg="black", fg="white", command=pause, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
 
-    buttonOops = tk.Button(pageWindow, text="Clear", font=fontS, bg="black", fg="white", command=clear, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
+    buttonOops = tk.Button(pageWindow, text="Clear", font=fontS, bg="black", fg="white", command=clear, height= 2, width=10).grid(row=3, column=1, padx=(20, 20))
 
-    buttonClear = tk.Button(pageWindow, text="Clear All", font=fontS, bg="black", fg="white", command=clear_all, height= 2, width=10).grid(row=3, column=1, padx=(20, 20))
+    buttonClear = tk.Button(pageWindow, text="Clear All", font=fontS, bg="black", fg="white", command=clear_all, height= 2, width=10).grid(row=4, column=1, padx=(20, 20))
+
+def page3():
+
+    pageclear(pageWindow)
+
+    button_active(pageNavButton3)
+
+    button_inactive(pageNavButton1)
+
+    button_inactive(pageNavButton2)
+
+    tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
 
+
+    buttonGameStart = tk.Button(pageWindow, text="GameStart", font=fontS, bg="black", fg="white", command=gameStartRp, height= 2, width=12).grid(row=1, column=0, padx=(20, 0))
+
+    buttonProjectile1 = tk.Button(pageWindow, text="Projectile1", font=fontS, bg="black", fg="white", command=Projectile1Rp, height= 2, width=12).grid(row=2, column=0, padx=(20, 0))
+
+    buttonProjectile2 = tk.Button(pageWindow, text="Projectile2", font=fontS, bg="black", fg="white", command=Projectile2Rp, height= 2, width=12).grid(row=3, column=0, padx=(20, 0))
+
+    buttonProjectile3 = tk.Button(pageWindow, text="Projectile3", font=fontS, bg="black", fg="white", command=Projectile3Rp, height= 2, width=12).grid(row=4, column=0, padx=(20, 0))
+
+    buttonDeflect = tk.Button(pageWindow, text="Deflect", font=fontS, bg="black", fg="white", command=DeflectRp, height= 2, width=12).grid(row=5, column=0, padx=(20, 0))
+
+    buttonFail = tk.Button(pageWindow, text="Fail", font=fontS, bg="black", fg="white", command=FailRp, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
+
+    buttonVictory = tk.Button(pageWindow, text="Victory", font=fontS, bg="black", fg="white", command=VictoryRp, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
+
+    buttonStart_Pause = tk.Button(pageWindow, text="Start/Pause", font=fontS, bg="black", fg="white", command=StartPauseRp, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
 
 # page navigation buttons
 
@@ -129,6 +167,10 @@ pageNavButton1.grid(row=1, column=0, padx=(20, 0))
 pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page2, height= 2, width=10)
 
 pageNavButton2.grid(row=2, column=0, padx=(20, 0))
+
+pageNavButton3 = tk.Button(pageNav, text="Reaper", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page3, height= 2, width=10)
+
+pageNavButton3.grid(row=3, column=0, padx=(20, 0))
 
 
 
@@ -178,6 +220,11 @@ def snapshot24():
 
     LISAMessages.South()
 
+# def solo():
+    
+    # print("Solo")
+    
+    # LISAMessages.soloSound()
 
 
 # def snapshot5():
@@ -284,13 +331,21 @@ def gamelightsMa3():
 
     print("gamelightsMa3 pressed")
 
-    GrandMa3Messages.clear_all()
+    # GrandMa3Messages.clear_all()
 
-    GrandMa3Messages.clear_all()
+    # GrandMa3Messages.clear_all()
 
     GrandMa3Messages.playing()
 
+def directions():
 
+    print("directions pressed")
+
+    GrandMa3Messages.clear_all()
+
+    GrandMa3Messages.clear_all()
+
+    GrandMa3Messages.directions()
 
 def pause():
 
@@ -316,7 +371,85 @@ def clear_all():
 
     GrandMa3Messages.clear_all()
 
+#Reaper button functions
 
+def gameStartRp():
+
+    print("game start")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.startMk()
+
+def Projectile1Rp():
+
+    print("Projectile 1")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.projectile1()
+
+def Projectile2Rp():
+
+    print("Projectile 2")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.projectile2()
+
+def Projectile3Rp():
+
+    print("Projectile 3")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.projectile3()
+
+def DeflectRp():
+
+    print("Deflect")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.deflect()
+
+def FailRp():
+
+    print("Fail")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.fail()
+
+def VictoryRp():
+
+    print("Victory")
+
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
+    
+    reaper_markers.victory()
+
+def StartPauseRp():
+    
+    print("Pause")
+    
+    #play_stop.play_stop()
+    
+    reaper_markers.play_stop()
 
 #default page on start-up
 

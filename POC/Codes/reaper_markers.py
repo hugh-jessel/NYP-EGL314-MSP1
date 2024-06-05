@@ -26,6 +26,13 @@ msg = float(1) # Trigger TRUE Value
 #send_message(PI_A_ADDR, PORT, addr, msg)
 
 
+def play_stop():
+	global PI_A_ADDR
+	global port
+	addr = "/action/40044" # Start Stop
+	msg = float(1) # Trigger TRUE Value
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	
 def startMk():
 	global PI_A_ADDR
 	global port
@@ -90,4 +97,7 @@ def victory():
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Pass")
+
+
+	
 

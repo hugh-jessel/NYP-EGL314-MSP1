@@ -1,5 +1,4 @@
 # Huats 2023 oscstarterkit
-
 from pythonosc import udp_client
 
 
