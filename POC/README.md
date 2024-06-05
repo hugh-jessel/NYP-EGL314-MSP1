@@ -91,7 +91,7 @@ In this folder, there are 5 python files, in which all are needed to run this on
 
   4. **[StartGame.py](./Codes/StartGame.py)**
   
-  In **[StartGame.py](./Codes/StartGame.py)**, you will have to change your device name, which can be found using the instructions [here](https://github.com/huats-club/mts_sensor_cookbook/blob/main/4.%20midi/midi.md)
+  In **[StartGame.py](./Codes/StartGame.py)**, you will have to change your device name, which can be found using the instructions [here](https://github.com/huats-club/mts_sensor_cookbook/blob/main/4.%20midi/midi.md) under "To check Midi Controller Name"
 
   ```
  def Midi_LaunchPad_MK3():
