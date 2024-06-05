@@ -97,6 +97,6 @@ In this folder, there are 5 python files, in which all are needed to run this on
  def Midi_LaunchPad_MK3():
      LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
 ```
-  
+  This code is run so that the participant can start the game when pressing the pad with the msg.note of 67
   
 </details>
