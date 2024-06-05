@@ -88,5 +88,10 @@ In this folder, there are 5 python files, in which all are needed to run this on
      PORT = 8880
      ```
      Following this, you will be able to fire snapshots from 1 to 4. If you choose to uncomment snapshots 1 to 10, then it will be able to fire snapshots 1 to 10.
+
+  4. **[StartGame.py](./Codes/StartGame.py)**
+  
+  In **[StartGame.py](./Codes/StartGame.py)**, you will have to change your device name
+  
   
 </details>
