@@ -14,7 +14,7 @@ West_pressed  = 'False'
 
 def game_over():
     print('Game over')
-    reaper_markers.stageFail()  # Send back to the start
+    reaper_markers.fail()  # Send back to the start
     osc_client_Grandma3.stageFail()
     exit()  # Stop midi.py
 
@@ -116,7 +116,7 @@ def Midi_LaunchPad_MK3():
                         
                 if count >= 22:
                     print('Victory')
-                    reaper_markers.stagePass()
+                    reaper_markers.victory()
                     osc_client_Grandma3.stagePass()
                     exit()
                 elif count >= 15 and North_pressed == 'False':      #If no buttons are pressed after count 25
@@ -132,7 +132,3 @@ def Midi_LaunchPad_MK3():
 
 if __name__ == "__main__":
     Midi_LaunchPad_MK3()
-
-
-
-     

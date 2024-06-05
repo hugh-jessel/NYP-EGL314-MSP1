@@ -2,7 +2,7 @@ import mido
 import midi
 import play_stop
 import reaper_markers
-import osc_client_Grandma3
+import GrandMa3Messages
 
 def Midi_LaunchPad_MK3():
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
@@ -22,7 +22,9 @@ def Midi_LaunchPad_MK3():
                     if msg.note == 67: #start
                         print ('Game Start')
                         play_stop.play_stop()
-                        osc_client_Grandma3.playing()
+                        GrandMa3Messages.clear_all()
+                        GrandMa3Messages.clear_all()
+                        GrandMa3Messages.playing()
                         reaper_markers.startMk()
                         midi.Midi_LaunchPad_MK3()
                         
