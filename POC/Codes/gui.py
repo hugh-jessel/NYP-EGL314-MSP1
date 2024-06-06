@@ -1,70 +1,140 @@
 import tkinter as tk
 
+
+
 import GrandMa3Messages
+
+
 
 import LISAMessages
 
+
+
 import reaper_markers
+
+
 
 import play_stop
 
 
 
+
+
+
+
 main = tk.Tk()
+
+
 
 main.title("OSC Control GUI")
 
+
+
 main.geometry("450x300")
+
+
 
 fontL = "helvetica 14 bold"
 
+
+
 fontM = "helvetica 12 bold"
+
+
 
 fontS = "helvetica 12"
 
 
 
+
+
+
+
 # set up page sections
+
+
 
 pageNav = tk.Frame(main)
 
+
+
 pageNav.grid(row=0, column=0, sticky='N')
+
+
 
 pageNavTitle = tk.Label(pageNav, text="Devices", font="helvetica 12 bold").grid(row=0, column=0, pady=(0, 10))
 
 
 
+
+
+
+
 # set up page window
 
+
+
 pageWindow = tk.Frame(main)
+
+
 
 pageWindow.grid(row=0, column=1)
 
 
 
+
+
+
+
 # clear page function
+
+
 
 def pageclear(object):
 
+
+
     rdmshit = object.grid_slaves()
 
+
+
     for x in rdmshit:
+
+
 
         x.destroy()
 
 
 
+
+
+
+
 # buttons on different menus
+
+
 
 def page1():
 
+
+
     pageclear(pageWindow)
+
+
 
     button_active(pageNavButton1)
 
+
+
     button_inactive(pageNavButton2)
 
+
+
     button_inactive(pageNavButton3)
+
+
+
+
 
 
 
@@ -72,206 +142,395 @@ def page1():
 
 
 
-    buttonSnapshot21 = tk.Button(pageWindow, text="North", font=fontS, bg="black", fg="white", command=snapshot21, height= 2, width=5).grid(row=1, column=0, padx=(20, 0))
 
-    buttonSnapshot22 = tk.Button(pageWindow, text="West", font=fontS, bg="black", fg="white", command=snapshot22, height= 2, width=5).grid(row=1, column=1, padx=(0, 0))
 
-    buttonSnapshot23 = tk.Button(pageWindow, text="East", font=fontS, bg="black", fg="white", command=snapshot23, height= 2, width=5).grid(row=1, column=2, padx=(0, 0))
 
-    buttonSnapshot24 = tk.Button(pageWindow, text="South", font=fontS, bg="black", fg="white", command=snapshot24, height= 2, width=5).grid(row=1, column=3, padx=(0, 0))
+
+    buttonSnapshot21 = tk.Button(pageWindow, text="21", font=fontS, bg="black", fg="white", command=snapshot21, height= 2, width=5).grid(row=1, column=0, padx=(20, 0))
+
+
+
+    buttonSnapshot22 = tk.Button(pageWindow, text="22", font=fontS, bg="black", fg="white", command=snapshot22, height= 2, width=5).grid(row=1, column=1, padx=(0, 0))
+
+
+
+    buttonSnapshot23 = tk.Button(pageWindow, text="23", font=fontS, bg="black", fg="white", command=snapshot23, height= 2, width=5).grid(row=1, column=2, padx=(0, 0))
+
+
+
+    buttonSnapshot24 = tk.Button(pageWindow, text="24", font=fontS, bg="black", fg="white", command=snapshot24, height= 2, width=5).grid(row=1, column=3, padx=(0, 0))
+
     
-    # buttonSolo = tk.Button(pageWindow, text="Solo", font=fontS, bg="black", fg="white", command=solo, height= 2, width=5).grid(row=1, column=4, padx=(0, 0))
 
-    # buttonSnapshot5 = tk.Button(pageWindow, text="5", font=fontS, bg="black", fg="white", command=snapshot5, height= 2, width=5).grid(row=1, column=4, padx=(0, 20))
+    buttonSnapshot25 = tk.Button(pageWindow, text="25", font=fontS, bg="black", fg="white", command=snapshot25, height= 2, width=5).grid(row=1, column=4, padx=(0, 0))
 
-    # buttonSnapshot6 = tk.Button(pageWindow, text="6", font=fontS, bg="black", fg="white", command=snapshot6, height= 2, width=5).grid(row=2, column=0, padx=(20, 0))
 
-    # buttonSnapshot7 = tk.Button(pageWindow, text="7", font=fontS, bg="black", fg="white", command=snapshot7, height= 2, width=5).grid(row=2, column=1, padx=(0, 0))
 
-    # buttonSnapshot8 = tk.Button(pageWindow, text="8", font=fontS, bg="black", fg="white", command=snapshot8, height= 2, width=5).grid(row=2, column=2, padx=(0, 0))
+    buttonSnapshot26 = tk.Button(pageWindow, text="26", font=fontS, bg="black", fg="white", command=snapshot26, height= 2, width=5).grid(row=2, column=0, padx=(20,0))
 
-    # buttonSnapshot9 = tk.Button(pageWindow, text="9", font=fontS, bg="black", fg="white", command=snapshot9, height= 2, width=5).grid(row=2, column=3, padx=(0, 0))
 
-    # buttonSnapshot10 = tk.Button(pageWindow, text="10", font=fontS, bg="black", fg="white", command=snapshot10, height= 2, width=5).grid(row=2, column=4, padx=(0, 20))
+
+    buttonSnapshot27 = tk.Button(pageWindow, text="27", font=fontS, bg="black", fg="white", command=snapshot27, height= 2, width=5).grid(row=2, column=1, padx=(0, 0))
+
+
+
+    buttonSnapshot28 = tk.Button(pageWindow, text="28", font=fontS, bg="black", fg="white", command=snapshot28, height= 2, width=5).grid(row=2, column=2, padx=(0, 0))
+
+
+
+    buttonSnapshot29 = tk.Button(pageWindow, text="29", font=fontS, bg="black", fg="white", command=snapshot29, height= 2, width=5).grid(row=2, column=3, padx=(0, 0))
+
+
+
+    buttonSnapshot30 = tk.Button(pageWindow, text="30", font=fontS, bg="black", fg="white", command=snapshot30, height= 2, width=5).grid(row=2, column=4, padx=(0, 0))
+
+
+
+
 
 
 
 def page2():
 
+
+
     pageclear(pageWindow)
+
+
 
     button_active(pageNavButton2)
 
+
+
     button_inactive(pageNavButton1)
+
+
 
     button_inactive(pageNavButton3)
 
+
+
     tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
+
+
+
+
 
 
 
     buttonSequence1 = tk.Button(pageWindow, text="Spotlight", font=fontS, bg="black", fg="white", command=spotlightMA3, height= 2, width=12).grid(row=1, column=0, padx=(20, 0))
 
+
+
     buttonSequence2 = tk.Button(pageWindow, text="Stage Failed", font=fontS, bg="black", fg="white", command=stageFailedMa3, height= 2, width=12).grid(row=2, column=0, padx=(20, 0))
+
+
 
     buttonSequence3 = tk.Button(pageWindow, text="Stage Passed", font=fontS, bg="black", fg="white", command=stagePassedMa3, height= 2, width=12).grid(row=3, column=0, padx=(20, 0))
 
+
+
     buttonSequence4 = tk.Button(pageWindow, text="Station Marker", font=fontS, bg="black", fg="white", command=stationMarkerMa3, height= 2, width=12).grid(row=4, column=0, padx=(20, 0))
+
+
 
     buttonSequence5 = tk.Button(pageWindow, text="Game Light", font=fontS, bg="black", fg="white", command=gamelightsMa3, height= 2, width=12).grid(row=5, column=0, padx=(20, 0))
 
+
+
     buttonDirections = tk.Button(pageWindow, text="Directions", font=fontS, bg="black", fg="white", command=directions, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
+
     
+
     buttonPause = tk.Button(pageWindow, text="Pause", font=fontS, bg="black", fg="white", command=pause, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
+
+
 
     buttonOops = tk.Button(pageWindow, text="Clear", font=fontS, bg="black", fg="white", command=clear, height= 2, width=10).grid(row=3, column=1, padx=(20, 20))
 
+
+
     buttonClear = tk.Button(pageWindow, text="Clear All", font=fontS, bg="black", fg="white", command=clear_all, height= 2, width=10).grid(row=4, column=1, padx=(20, 20))
+
+
 
 def page3():
 
+
+
     pageclear(pageWindow)
+
+
 
     button_active(pageNavButton3)
 
+
+
     button_inactive(pageNavButton1)
 
+
+
     button_inactive(pageNavButton2)
+
+
 
     tk.Label(pageWindow, text="GrandMA3 Controls", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
 
 
 
+
+
+
+
     buttonGameStart = tk.Button(pageWindow, text="GameStart", font=fontS, bg="black", fg="white", command=gameStartRp, height= 2, width=12).grid(row=1, column=0, padx=(20, 0))
+
+
 
     buttonProjectile1 = tk.Button(pageWindow, text="Projectile1", font=fontS, bg="black", fg="white", command=Projectile1Rp, height= 2, width=12).grid(row=2, column=0, padx=(20, 0))
 
+
+
     buttonProjectile2 = tk.Button(pageWindow, text="Projectile2", font=fontS, bg="black", fg="white", command=Projectile2Rp, height= 2, width=12).grid(row=3, column=0, padx=(20, 0))
+
+
 
     buttonProjectile3 = tk.Button(pageWindow, text="Projectile3", font=fontS, bg="black", fg="white", command=Projectile3Rp, height= 2, width=12).grid(row=4, column=0, padx=(20, 0))
 
+
+
     buttonDeflect = tk.Button(pageWindow, text="Deflect", font=fontS, bg="black", fg="white", command=DeflectRp, height= 2, width=12).grid(row=5, column=0, padx=(20, 0))
+
+
 
     buttonFail = tk.Button(pageWindow, text="Fail", font=fontS, bg="black", fg="white", command=FailRp, height= 2, width=10).grid(row=1, column=1, padx=(20, 20))
 
+
+
     buttonVictory = tk.Button(pageWindow, text="Victory", font=fontS, bg="black", fg="white", command=VictoryRp, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
+
+
 
     buttonStart_Pause = tk.Button(pageWindow, text="Start/Pause", font=fontS, bg="black", fg="white", command=StartPauseRp, height= 2, width=10).grid(row=2, column=1, padx=(20, 20))
 
+
+
 # page navigation buttons
+
+
 
 pageNavButton1 = tk.Button(pageNav, text="L-ISA Studio", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page1, height= 2, width=10)
 
+
+
 pageNavButton1.grid(row=1, column=0, padx=(20, 0))
+
+
 
 pageNavButton2 = tk.Button(pageNav, text="GrandMA3", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page2, height= 2, width=10)
 
+
+
 pageNavButton2.grid(row=2, column=0, padx=(20, 0))
 
+
+
 pageNavButton3 = tk.Button(pageNav, text="Reaper", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page3, height= 2, width=10)
+
+
 
 pageNavButton3.grid(row=3, column=0, padx=(20, 0))
 
 
 
+
+
+
+
 # button colour change on press
 
+
+
 def button_active(x):
+
+
 
     x.config(bg="#7d8adb")
 
 
 
+
+
+
+
 def button_inactive(x):
+
+
 
     x.config(bg="#1f2a70")
 
 
 
+
+
+
+
 # L-ISA button functions
+
+
 
 def snapshot21():
 
-    print("Snapshot 1 pressed")
 
-    LISAMessages.North()
+
+    print("Snapshot 21 pressed")
+
+
+
+    LISAMessages.Seq21()
+
+
+
+
 
 
 
 def snapshot22():
 
-    print("Snapshot 2 pressed")
 
-    LISAMessages.West()
+
+    print("Snapshot 22 pressed")
+
+
+
+    LISAMessages.Seq22()
+
+
+
+
 
 
 
 def snapshot23():
 
-    print("Snapshot 3 pressed")
 
-    LISAMessages.East()
+
+    print("Snapshot 23 pressed")
+
+
+
+    LISAMessages.Seq23()
+
+
+
+
 
 
 
 def snapshot24():
 
-    print("Snapshot 4 pressed")
-
-    LISAMessages.South()
-
-# def solo():
-    
-    # print("Solo")
-    
-    # LISAMessages.soloSound()
 
 
-# def snapshot5():
-
-    # print("Snapshot 5 pressed")
-
-    # osc_client_LISA.snapshot5_osc()
+    print("Snapshot 24 pressed")
 
 
 
-# def snapshot6():
-
-    # print("Snapshot 6 pressed")
-
-    # osc_client_LISA.snapshot6_osc()
+    LISAMessages.Seq24()
 
 
 
-# def snapshot7():
-
-    # print("Snapshot 7 pressed")
-
-    # osc_client_LISA.snapshot7_osc()
+def snapshot25():
 
 
 
-# def snapshot8():
-
-    # print("Snapshot 8 pressed")
-
-    # osc_client_LISA.snapshot8_osc()
+    print("Snapshot 25 ")
 
 
 
-# def snapshot9():
-
-    # print("Snapshot 9 pressed")
-
-    # osc_client_LISA.snapshot9_osc()
+    LISAMessages.Seq25()
 
 
 
-# def snapshot10():
 
-    # print("Snapshot 10 pressed")
 
-    # osc_client_LISA.snapshot10_osc()
+
+
+def snapshot26():
+
+
+
+    print("Snapshot 26 pressed")
+
+
+
+    LISAMessages.Seq26()
+
+
+
+
+
+
+
+def snapshot27():
+
+
+
+    print("Snapshot 27 pressed")
+
+
+
+    LISAMessages.Seq27()
+
+
+
+
+
+
+
+def snapshot28():
+
+
+
+    print("Snapshot 28 pressed")
+
+
+
+    LISAMessages.Seq28()
+
+
+
+
+
+
+
+def snapshot29():
+
+
+
+    print("Snapshot 29 pressed")
+
+
+
+    LISAMessages.Seq29()
+
+
+
+
+
+
+
+def snapshot30():
+
+
+
+    print("Snapshot 30 pressed")
+
+
+
+    LISAMessages.Seq30()
+
+
+
+
 
 
 
@@ -279,180 +538,360 @@ def snapshot24():
 
 
 
+
+
+
+
 def spotlightMA3():
+
+
 
     print("spotlightMA3 pressed")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.directToCTR()
 
 
 
+
+
+
+
 def stageFailedMa3():
+
+
 
     print("stageFailedMa3 pressed")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.stageFail()
 
+
+
     
+
+
 
 def stagePassedMa3():
 
+
+
     print("stagePassedMa3 pressed")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.stagePass()
 
 
 
+
+
+
+
 def stationMarkerMa3():
+
+
 
     print("stationMarkerMa3 pressed")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.murugunLight()
 
 
 
+
+
+
+
 def gamelightsMa3():
+
+
 
     print("gamelightsMa3 pressed")
 
-    # GrandMa3Messages.clear_all()
+
 
     # GrandMa3Messages.clear_all()
+
+
+
+    # GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.playing()
 
+
+
 def directions():
+
+
 
     print("directions pressed")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
     GrandMa3Messages.directions()
 
+
+
 def pause():
 
+
+
     print("Pause pressed")
+
+
 
     GrandMa3Messages.pause_osc()
 
 
 
+
+
+
+
 def clear():
 
+
+
     print("clear pressed")
+
+
 
     GrandMa3Messages.clear()
 
 
 
+
+
+
+
 def clear_all():
+
+
 
     print("clear all")
 
-    GrandMa3Messages.clear_all()
+
 
     GrandMa3Messages.clear_all()
+
+
+
+    GrandMa3Messages.clear_all()
+
+
 
 #Reaper button functions
 
+
+
 def gameStartRp():
+
+
 
     print("game start")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.startMk()
+
+
 
 def Projectile1Rp():
 
+
+
     print("Projectile 1")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.projectile1()
+
+
 
 def Projectile2Rp():
 
+
+
     print("Projectile 2")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.projectile2()
+
+
 
 def Projectile3Rp():
 
+
+
     print("Projectile 3")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.projectile3()
+
+
 
 def DeflectRp():
 
+
+
     print("Deflect")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.deflect()
+
+
 
 def FailRp():
 
+
+
     print("Fail")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.fail()
+
+
 
 def VictoryRp():
 
+
+
     print("Victory")
 
+
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
     
+
     reaper_markers.victory()
 
+
+
 def StartPauseRp():
+
     
+
     print("Pause")
+
     
+
     #play_stop.play_stop()
+
     
+
     reaper_markers.play_stop()
+
+
 
 #default page on start-up
 
+
+
 page1()
+
+
 
 main.mainloop()
