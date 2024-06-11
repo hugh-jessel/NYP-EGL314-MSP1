@@ -35,7 +35,7 @@ To setup the hardware and software connections, please read through the followin
 Here, are all the varying assets used for the POC. This includes:
 1. **[Digital Posters](./Assets/Poster)** - Includes a GIF and JPG version of the Digital Poster
 
-   <img src="./Assets/Poster/DigitalPoster.gif" width =215px height=300px>
+   <img src="./Assets/Poster/DigitalPoster.png" width =215px height=300px>
 
    *Digital Poster - GIF Format*
    
