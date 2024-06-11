@@ -2,8 +2,9 @@ import mido
 import midi
 import play_stop
 import reaper_markers
-import GrandMa3Messages
+import Lisa_GrandMa3_Functions
 import time
+import server_for_Lisa
 
 def Midi_LaunchPad_MK3():
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
@@ -25,13 +26,18 @@ def Midi_LaunchPad_MK3():
                         
                         play_stop.play_stop() # Stop any currently playing track 
                         
-                        GrandMa3Messages.clear_all()   
-                        GrandMa3Messages.clear_all()
+                        Lisa_GrandMa3_Functions.clear_all()   
+                        Lisa_GrandMa3_Functions.clear_all()
                         time.sleep(0.1)
-                        GrandMa3Messages.playing()
-                        GrandMa3Messages.playing()
+                        Lisa_GrandMa3_Functions.playing()
+                        Lisa_GrandMa3_Functions.playing()
                         reaper_markers.startMk()
+                        
+                        server_for_Lisa.catcher()
+                        #server_for_Lisa.server_run()
+                        
                         midi.Midi_LaunchPad_MK3()
+                        
                         
                 elif msg.type == 'note_off':
                     # Note off messages represent pad releases

@@ -31,7 +31,7 @@ def send_message(receiver_ip, receiver_port, address, message):
 
 # FOR INFO: IP address and port of the receiving Raspberry Pi
 
-PI_A_ADDR = "192.168.254.30"		# ip of GrandMA3 ras pi (When swapping network please check)
+PI_A_ADDR = "192.168.254.229"		# ip of GrandMA3 ras pi (When swapping network please check)
 
 PORT = 8888
 

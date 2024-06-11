@@ -2,24 +2,31 @@ import mido
 import reaper_markers
 import play_stop
 import time
-import GrandMa3Messages
+import Lisa_GrandMa3_Functions
+from pythonosc import osc_server, dispatcher
+import server_for_Lisa
 
 global count
+global directional_var
 start_time = None  # Initialize start_time as None
 
+# Reset game variable
 North_pressed = 'False'
 South_pressed = 'False'
 East_pressed  = 'False'
 West_pressed  = 'False' 
 
+def process_directional_var(directional_var):
+    print(f"Received directional value: {directional_var}")
+
 def game_over():                       
     print('Game over')    
-    GrandMa3Messages.stageFail() # Plays 'fail' light sequence
+    Lisa_GrandMa3_Functions.stageFail() # Plays 'fail' light sequence
     reaper_markers.fail()  # Jumps to 'fail' soundcue
     time.sleep(8)
     play_stop.play_stop()
-    GrandMa3Messages.clear_all()   
-    GrandMa3Messages.clear_all()
+    Lisa_GrandMa3_Functions.clear_all()   
+    Lisa_GrandMa3_Functions.clear_all()
     exit()  
 
 def deflect_success():
@@ -34,6 +41,7 @@ def deflect_success():
     time.sleep(1)  #lets sound cue playout before jumping 
 
 def Midi_LaunchPad_MK3():           #Main game code
+    
     global start_time
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"    
     
@@ -47,6 +55,8 @@ def Midi_LaunchPad_MK3():           #Main game code
         start_time = time.time()  # Set start_time when the loop starts
         try:
             while True:
+                server_for_Lisa.catcher()
+                server_for_Lisa.server_run()
                 # Increment count and sleep for 0.5 seconds|| Starts count for game
                 time.sleep(0.5)                            
                 count += 0.5
@@ -62,10 +72,9 @@ def Midi_LaunchPad_MK3():           #Main game code
                     if msg.type == 'note_on':  # Note on messages represent pad presses
                         print(f'Note On: Note={msg.note}')
                         
-#####################################################################################################################
-              ################################STAGE1 START#######################################            
+#STAGE1 START          
                         
-                        if msg.note == 60 and 26.5>= count >= 24 and North_pressed == 'False':  
+                        if msg.note == 60 and 0.5 > directional_var > 0.25 and North_pressed == 'False':  
                             # msg.note 60 is the pad for North||Red;60;North      #1
                             
                             # Count range is for when participant should be pressing the pad to deflect; 
@@ -80,18 +89,18 @@ def Midi_LaunchPad_MK3():           #Main game code
                             reaper_markers.projectile1()
                             print('Back to projectile')
                         
-                        elif msg.note == 60 and 26.5>= count >= 24 and North_pressed == 'True':
+                        elif msg.note == 60 and 0.5 > directional_var > 0.25 and North_pressed == 'True':
                             
                             pass
                             
-                        elif msg.note == 60 and 27.5 >= count >= 28: 
+                        elif msg.note == 60 and directional_var > 0.26: 
                             # North is pressed but after the timing for reaction,
                             # thus causing a game over
             
                             
                             game_over()
                         
-                        elif msg.note == 64 and  32 >= count >= 27.5 and West_pressed == 'False':  
+                        elif msg.note == 64 and  1 > directional_var > 0.5 and West_pressed == 'False':  
                             # msg.note 64 is the pad for West||Yellow;64;West    #2
                             
                             # Count range is for when participant should be pressing the pad to deflect; 
@@ -154,11 +163,9 @@ def Midi_LaunchPad_MK3():           #Main game code
                         
                             game_over()
 
-              ################################STAGE1 DONE#######################################              
-#####################################################################################################################
+#STAGE1 DONE
 
-#####################################################################################################################
-              ################################STAGE2 START#######################################           
+#STAGE2 START  
                         
                         elif 53 >= count >= 52:   #Add msg.note condition after
                              
@@ -168,8 +175,8 @@ def Midi_LaunchPad_MK3():           #Main game code
                             time.sleep(8)
                             play_stop.play_stop()
                             time.sleep(4)
-                            GrandMa3Messages.clear_all()   
-                            GrandMa3Messages.clear_all()
+                            Lisa_GrandMa3_Functions.clear_all()   
+                            Lisa_GrandMa3_Functions.clear_all()
                             
                             exit()  
                             #send to next projectile marker
@@ -234,8 +241,7 @@ def Midi_LaunchPad_MK3():           #Main game code
                             # ~ print ('Failed')
                             # ~ game_over() 
                         
-              ################################STAGE2 DONE#######################################              
-#####################################################################################################################                        
+#STAGE2 DONE                     
                     elif msg.type == 'note_off':  # Note off messages represent pad releases
                         
                         print(f'Note Off: Note={msg.note}')
@@ -243,11 +249,11 @@ def Midi_LaunchPad_MK3():           #Main game code
                 if count == 41 and South_pressed == 'True': 
                     print('Victory')
                     reaper_markers.victory()
-                    GrandMa3Messages.stagePass()
+                    Lisa_GrandMa3_Functions.stagePass()
                     time.sleep(6)
-                    GrandMa3Messages.clear_all()   
-                    # GrandMa3Messages.playing()
-                    # GrandMa3Messages.playing()
+                    Lisa_GrandMa3_Functions.clear_all()   
+                    # Lisa_GrandMa3_Functions.playing()
+                    # Lisa_GrandMa3_Functions.playing()
                     exit()
                     
                 elif count >= 27 and North_pressed == 'False':      #If no buttons are pressed after count 25
@@ -269,9 +275,10 @@ def Midi_LaunchPad_MK3():           #Main game code
         except KeyboardInterrupt:
             
             print("Stopped listening to MIDI messages.")
-
+        
 if __name__ == "__main__":
     Midi_LaunchPad_MK3()
+    
 
 
 
