@@ -4,7 +4,9 @@ import play_stop
 import reaper_markers
 import Lisa_GrandMa3_Functions
 import time
+import sys
 import server_for_Lisa
+import threading 
 
 def Midi_LaunchPad_MK3():
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
@@ -33,10 +35,15 @@ def Midi_LaunchPad_MK3():
                         Lisa_GrandMa3_Functions.playing()
                         reaper_markers.startMk()
                         
-                        server_for_Lisa.catcher()
-                        #server_for_Lisa.server_run()
+                        serverCatch = threading.Thread(target=server_for_Lisa.catcher)
+                        serverRun = threading.Thread(target=server_for_Lisa.server_run)
+                        midiLaunchpad = threading.Thread(target=midi.Midi_LaunchPad_MK3)
                         
-                        midi.Midi_LaunchPad_MK3()
+                        serverCatch.start()
+                        serverRun.start()
+                        midiLaunchpad.start()
+                        #server_for_Lisa.server_run()             
+                        #midi.Midi_LaunchPad_MK3()
                         
                         
                 elif msg.type == 'note_off':
@@ -45,6 +52,7 @@ def Midi_LaunchPad_MK3():
                     #print(f'Note Off: Note={msg.note} Velocity={msg.velocity}')
         except KeyboardInterrupt:
                 print("Stopped listening to MIDI messages.")
+
 
 if __name__ == "__main__":
     Midi_LaunchPad_MK3()
