@@ -7,7 +7,7 @@ from pythonosc import osc_server, dispatcher
 import osc_client
 
 # change the receiver_ip value to your RPi's IP address
-receiver_ip = "192.168.254.110" # Team A
+receiver_ip = "192.168.254.49" # Team A
 receiver_port = 2003
 
 # this function prints the arguments in received OSC messages
@@ -20,16 +20,16 @@ def print_args(addr, *args):
     addr = "/trigger"
 
     if 1 <= spk <= 3:
-       send_addr = "IP Address" #Team C
+       send_addr = "192.168.254.197" #Team C
        send_port = 2001
     elif 4 <= spk <= 6:
-      send_addr = "IP Address" #Team E
+      send_addr = "192.168.254.101" #Team E
       send_port = 2002
     elif 7 <= spk <= 9:
       send_addr = "192.168.254.72" #Team B
       send_port = 2003
     elif 10 <= spk <= 12:
-      send_addr = "IP Address" #Team F
+      send_addr = "192.168.254.236" #Team F
       send_port = 2004
     
     osc_client.send_message(send_addr, send_port, addr, msg)
