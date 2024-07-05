@@ -169,6 +169,7 @@ def launchpad():
                         game_over()
                             
 def lisa_listen():
+    global dispatcher
     dispatcher = dispatcher.Dispatcher()
     dispatcher.map("/ext/src/72/p", print_args) ## if OSC message with addr "/print" is received, message_handler function will run
     server = osc_server.ThreadingOSCUDPServer((receiver_ip, receiver_port), dispatcher)
@@ -178,7 +179,7 @@ def lisa_listen():
 
 LP = threading.Thread(target=launchpad)
 #LL = threading.Thread(target=lisa_listen, args=('directional_var'))
-LL = threading.Thread(target=lisa_listen, args=('directional_var'))
+LL = threading.Thread(target=lisa_listen)
 LL.start()
 LP.start()
 
