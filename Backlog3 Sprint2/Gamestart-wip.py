@@ -6,11 +6,10 @@ from pythonosc import osc_server, dispatcher
 import time
 import threading
 
-global count
-global directional_var
 
-receiver_ip = "0.0.0.0"                                                                              #Initializing OSC Server
-receiver_port = 7123
+
+receiver_ip = "192.168.254.137"                                                                              #Initializing OSC Server
+receiver_port = 7128
     
 def game_over():                       
     print('Game over')    
@@ -32,14 +31,23 @@ def game_over():
 # ^ but what if I need to reuse markers? randomize?
 
 
-
+directional_var = 0
 def print_args(addr, *args):
 
         if addr == "/ext/src/72/p":
-            print(args[0])
-            directional_var = args[0]
-            print("Doing task here...")
-                    
+            directional_var = sys.argv
+            directional_var.pop(0)
+            var = ' '
+        for tmp in directional_var:
+            if var != ' ':
+                var += ' '
+            var += tmp
+        var += '\n'
+            # ~ print(args[0])
+            # ~ directional_var = args[0]
+            # ~ print("Doing task here...")
+
+count = 0
 def count_start():
     print('Count start')
     time.sleep(0.5)                            
@@ -92,12 +100,13 @@ def launchpad():
                     EastVal = float(0.75)
                     WestVal = float(1)
                     
-                    game_start = 'True'
+                    game_start = 'False'
                     
+                    global count 
                     if msg.type == 'note_on':  # Note on messages represent pad presses
                         print(f'Note On: Note={msg.note}')
 
-                        if msg.note == 67:            #Start
+                        if msg.note == 67 and game_start == 'False':            #Start
                             print ('Game Start')
                             
                             play_stop.play_stop() # Stop any currently playing track 
@@ -107,7 +116,9 @@ def launchpad():
                             Lisa_GrandMa3_Functions.playing()
                             Lisa_GrandMa3_Functions.playing()
                             reaper_markers.startMk()
-                        
+							
+                            game_start = 'True'
+                            
                             if directional_var == NorthVal and North_pressed != 'True':
                                 count_start()
                                 if msg.note == 60 and count < 3:
