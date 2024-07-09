@@ -36,7 +36,7 @@ def play_stop():
 def startMk():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41261" # Jump to Marker One
+	addr = "/action/41261" # Jump to Marker 21
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Start")
@@ -44,7 +44,7 @@ def startMk():
 def projectile1():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41265" # Jump to Marker Five
+	addr = "/action/41265" # Jump to Marker 25
 	#addr = "GOTO_MARKER i/marker t/marker/5" # Jump to Marker Five
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
@@ -53,7 +53,7 @@ def projectile1():
 def projectile2():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41266" # Jump to Marker Six
+	addr = "/action/41266" # Jump to Marker 26
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Projectile 2")
@@ -61,23 +61,23 @@ def projectile2():
 def projectile3():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41267" # Jump to Marker Seven 
+	addr = "/action/41267" # Jump to Marker 27 
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Projectile 3")
 
-# def projectile4():
-	# global PI_A_ADDR
-	# global port
-	# addr = "/action/40167" # Jump to Marker Seven
-	# global msg
-	# send_message(PI_A_ADDR, PORT, addr, msg)
-	# print("Projectile 4")
+def tut_stagepass():
+	global PI_A_ADDR
+	global port
+	addr = "/action/41268" # Jump to Marker 28
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Tutorial Stage Passed")
 
 def deflect():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41263" # Jump to Marker Three
+	addr = "/action/41263" # Jump to Marker 23
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("deflect")
@@ -85,7 +85,7 @@ def deflect():
 def fail():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41264" # Jump to Marker Four
+	addr = "/action/41264" # Jump to Marker 24
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Fail")
@@ -93,11 +93,15 @@ def fail():
 def victory():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41268" # Jump to Marker Eight
+	addr = "/marker/27" # Jump to Marker 63
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Pass")
-
-
+	print("Beaten Game!")
 	
-
+def restart():
+	global PI_A_ADDR
+	global port
+	addr = "/marker/9" # Jump to Marker 63
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Game Restarted!")
