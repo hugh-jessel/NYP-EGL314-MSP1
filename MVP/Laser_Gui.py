@@ -205,6 +205,9 @@ def AllOff():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def AllOn():
     msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
            "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
@@ -216,6 +219,9 @@ def AllOn():
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+
+        if y == len(msg):
+            break
 
 def OddSpk():
     msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
@@ -229,6 +235,9 @@ def OddSpk():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def EvenSpk():
     msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
            "4,1,1", "4,2,1", "5,1,0", "5,2,0", "6,1,1", "6,2,1",
@@ -240,6 +249,9 @@ def EvenSpk():
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+
+        if y == len(msg):
+            break
 
 def crossfire():
     msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
@@ -253,6 +265,9 @@ def crossfire():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def AllOnOneByOne():
     msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
            "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
@@ -261,10 +276,13 @@ def AllOnOneByOne():
     
     y = int(0)
     while y < len(msg):
-        time.sleep(0.01)
+        time.sleep(0.03)
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+
+        if y == len(msg):
+            break
 
 def AllOffOneByOne():
     msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
@@ -274,10 +292,13 @@ def AllOffOneByOne():
     
     y = int(0)
     while y < len(msg):
-        time.sleep(0.01)
+        time.sleep(0.03)
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+
+        if y == len(msg):
+            break
 
 def crossfireOpp():
     msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
@@ -291,6 +312,9 @@ def crossfireOpp():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def OneToThreeOn():
     msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1"]
     
@@ -299,6 +323,9 @@ def OneToThreeOn():
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+
+        if y == len(msg):
+            break
 
 def FourToSixOn():
     msg = ["4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1"]
@@ -309,6 +336,9 @@ def FourToSixOn():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def SevenToNineOn():
     msg = ["7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1"]
     
@@ -317,6 +347,9 @@ def SevenToNineOn():
         send_message(send_addr, send_port, addr, msg[y])
         print(msg[y])
         y += 1
+        
+        if y == len(msg):
+            break
 
 def TenToTwelveOn():
     msg = ["10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
@@ -327,6 +360,9 @@ def TenToTwelveOn():
         print(msg[y])
         y += 1
 
+        if y == len(msg):
+            break
+
 def Laser_SequenceRP():
 
     print("Laser Sequence")
@@ -336,6 +372,118 @@ def Laser_SequenceRP():
     reaper_markers.play_stop()
     reaper_markers.lasershow()
 
+def TopHalf():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
+           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
+           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
+           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
+def BottomHalf():
+    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
+           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
+           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
+           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
+def LeftHalf():
+    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
+           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
+           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
+           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+        
+def RightHalf():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
+           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
+           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
+           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
+def OneToThreeOnOneByOne():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.03)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
+def FourToSixOnOneByOne():
+    msg = ["4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.03)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
+def SevenToNineOnOneByOne():
+    msg = ["7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.03)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+        
+        if y == len(msg):
+            break
+    
+def TenToTwelveOnOneByOne():
+    msg = ["10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.03)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+        if y == len(msg):
+            break
+
 def lasersequence():
     Laser_SequenceRP()
 
@@ -343,7 +491,7 @@ def lasersequence():
     send_brightness(PI_B_ADDR, PORT2, 0.3)   # change brightness (0-1)
     print("test")     
 
-    beat_gap = 60/149 # Time interval between beats
+    beat_gap = 60/101 # Time interval between beats
     count = 0
     start_time = time.time()
     while time.time() - start_time < 30 :
@@ -353,63 +501,93 @@ def lasersequence():
         if count == 1:
             send_brightness(PI_B_ADDR, PORT2, 0)
             AllOn()
-        if (count > 1) & (count < 7):
+        if (count == 1):
             OddSpk()
-        if (count >= 7 & count < 17):
+        if (count == 2):
             EvenSpk()
-        if(count == 17):
+        if(count == 3):
             AllOff()
-        if(count > 17 & count < 22):
+        if(count == 4):
             AllOnOneByOne()
-        if(count >= 22 & count < 25):
+        if(count == 5):
             AllOffOneByOne()
-        if(count == 25):
+        if(count == 6):
             crossfire()
-        if(count == 26):
+        if(count == 7):
             crossfireOpp()
-        if(count == 27):
+        if(count == 8):
             AllOff()
-        if(count > 27 & count < 30):
+        if(count == 9):
             AllOn()
-        if(count == 30):
-            AllOff()
-        if(count == 31):
-            OddSpk()
-        if(count == 32):
-            EvenSpk()
-        if(count == 33):
-            AllOn()
-        if (count > 33 & count < 39):
+        if (count == 10):
             AllOffOneByOne()
-        if (count > 39 & count < 45):
-            AllOnOneByOne()
-        if(count == 45):
-            AllOff()
-        if(count == 46):
+        if (count == 11):
             OneToThreeOn()
-        if (count == 47):
+        if (count == 12):
             FourToSixOn()
-        if (count == 48):
+        if (count == 13):
             SevenToNineOn()
-        if (count == 49):
+        if (count == 14):
             TenToTwelveOn()
-        if (count > 49 & count < 55):
+        if (count == 15):
+            AllOff()
+        if (count == 16):
+            OddSpk()
+        if (count == 17):
+            EvenSpk()
+        if (count == 18):
+            AllOff()
+        if (count == 19):
+            OneToThreeOn()
+            SevenToNineOn()
+        if (count == 20):
+            AllOff()
+            FourToSixOn()
+            TenToTwelveOn()
+        if (count == 21):
+            AllOff()
+        if (count == 22):
+            AllOn()
+        if (count == 23):
+            OddSpk()
+        if (count == 24):
+            EvenSpk()
+        if (count == 25):
+            AllOnOneByOne()
+        if (count == 26):
+            crossfire()
+        if (count == 27):
+            crossfireOpp()
+        if (count == 28):
+            TopHalf()
+        if (count == 29):
+            BottomHalf()
+        if (count == 30):
             AllOffOneByOne()
-        if (count == 56):
+        if (count == 31):
+            LeftHalf()
+        if (count == 32):
+            RightHalf()
+        if (count == 33):
+            AllOffOneByOne()
+        if (count == 34):
+            AllOn()
+        if (count == 35):
+            AllOff()
+        if (count == 36):
+            OneToThreeOnOneByOne()
+            FourToSixOnOneByOne()
+        if (count == 37):
+            SevenToNineOnOneByOne()
+            TenToTwelveOnOneByOne()
+        if(count == 38):
+            AllOffOneByOne()
+        if(count == 39):
+            AllOnOneByOne()
             send_color(PI_B_ADDR, PORT2, 255, 0, 0)
             send_brightness(PI_B_ADDR, PORT2, 0.3)
-        if (count == 57):
-            send_brightness(PI_B_ADDR, PORT2, 0)
-        if (count > 57 and count < 63):
+        if(count == 40):
             AllOnOneByOne()
-        if (count >= 63 and count < 68):
-            AllOff()
-        if (count == 69):
-            OddSpk()
-        if (count == 70):
-            EvenSpk()
-        if (count >= 71):
-            AllOff()
 
         print(count)
         count += 1
