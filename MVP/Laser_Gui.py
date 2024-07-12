@@ -4,6 +4,8 @@ from pythonosc import udp_client
 
 import tkinter as tk
 
+import reaper_markers
+
 # import RPi.GPIO as GPIO
 
 import time
@@ -200,13 +202,145 @@ def AllOff():
     y = int(0)
     while y < len(msg):
         send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
         y += 1
-        if y == len(msg):
-            break
+
+def AllOn():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
+           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
+           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
+           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def OddSpk():
+    msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
+           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
+           "7,1,1", "7,2,1", "8,1,0", "8,2,0", "9,1,1", "9,2,1",
+           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def EvenSpk():
+    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
+           "4,1,1", "4,2,1", "5,1,0", "5,2,0", "6,1,1", "6,2,1",
+           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
+           "10,1,1", "10,2,1", "11,1,0", "11,2,0", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def crossfire():
+    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
+           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
+           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
+           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def AllOnOneByOne():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
+           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
+           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
+           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.01)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def AllOffOneByOne():
+    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
+           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
+           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
+           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        time.sleep(0.01)
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def crossfireOpp():
+    msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
+           "4,1,1", "4,2,1", "5,1,0", "5,2,0", "6,1,1", "6,2,1",
+           "7,1,1", "7,2,1", "8,1,0", "8,2,0", "9,1,1", "9,2,1",
+           "10,1,1", "10,2,1", "11,1,0", "11,2,0", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def OneToThreeOn():
+    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def FourToSixOn():
+    msg = ["4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def SevenToNineOn():
+    msg = ["7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def TenToTwelveOn():
+    msg = ["10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+
+def Laser_SequenceRP():
+
+    print("Laser Sequence")
+
+    #play_stop.play_stop()
+
+    reaper_markers.play_stop()
+    reaper_markers.lasershow()
 
 def lasersequence():
+    Laser_SequenceRP()
+
     send_color(PI_B_ADDR, PORT2, 255, 0, 0)  # change to ur choice of colour (255,255,255)
-    send_brightness(PI_B_ADDR, PORT2, 1)   # change brightness (0-1)
+    send_brightness(PI_B_ADDR, PORT2, 0.3)   # change brightness (0-1)
     print("test")     
 
     beat_gap = 60/149 # Time interval between beats
@@ -214,13 +348,75 @@ def lasersequence():
     start_time = time.time()
     while time.time() - start_time < 30 :
         time.sleep(beat_gap)
-        if count == (0):
+        if count == 0:
+            AllOff()
+        if count == 1:
+            send_brightness(PI_B_ADDR, PORT2, 0)
+            AllOn()
+        if (count > 1) & (count < 7):
+            OddSpk()
+        if (count >= 7 & count < 17):
+            EvenSpk()
+        if(count == 17):
+            AllOff()
+        if(count > 17 & count < 22):
+            AllOnOneByOne()
+        if(count >= 22 & count < 25):
+            AllOffOneByOne()
+        if(count == 25):
+            crossfire()
+        if(count == 26):
+            crossfireOpp()
+        if(count == 27):
+            AllOff()
+        if(count > 27 & count < 30):
+            AllOn()
+        if(count == 30):
+            AllOff()
+        if(count == 31):
+            OddSpk()
+        if(count == 32):
+            EvenSpk()
+        if(count == 33):
+            AllOn()
+        if (count > 33 & count < 39):
+            AllOffOneByOne()
+        if (count > 39 & count < 45):
+            AllOnOneByOne()
+        if(count == 45):
+            AllOff()
+        if(count == 46):
+            OneToThreeOn()
+        if (count == 47):
+            FourToSixOn()
+        if (count == 48):
+            SevenToNineOn()
+        if (count == 49):
+            TenToTwelveOn()
+        if (count > 49 & count < 55):
+            AllOffOneByOne()
+        if (count == 56):
+            send_color(PI_B_ADDR, PORT2, 255, 0, 0)
+            send_brightness(PI_B_ADDR, PORT2, 0.3)
+        if (count == 57):
+            send_brightness(PI_B_ADDR, PORT2, 0)
+        if (count > 57 and count < 63):
+            AllOnOneByOne()
+        if (count >= 63 and count < 68):
+            AllOff()
+        if (count == 69):
+            OddSpk()
+        if (count == 70):
+            EvenSpk()
+        if (count >= 71):
             AllOff()
 
+        print(count)
         count += 1
 
-    print(f"Counted {count} beats in {30} seconds.")
     AllOff()
+    reaper_markers.play_stop()
+    print(f"Counted {count} beats in {30} seconds.") # max Count = 73/72
 
 """ without server
 
