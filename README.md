@@ -99,6 +99,7 @@ The codes in this repository had been made using **Python 3.9 or higher**.
 - **[Proof Of Concept](./POC/README.md)** - All the resources needed to trial run the game for the Proof Of Concept Demonstration
 - **[Backlog 3 Sprint 1](./Backlog3%Sprint1/B3S1.md)** - Configurating and usage of lasers and relay modules for 12 different speakers.
 - **[Backlog 3 Sprint 2](./Backlog3%sprint2/B3S2.md)** - Ensuring full length of the game being made.
+- **[Minimum Viable Product](./MVP/README.md)** - All the resources needed to reach a stage where the game is viable for the Minimum Viable Product Demonstration.
 
 ## References
 - **[Huats Club - rpistarterkit](https://github.com/huats-club/rpistarterkit)** - Getting started on configuring your Raspberry Pi
