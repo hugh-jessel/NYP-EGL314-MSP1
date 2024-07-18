@@ -44,7 +44,7 @@ To setup the hardware and software connections, please read through the followin
 Here, are all the varying assets used for the POC. This includes:
 1. **[Digital Posters](./Assets/Poster)** - Includes an updated PNG version of the Digital Poster
 
-   <img src="./Assets/Poster/DigitalPoster.png" width =215px height=300px>
+   <img src="./Assets/Poster.png" width =215px height=300px>
    
 2. **[Audio Assets](./Assets/Audio%20Assets)** - Includes a Master Reaper File, a Master L-ISA Controller File and the varying audio assets.
 3. **[GrandMA3](./Assets/GrandMA3)** - Includes a Master GrandMA3 file (With lights and IP addresses patched.)
