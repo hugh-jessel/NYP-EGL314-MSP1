@@ -10,9 +10,6 @@ import reaper_markers
 
 import time
 
-PI_B_ADDR = "192.168.254.242"  # Change to your RPi's IP address
-PORT2 = 2005
-
 def send_message(receiver_ip, receiver_port, address, message):
 	try:
 		# Create an OSC client to send messages
@@ -192,7 +189,10 @@ def send_color(receiver_ip, receiver_port, r, g, b):
 def send_brightness(receiver_ip, receiver_port, brightness):
     client = udp_client.SimpleUDPClient(receiver_ip, receiver_port)
     client.send_message("/brightness", [brightness])
-    
+
+PI_B_ADDR = "192.168.254.242"  # Change to your RPi's IP address
+PORT2 = 2005
+
 def AllOff():
     msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
            "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
@@ -485,116 +485,94 @@ def TenToTwelveOnOneByOne():
             break
 
 def lasersequence():
-    Laser_SequenceRP()
+    try:
+        Laser_SequenceRP()
+    except Exception as e:
+        print(f"Error in Laser_SequenceRP: {e}")
+        return
 
-    send_color(PI_B_ADDR, PORT2, 255, 0, 0)  # change to ur choice of colour (255,255,255)
-    send_brightness(PI_B_ADDR, PORT2, 0.3)   # change brightness (0-1)
-    print("test")     
+    print("test")
 
-    beat_gap = 60/101 # Time interval between beats
+    beat_gap = 60 / 101  # Time interval between beats
     count = 0
     start_time = time.time()
-    while time.time() - start_time < 30 :
-        time.sleep(beat_gap)
-        if count == 0:
-            AllOff()
-        if count == 1:
-            send_brightness(PI_B_ADDR, PORT2, 0)
-            AllOn()
-        if (count == 1):
-            OddSpk()
-        if (count == 2):
-            EvenSpk()
-        if(count == 3):
-            AllOff()
-        if(count == 4):
-            AllOnOneByOne()
-        if(count == 5):
-            AllOffOneByOne()
-        if(count == 6):
-            crossfire()
-        if(count == 7):
-            crossfireOpp()
-        if(count == 8):
-            AllOff()
-        if(count == 9):
-            AllOn()
-        if (count == 10):
-            AllOffOneByOne()
-        if (count == 11):
-            OneToThreeOn()
-        if (count == 12):
-            FourToSixOn()
-        if (count == 13):
-            SevenToNineOn()
-        if (count == 14):
-            TenToTwelveOn()
-        if (count == 15):
-            AllOff()
-        if (count == 16):
-            OddSpk()
-        if (count == 17):
-            EvenSpk()
-        if (count == 18):
-            AllOff()
-        if (count == 19):
-            OneToThreeOn()
-            SevenToNineOn()
-        if (count == 20):
-            AllOff()
-            FourToSixOn()
-            TenToTwelveOn()
-        if (count == 21):
-            AllOff()
-        if (count == 22):
-            AllOn()
-        if (count == 23):
-            OddSpk()
-        if (count == 24):
-            EvenSpk()
-        if (count == 25):
-            AllOnOneByOne()
-        if (count == 26):
-            crossfire()
-        if (count == 27):
-            crossfireOpp()
-        if (count == 28):
-            TopHalf()
-        if (count == 29):
-            BottomHalf()
-        if (count == 30):
-            AllOffOneByOne()
-        if (count == 31):
-            LeftHalf()
-        if (count == 32):
-            RightHalf()
-        if (count == 33):
-            AllOffOneByOne()
-        if (count == 34):
-            AllOn()
-        if (count == 35):
-            AllOff()
-        if (count == 36):
-            OneToThreeOnOneByOne()
-            FourToSixOnOneByOne()
-        if (count == 37):
-            SevenToNineOnOneByOne()
-            TenToTwelveOnOneByOne()
-        if(count == 38):
-            AllOffOneByOne()
-        if(count == 39):
-            AllOnOneByOne()
-            send_color(PI_B_ADDR, PORT2, 255, 0, 0)
-            send_brightness(PI_B_ADDR, PORT2, 0.3)
-        if(count == 40):
-            AllOnOneByOne()
 
-        print(count)
-        count += 1
+    try:
+        while time.time() - start_time < 30:
+            time.sleep(beat_gap)
 
-    AllOff()
-    reaper_markers.play_stop()
-    print(f"Counted {count} beats in {30} seconds.") # max Count = 73/72
+            if count % 2 == 0:
+                send_color(PI_B_ADDR, PORT2, 0, 0, 0)
+                send_brightness(PI_B_ADDR, PORT2, 0)
+            else:
+                send_color(PI_B_ADDR, PORT2, 255, 0, 0)
+                send_brightness(PI_B_ADDR, PORT2, 0.3)
+
+            # Using a dictionary to map counts to functions
+            actions = {
+                0: AllOff,
+                1: AllOn,
+                2: OddSpk,
+                3: AllOff,
+                4: AllOnOneByOne,
+                5: AllOffOneByOne,
+                6: crossfire,
+                7: crossfireOpp,
+                8: AllOff,
+                9: AllOn,
+                10: AllOffOneByOne,
+                11: OneToThreeOn,
+                12: FourToSixOn,
+                13: SevenToNineOn,
+                14: TenToTwelveOn,
+                15: AllOff,
+                16: OddSpk,
+                17: EvenSpk,
+                18: AllOff,
+                19: OneToThreeOn,
+                20: AllOff,
+                21: AllOn,
+                22: AllOff,
+                23: OddSpk,
+                24: EvenSpk,
+                25: AllOnOneByOne,
+                26: crossfire,
+                27: crossfireOpp,
+                28: TopHalf,
+                29: BottomHalf,
+                30: AllOffOneByOne,
+                31: LeftHalf,
+                32: RightHalf,
+                33: AllOffOneByOne,
+                34: AllOn,
+                35: AllOff,
+                36: OneToThreeOnOneByOne,
+                37: SevenToNineOnOneByOne,
+                38: AllOffOneByOne,
+                39: AllOnOneByOne,
+                40: AllOnOneByOne,
+            }
+
+            if count in actions:
+                try:
+                    actions[count]()
+                except Exception as e:
+                    print(f"Error executing action for count {count}: {e}")
+
+            print(count)
+            count += 1
+
+    except Exception as e:
+        print(f"Error in main loop: {e}")
+
+    try:
+        AllOff()
+        send_color(PI_B_ADDR, PORT2, 0, 0, 0)
+        send_brightness(PI_B_ADDR, PORT2, 0)
+        reaper_markers.play_stop()
+        print(f"Counted {count} beats in 30 seconds.")  # max Count = 73/72
+    except Exception as e:
+        print(f"Error during cleanup: {e}")
 
 """ without server
 
