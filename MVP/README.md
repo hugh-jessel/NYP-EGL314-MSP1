@@ -37,12 +37,12 @@ To setup the hardware and software connections, please read through the followin
 1. **[Backlog 1 Sprint 1](NYP-EGL314-MSP1/Backlog1%20Sprint1/B1S1.md)** - Base foundation on controlling the GrandMA3
 2. **[Backlog 2 Sprint 1](NYP-EGL314-MSP1/Backlog%202%20Sprint1/B2S1.md)** - Configuring L-ISA Studio and Reaper DAW for OSC and MTC control
 3. **[Backlog 2 Sprint 2](NYP-EGL314-MSP1/Backlog%202%20Sprint2/B2S2.md)** - Configuring a LaunchPad, sending MIDI commands to Reaper DAW, L-ISA Controller and GrandMA3
-4. **[Backlog 3 Sprint 1]**
-5. **[Backlog 3 Sprint 2]**
+4. **[Backlog 3 Sprint 1](NYP-EGL314-MSP1/Backlog3%20Sprint1/B3S1.md)** - Triggering Lasers from a GUI to multiple Raspberry Pis via a Master Pi.
+5. **[Backlog 3 Sprint 2](NYP-EGL314-MSP1/Backlog3%20Sprint2/B3S2.md)** - Creating the full length of the game.
 
 ## Assets
 Here, are all the varying assets used for the POC. This includes:
-1. **[Digital Posters](./Assets/Poster)** - Includes a GIF and JPG version of the Digital Poster
+1. **[Digital Posters](./Assets/Poster)** - Includes an updated PNG version of the Digital Poster
 
    <img src="./Assets/Poster/DigitalPoster.png" width =215px height=300px>
    
