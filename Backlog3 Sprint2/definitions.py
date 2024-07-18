@@ -7,7 +7,7 @@ import random
 
 #definitions
 def game_over():
-    print('Game Over')
+    print("Game Over")
     Lisa_GrandMa3_Functions.stageFail()
     reaper_markers.fail()
     time.sleep(8)
@@ -16,23 +16,21 @@ def game_over():
     Lisa_GrandMa3_Functions.clear_all()
     
 def nextstage():
-    print('Stage cleared!')
+    print("Stage cleared!")
     reaper_markers.tut_stagepass()
     Lisa_GrandMa3_Functions.stagePass()
     time.sleep(13)
-    stage2 = 'True'
+    stage2 = "True"
     
-def North():
+def North_deflect():
     deflect_success()
-    NorthPressed = 'True'
-    print("North deflected")
     snapshots()
     time.sleep(2)
     projectiles()
 
 def South():
     deflect_success()
-    SouthPressed = 'True'
+    SouthPressed = "True"
     print("South deflected")
     countT_stop()
     snapshots()
@@ -41,7 +39,7 @@ def South():
 
 def East():
     deflect_success()
-    EastPressed = 'True'
+    EastPressed = "True"
     print("East deflected")
     countT_stop()
     snapshots()
@@ -50,7 +48,7 @@ def East():
 
 def West():
     deflect_success()
-    WestPressed = 'True'
+    WestPressed = "True"
     print("West deflected")
     countT_stop()
     snapshots()
@@ -58,7 +56,7 @@ def West():
     projectiles()
     
 def countT_stop(count_timing):
-    print('count_timing Stopped')
+    print("count_timing Stopped")
     count = 0
     print(count)
     return count
@@ -67,15 +65,10 @@ def deflect_success():
     time.sleep(1)
 
 def resetVar():
-    NorthPressed = 'False'
-    SouthPressed = 'False'
-    EastPressed = 'False'
-    WestPressed = 'False'
-
-def countToSG2(tracker1):
-    count = 0
-    count += 1
-    return count
+    NorthPressed = "False"
+    SouthPressed = "False"
+    EastPressed = "False"
+    WestPressed = "False"
 
 def projectiles():
     if random.randint(1,3) == 1:
@@ -89,31 +82,31 @@ def snapshots():
     random.randint(1,10)
     if random.randint == 1:
         Lisa_GrandMa3_Functions.Seq21()
-        directional_Var = 'North'
+        directional_Var = "North"
     elif random.randint == 2:
         Lisa_GrandMa3_Functions.Seq22()
-        directional_Var = 'North'
+        directional_Var = "West"
     elif random.randint == 3:
         Lisa_GrandMa3_Functions.Seq23()
-        directional_Var = 'South'
+        directional_Var = "East"
     elif random.randint == 4:
         Lisa_GrandMa3_Functions.Seq24()
-        directional_Var = 'South'
+        directional_Var = "South"
     elif random.randint == 5:
         Lisa_GrandMa3_Functions.Seq25()
-        directional_Var = 'East'
+        directional_Var = "East"
     elif random.randint == 6:
         Lisa_GrandMa3_Functions.Seq26()
-        directional_Var = 'East'
+        directional_Var = "West"
     elif random.randint == 7:
         Lisa_GrandMa3_Functions.Seq27()
-        directional_Var = 'West'
+        directional_Var = "North"
     elif random.randint == 8:
         Lisa_GrandMa3_Functions.Seq28()
-        directional_Var = 'West'
+        directional_Var = "South"
     elif random.randint == 9:
         Lisa_GrandMa3_Functions.Seq29()
-        directional_Var = 'Nil'
+        directional_Var = "North"
     else:
         Lisa_GrandMa3_Functions.Seq30()
-        directional_Var = 'Nil'
+        directional_Var = "South"
