@@ -97,6 +97,8 @@ The codes in this repository had been made using **Python 3.9 or higher**.
 - **[Backlog 2 Sprint 1](./Backlog%202%20Sprint1/B2S1.md)** - Raspberry Pi to Reaper DAW via OSC, Reaper DAW to L-ISA Controller via MTC
 - **[Backlog 2 Sprint 2](./Backlog%202%20Sprint2/B2S2.md)** - Configuring of LaunchPad, LaunchPad MIDI to Raspberry Pi, MIDI to Reaper DAW, Foundation code for Reaction Training Game
 - **[Proof Of Concept](./POC/README.md)** - All the resources needed to trial run the game for the Proof Of Concept Demonstration
+- **[Backlog 3 Sprint 1](./Backlog3%Sprint1/B3S1.md)** - Configurating and usage of lasers and relay modules for 12 different speakers.
+- **[Backlog 3 Sprint 2](./Backlog3%sprint2/B3S2.md)** - Ensuring full length of the game being made.
 
 ## References
 - **[Huats Club - rpistarterkit](https://github.com/huats-club/rpistarterkit)** - Getting started on configuring your Raspberry Pi
