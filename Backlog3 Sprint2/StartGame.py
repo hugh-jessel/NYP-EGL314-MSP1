@@ -1,8 +1,12 @@
-import mido
-import midi
+#Imports
+import mido 
 import play_stop
 import reaper_markers
-import osc_client_Grandma3
+import sys
+import Lisa_GrandMa3_Functions
+import Gamestart_wipV2
+from pythonosc import osc_server, dispatcher
+import time
 
 def Midi_LaunchPad_MK3():
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
@@ -18,20 +22,25 @@ def Midi_LaunchPad_MK3():
                 
                 if msg.type == 'note_on':
                     # Note on messages represent pad presses
-                    print(f'Note On: Note={msg.note}')
+                    print(f'For Game Start Note On: Note={msg.note}')
                     if msg.note == 67: #start
                         print ('Game Start')
-                        play_stop.play_stop()
-                        osc_client_Grandma3.clear_all()
-                        osc_client_Grandma3.clear_all()
-                        osc_client_Grandma3.playing()
-                        reaper_markers.startMk()
-                        midi.Midi_LaunchPad_MK3()
                         
+                        play_stop.play_stop() # Stop any currently playing track 
+                        
+                        Lisa_GrandMa3_Functions.clear_all()   
+                        Lisa_GrandMa3_Functions.clear_all()
+                        time.sleep(0.1)
+                        Lisa_GrandMa3_Functions.playing()
+                        Lisa_GrandMa3_Functions.playing()
+                        reaper_markers.startMk()
+                        Gamestart_wipV2.launchpad_listen()
+                    
+                    else:
+                        pass
                 elif msg.type == 'note_off':
                     # Note off messages represent pad releases
-                    print(f'Note Off: Note={msg.note}')
-                    #print(f'Note Off: Note={msg.note} Velocity={msg.velocity}')
+                    print(f'For Game Start Note Off: Note={msg.note}')
         except KeyboardInterrupt:
                 print("Stopped listening to MIDI messages.")
 

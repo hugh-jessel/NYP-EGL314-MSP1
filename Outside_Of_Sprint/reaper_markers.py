@@ -45,10 +45,6 @@ def projectile1():
 	global PI_A_ADDR
 	global port
 	addr = "/action/41265" # Jump to Marker 25
-<<<<<<< Updated upstream
-	#addr = "GOTO_MARKER i/marker t/marker/5" # Jump to Marker Five
-=======
->>>>>>> Stashed changes
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Projectile 1")
@@ -64,11 +60,7 @@ def projectile2():
 def projectile3():
 	global PI_A_ADDR
 	global port
-<<<<<<< Updated upstream
-	addr = "/action/41267" # Jump to Marker 27 
-=======
 	addr = "/action/41267" # Jump to Marker 27
->>>>>>> Stashed changes
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Projectile 3")
@@ -103,9 +95,6 @@ def victory():
 	addr = "/marker/27" # Jump to Marker 63
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-<<<<<<< Updated upstream
-	print("Beaten Game!")
-=======
 	print("Pass")
 
 def restart():
@@ -117,12 +106,5 @@ def restart():
 	print("Game Restarted!")
 
 
->>>>>>> Stashed changes
 	
-def restart():
-	global PI_A_ADDR
-	global port
-	addr = "/marker/9" # Jump to Marker 63
-	global msg
-	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Game Restarted!")
+

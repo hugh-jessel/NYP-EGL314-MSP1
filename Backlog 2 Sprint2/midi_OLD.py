@@ -2,7 +2,7 @@ import mido
 import reaper_markers
 import play_stop
 import time
-import osc_client_Grandma3
+import Lisa_GrandMa3_Functions
 
 global count
 start_time = None  # Initialize start_time as None
@@ -15,7 +15,7 @@ West_pressed  = 'False'
 def game_over():
     print('Game over')
     reaper_markers.fail()  # Send back to the start
-    osc_client_Grandma3.stageFail()
+    Lisa_GrandMa3_Functions.stageFail()
     exit()  # Stop midi.py
 
 def deflect_success():
@@ -117,7 +117,7 @@ def Midi_LaunchPad_MK3():
                 if count >= 22:
                     print('Victory')
                     reaper_markers.victory()
-                    osc_client_Grandma3.stagePass()
+                    Lisa_GrandMa3_Functions.stagePass()
                     exit()
                 elif count >= 15 and North_pressed == 'False':      #If no buttons are pressed after count 25
                     game_over()
