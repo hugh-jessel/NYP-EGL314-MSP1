@@ -50,14 +50,10 @@ Here, are all the varying assets used for the POC. This includes:
 3. **[GrandMA3](./Assets/GrandMA3)** - Includes a Master GrandMA3 file (With lights and IP addresses patched.)
 
 ## Code Files
-In this folder, there are 5 python files, in which all are needed to run this one stage for the demonstration.
-1. **[gui.py](./Codes/gui.py)** - A GUI to control functions of GrandMA3 and L-ISA Controller.
-2. **[osc_client_Grandma3.py](./Codes/osc_client_Grandma3.py)** - A file containing functions for different features that can be controlled and will happen with the lights. These include - Off, Pause and Sequences.
-3. **[osc_client_LISA.py](./Codes/osc_client_LISA.py)** - A file containing the controls to trigger varying snaps, for the POC, it will only be for snapshots 1 - 4.
-4. **[StartGame.py](./Codes/StartGame.py)** - The main file that is to be ran. In which, pressing the start on the LaunchPad will run the game by calling midi.py
-5. **[midi.py](./Codes/midi.py)** - The in-depth game file that includes marker jumping, counter before projectile hits the player and dictates if the stage is passed, if the player failed the stage etc.
-6. **[play_stop.py](./Codes/play_stop.py)** - This file has the command to play and stop the Reaper DAW playback.
-7. **[reaper_markers.py](./Codes/reaper_markers.py)** - This file has the command to jump to various markers that are already present in the Reaper DAW.
+In this folder, there are multiple python files. We will break them into 2 seperate folders.
+1. Laser Show
+2. Reaction Time Game
 
+Below, there are more detailed explanations of the codes in their respective folders.
 <details><summary><h2>Laser Show</h2></summary></details>
 <details><summary><h2>Reaction Time Game</summary></details>
