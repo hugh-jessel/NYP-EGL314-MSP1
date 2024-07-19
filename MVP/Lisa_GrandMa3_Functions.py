@@ -288,7 +288,7 @@ def AIssac():
 
 	global addr_GrandMa3
 
-	msg = "Go+: Sequence 73"	
+	msg = "Go+: Sequence 74"	
 
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
 
