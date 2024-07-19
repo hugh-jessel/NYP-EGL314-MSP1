@@ -3,7 +3,7 @@ import mido
 import reaper_markers
 import sys
 import Lisa_GrandMa3_Functions
-import gamecodeV50
+import Gamestart_wipV2
 from pythonosc import osc_server, dispatcher
 import time
 
@@ -32,9 +32,7 @@ def Midi_LaunchPad_MK3():
                         Lisa_GrandMa3_Functions.playing()
                         Lisa_GrandMa3_Functions.playing()
                         reaper_markers.startMk()
-                        gamecodeV50.launchpad_listen()
-                        counting = "True"
-                        gamecodeV50.gameTimeCounter(counting)
+                        Gamestart_wipV2.launchpad_listen()
                     
                     else:
                         pass

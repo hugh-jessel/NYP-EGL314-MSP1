@@ -41,30 +41,32 @@ def startMk():
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Start")
 
-def projectile1():
+
+ ## No projectile 1 since projectile 1 doesn't need to be jumped to [The track naturally transitions to projectile 1]
+ 
+def stg1projectile2():
 	global PI_A_ADDR
 	global port
 	addr = "/action/41265" # Jump to Marker 25
-	#addr = "GOTO_MARKER i/marker t/marker/5" # Jump to Marker Five
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Projectile 1")
+	print("Stage 1 Projectile 2")
 	
-def projectile2():
+def stg1projectile3():
 	global PI_A_ADDR
 	global port
 	addr = "/action/41266" # Jump to Marker 26
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Projectile 2")
+	print("Stage 1 Projectile 3")
 	
-def projectile3():
+def stg1projectile4():
 	global PI_A_ADDR
 	global port
-	addr = "/action/41267" # Jump to Marker 27 
+	addr = "/action/41267" # Jump to Marker 27
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Projectile 3")
+	print("Stage 1 Projectile 4")
 
 def tut_stagepass():
 	global PI_A_ADDR
@@ -96,20 +98,56 @@ def victory():
 	addr = "/marker/27" # Jump to Marker 63
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Beaten Game!")
-	
+	print("Pass")
+
 def restart():
 	global PI_A_ADDR
 	global port
-	addr = "/marker/9" # Jump to Marker 63
+	addr = "/marker/9" # Jump to Marker 64
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Game Restarted!")
-
-def lasershow():
+ 
+ #Stage 2 Projectiles
+ 
+ ## No projectile 1 since projectile 1 doesn't need to be jumped to [The track naturally transitions to projectile 1]
+ 
+def stg2projectile2():
 	global PI_A_ADDR
-	global PORT
-	addr = "/marker/64"
+	global port
+	addr = "/marker/14" # Jump to Marker 50
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
-	print("Laser Show Starting!")
+	print("Stage 2 Projectile 2")
+ 
+def stg2projectile3():
+	global PI_A_ADDR
+	global port
+	addr = "/marker/15" # Jump to Marker 51
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Stage 2 Projectile 3")
+ 
+def stg2projectile4():
+	global PI_A_ADDR
+	global port
+	addr = "/marker/16" # Jump to Marker 52
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Stage 2 Projectile 4")
+ 
+def stg2projectile5():
+	global PI_A_ADDR
+	global port
+	addr = "/marker/17" # Jump to Marker 53
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Stage 2 Projectile 5")
+ 
+def stg2projectile6():
+	global PI_A_ADDR
+	global port
+	addr = "/marker/18" # Jump to Marker 54
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Stage 2 Projectile 6")

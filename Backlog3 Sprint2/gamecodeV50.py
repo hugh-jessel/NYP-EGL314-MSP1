@@ -6,7 +6,6 @@ import Lisa_GrandMa3_Functions
 from pythonosc import osc_server, dispatcher
 import time
 import random
-import threading
 
 #Variables 
 '''
@@ -227,15 +226,20 @@ def launchpad_listen():
         global direction
         global reactionTiming
         global projCount
+        counting = "True"
+        gameTimeCounter(counting)
         try:
-            for msg in inport.iter.pending():
-                while True:
-                    if msg.type == "note_on":
-                        print(f"Note On:Note={msg.note}")
-                    elif msg.type == "note_off":
-                        print(f"Note Off: Note={msg.note}")
-                    if stageNo == 1:
-                        while gameCount > 35.0: #Nothing happens before first projectile is heard
+           while True:
+                #for msg in inport:
+                for msg in inport.iter_pending():
+                    #while True:
+                        if msg.type == "note_on":
+                            print(f"Note On:Note={msg.note}")
+                            #elif msg.type == "note_off":
+                                #print(f"Note Off: Note={msg.note}")
+                        elif stageNo == 1:
+                            #if gameCount < 35.0: #Nothing happens before first projectile is heard
+                                #pass
                             if gameCount  == 36.0:
                                 #snapshotsRandom() [For soft coding]
                                 Lisa_GrandMa3_Functions.Seq21() # [North]
@@ -275,7 +279,6 @@ def launchpad_listen():
                                 reactionTiming = 4
                                 reactionTime(reactionTiming)
                                 if x < 4 and msg.note == "65": #Under time limit and South pad pressed
-                                    global projCount
                                     projCount += 1
                                     if projCount == 3: #Enough projectiles deflected to beat stage
                                         deflectDirection(direction)
@@ -305,7 +308,6 @@ def launchpad_listen():
                                 reactionTiming = 4
                                 reactionTime(reactionTiming)
                                 if x < 4 and msg.note == "62": #Under time limit and East pad pressed
-                                    global projCount
                                     projCount += 1
                                     if projCount == 3: #Enough projectiles deflected to beat stage
                                         deflectDirection(direction)
@@ -335,7 +337,6 @@ def launchpad_listen():
                                 reactionTiming = 4
                                 reactionTime(reactionTiming)
                                 if x < 4 and msg.note == "64": #Under time limit and East pad pressed
-                                    global projCount
                                     projCount += 1
                                     if projCount == 3: #Enough projectiles deflected to beat stage
                                         deflectDirection(direction)
@@ -355,158 +356,34 @@ def launchpad_listen():
                                     Lisa_GrandMa3_Functions.clear_all()
                                     reaper_markers.play_stop()            #Pause audio after fail audio is over
                                     exit()  #Comment out and replace when restart feature is implemented
-                    elif stageNo == 2:
-                        #Uncomment if errors in stage 2 code
-                        """ gameCount = 0
-                        counting = "True"
-                        gameTimeCounter(counting)
-                        if gameCount > 0:
-                            stageFail()
-                            time.sleep(8) #Change with length of stage fail sound cue
-                            Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                            Lisa_GrandMa3_Functions.clear_all()
-                            reaper_markers.play_stop()            #Pause audio after fail audio is over
-                            exit()  #Comment out and replace when restart feature is implemented """
-                
-                        #Comment out code below if stage 2 not working and require quick patch
-                        #Comment from here#
-                        gameCount = 0
-                        counting = "True"
-                        gameTimeCounter(counting)
-                        while gameCount > 0:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq28() # [South]
-                            direction = "South"
-                        if gameCount == 1.5 and direction == "South":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 3
-                            reactionTime(reactionTiming)
-                            if x < 3 and msg.note == "65": #Under time limit and South pad pressed
-                                global projCount
-                                projCount += 1
-                                if projCount == 5: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 5: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(3)
-                                    stg2projectilesRandom()
-                                elif (x < 3 and msg.note != "65") or (x == 3 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
-                                    stageFail()
-                                    time.sleep(8) #Change with length of stage fail sound cue
-                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                    Lisa_GrandMa3_Functions.clear_all()
-                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                    exit()  #Comment out and replace when restart feature is implemented
-                            elif gameCount == 3:
+                        elif stageNo == 2:
+                            #Uncomment if errors in stage 2 code
+                            # gameCount = 0
+                            # counting = "True"
+                            # gameTimeCounter(counting)
+                            # if gameCount > 0:
+                            #     stageFail()
+                            #     time.sleep(8) #Change with length of stage fail sound cue
+                            #     Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                            #     Lisa_GrandMa3_Functions.clear_all()
+                            #     reaper_markers.play_stop()            #Pause audio after fail audio is over
+                            #     exit()  #Comment out and replace when restart feature is implemented
+                    
+                            #Comment out code below if stage 2 not working and require quick patch
+                            #Comment from here#
+                            gameCount = 0
+                            counting = "True"
+                            gameTimeCounter(counting)
+                            while gameCount > 0:
                                 #snapshotsRandom() [For soft coding]
-                                #print(direction)
-                                Lisa_GrandMa3_Functions.Seq25() # [East]
-                                direction = "East"
-                            elif gameCount == 4.5 and direction == "East":
-                                counting = "False"
-                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                                reactionTiming = 3
-                                reactionTime(reactionTiming)
-                                if x < 3 and msg.note == "62": #Under time limit and East pad pressed
-                                    global projCount
-                                    projCount += 1
-                                    if projCount == 5: #Enough projectiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        stageClear()
-                                        stageNo += 1
-                                        print(stageNo)
-                                    elif projCount < 5: #Not enough proctiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        counting = "True"
-                                        gameTimeCounter(counting)
-                                        time.sleep(1.5)
-                                        stg2projectilesRandom()
-                                elif (x < 3 and msg.note != "62") or (x == 3 and EastPressed == "False"): #Either wrong pad pressed or East isn't pressed under time limit
-                                    stageFail()
-                                    time.sleep(8) #Change with length of stage fail sound cue
-                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                    Lisa_GrandMa3_Functions.clear_all()
-                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                    exit()  #Comment out and replace when restart feature is implemented
-                            elif gameCount == 5:
-                                #snapshotsRandom() [For soft coding]
-                                #print(direction)
-                                Lisa_GrandMa3_Functions.Seq30() # [South]
+                                Lisa_GrandMa3_Functions.Seq28() # [South]
                                 direction = "South"
-                            if gameCount == 6 and direction == "South":
+                            if gameCount == 1.5 and direction == "South":
                                 counting = "False"
                                 gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
                                 reactionTiming = 3
                                 reactionTime(reactionTiming)
                                 if x < 3 and msg.note == "65": #Under time limit and South pad pressed
-                                    global projCount
-                                    projCount += 1
-                                    if projCount == 5: #Enough projectiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        stageClear()
-                                        stageNo += 1
-                                        print(stageNo)
-                                    elif projCount < 5: #Not enough proctiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        counting = "True"
-                                        gameTimeCounter(counting)
-                                        time.sleep(2.5)
-                                        stg2projectilesRandom()
-                                elif (x < 3 and msg.note != "65") or (x == 3 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
-                                    stageFail()
-                                    time.sleep(8) #Change with length of stage fail sound cue
-                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                    Lisa_GrandMa3_Functions.clear_all()
-                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                    exit()  #Comment out and replace when restart feature is implemented
-                            elif gameCount == 7:
-                                #snapshotsRandom() [For soft coding]
-                                #print(direction)
-                                Lisa_GrandMa3_Functions.Seq22() # [West]
-                                direction = "West"
-                            if gameCount == 8.5 and direction == "West":
-                                counting = "False"
-                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                                reactionTiming = 3
-                                reactionTime(reactionTiming)
-                                if x < 3 and msg.note == "64": #Under time limit and West pad pressed
-                                    global projCount
-                                    projCount += 1
-                                    if projCount == 5: #Enough projectiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        stageClear()
-                                        stageNo += 1
-                                        print(stageNo)
-                                    elif projCount < 5: #Not enough proctiles deflected to beat stage
-                                        deflectDirection(direction)
-                                        counting = "True"
-                                        gameTimeCounter(counting)
-                                        time.sleep(1)
-                                        stg2projectilesRandom()
-                                elif (x < 3 and msg.note != "64") or (x == 3 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
-                                    stageFail()
-                                    time.sleep(8) #Change with length of stage fail sound cue
-                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                    Lisa_GrandMa3_Functions.clear_all()
-                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                    exit()  #Comment out and replace when restart feature is implemented
-                            elif gameCount == 9.0:    
-                                #snapshotsRandom() [For soft coding]
-                                #print(direction)
-                                Lisa_GrandMa3_Functions.Seq27() # [North]
-                                direction = "North"
-                            elif gameCount == 9.5 and direction == "North":
-                                counting = "False"
-                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                                reactionTiming = 4
-                                reactionTime(reactionTiming)
-                                if x < 3 and msg.note == "60": #Under time limit and North pad pressed
                                     projCount += 1
                                     if projCount == 5: #Enough projectiles deflected to beat stage
                                         deflectDirection(direction)
@@ -519,163 +396,337 @@ def launchpad_listen():
                                         gameTimeCounter(counting)
                                         time.sleep(3)
                                         stg2projectilesRandom()
-                                elif (x < 3 and msg.note != "60") or (x == 3 and NorthPressed == "False"): #Either wrong pad pressed or North isn't pressed under time limit
+                                    elif (x < 3 and msg.note != "65") or (x == 3 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                                elif gameCount == 3:
+                                    #snapshotsRandom() [For soft coding]
+                                    #print(direction)
+                                    Lisa_GrandMa3_Functions.Seq25() # [East]
+                                    direction = "East"
+                                elif gameCount == 4.5 and direction == "East":
+                                    counting = "False"
+                                    gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                    reactionTiming = 3
+                                    reactionTime(reactionTiming)
+                                    if x < 3 and msg.note == "62": #Under time limit and East pad pressed
+                                        projCount += 1
+                                        if projCount == 5: #Enough projectiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            stageClear()
+                                            stageNo += 1
+                                            print(stageNo)
+                                        elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            counting = "True"
+                                            gameTimeCounter(counting)
+                                            time.sleep(1.5)
+                                            stg2projectilesRandom()
+                                    elif (x < 3 and msg.note != "62") or (x == 3 and EastPressed == "False"): #Either wrong pad pressed or East isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                                elif gameCount == 5:
+                                    #snapshotsRandom() [For soft coding]
+                                    #print(direction)
+                                    Lisa_GrandMa3_Functions.Seq30() # [South]
+                                    direction = "South"
+                                if gameCount == 6 and direction == "South":
+                                    counting = "False"
+                                    gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                    reactionTiming = 3
+                                    reactionTime(reactionTiming)
+                                    if x < 3 and msg.note == "65": #Under time limit and South pad pressed
+                                        projCount += 1
+                                        if projCount == 5: #Enough projectiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            stageClear()
+                                            stageNo += 1
+                                            print(stageNo)
+                                        elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            counting = "True"
+                                            gameTimeCounter(counting)
+                                            time.sleep(2.5)
+                                            stg2projectilesRandom()
+                                    elif (x < 3 and msg.note != "65") or (x == 3 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                                elif gameCount == 7:
+                                    #snapshotsRandom() [For soft coding]
+                                    #print(direction)
+                                    Lisa_GrandMa3_Functions.Seq22() # [West]
+                                    direction = "West"
+                                if gameCount == 8.5 and direction == "West":
+                                    counting = "False"
+                                    gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                    reactionTiming = 3
+                                    reactionTime(reactionTiming)
+                                    if x < 3 and msg.note == "64": #Under time limit and West pad pressed
+                                        projCount += 1
+                                        if projCount == 5: #Enough projectiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            stageClear()
+                                            stageNo += 1
+                                            print(stageNo)
+                                        elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            counting = "True"
+                                            gameTimeCounter(counting)
+                                            time.sleep(1)
+                                            stg2projectilesRandom()
+                                    elif (x < 3 and msg.note != "64") or (x == 3 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                                elif gameCount == 9.0:    
+                                    #snapshotsRandom() [For soft coding]
+                                    #print(direction)
+                                    Lisa_GrandMa3_Functions.Seq27() # [North]
+                                    direction = "North"
+                                elif gameCount == 9.5 and direction == "North":
+                                    counting = "False"
+                                    gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                    reactionTiming = 4
+                                    reactionTime(reactionTiming)
+                                    if x < 3 and msg.note == "60": #Under time limit and North pad pressed
+                                        projCount += 1
+                                        if projCount == 5: #Enough projectiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            stageClear()
+                                            stageNo += 1
+                                            print(stageNo)
+                                        elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            counting = "True"
+                                            gameTimeCounter(counting)
+                                            time.sleep(3)
+                                            stg2projectilesRandom()
+                                    elif (x < 3 and msg.note != "60") or (x == 3 and NorthPressed == "False"): #Either wrong pad pressed or North isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                                # elif gameCount == 11.0:
+                                #     #snapshotsRandom() [For soft coding]
+                                #     #print(direction)
+                                #     Lisa_GrandMa3_Functions.Seq22() # [West]
+                                #     direction = "West"
+                                # if gameCount == 12 and direction == "West":
+                                #     counting = "False"
+                                #     gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                #     reactionTiming = 3
+                                #     reactionTime(reactionTiming)
+                                #     if x < 3 and msg.note == "64": #Under time limit and West pad pressed
+                                #         projCount += 1
+                                #         if projCount == 5: #Enough projectiles deflected to beat stage
+                                #             deflectDirection(direction)
+                                #             stageClear()
+                                #             stageNo += 1
+                                #             print(stageNo)
+                                #         elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                #             deflectDirection(direction)
+                                #             counting = "True"
+                                #             gameTimeCounter(counting)
+                                #             time.sleep(1)
+                                #             stg2projectilesRandom()
+                                #     elif (x < 3 and msg.note != "64") or (x == 3 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
+                                #         stageFail()
+                                #         time.sleep(8) #Change with length of stage fail sound cue
+                                #         Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                #         Lisa_GrandMa3_Functions.clear_all()
+                                #         reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                #         exit()  #Comment out and replace when restart feature is implemented
+                        #To here#
+                        #elif stageNo == 3:            
+                            #Uncomment if errors in stage 3 code
+                            """ gameCount = 0
+                            counting = "True"
+                            gameTimeCounter(counting)
+                            if gameCount > 0:
+                                stageFail()
+                                time.sleep(8) #Change with length of stage fail sound cue
+                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                Lisa_GrandMa3_Functions.clear_all()
+                                reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                exit()  #Comment out and replace when restart feature is implemented """
+                    
+                            #Comment out code below if stage 2 not working and require quick patch
+                            #Comment from here#
+                            gameCount = 0
+                            counting = "True"
+                            gameTimeCounter(counting)
+                            while gameCount > 0:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq22() # [West]
+                                direction = "West"
+                            if gameCount == 0.5 and direction == "West":
+                                counting = "False"
+                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                reactionTiming = 2
+                                reactionTime(reactionTiming)
+                                if x < 3 and msg.note == "64": #Under time limit and West pad pressed
+                                    projCount += 6
+                                    if projCount == 5: #Enough projectiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        stageClear()
+                                        stageNo += 1
+                                        print(stageNo)
+                                    elif projCount < 6: #Not enough proctiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        counting = "True"
+                                        gameTimeCounter(counting)
+                                        time.sleep(2)
+                                        stg2projectilesRandom()
+                                elif (x < 2 and msg.note != "64") or (x == 2 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
                                     stageFail()
                                     time.sleep(8) #Change with length of stage fail sound cue
                                     Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
                                     Lisa_GrandMa3_Functions.clear_all()
                                     reaper_markers.play_stop()            #Pause audio after fail audio is over
                                     exit()  #Comment out and replace when restart feature is implemented
-                            # elif gameCount == 11.0:
-                            #     #snapshotsRandom() [For soft coding]
-                            #     #print(direction)
-                            #     Lisa_GrandMa3_Functions.Seq22() # [West]
-                            #     direction = "West"
-                            # if gameCount == 12 and direction == "West":
-                            #     counting = "False"
-                            #     gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            #     reactionTiming = 3
-                            #     reactionTime(reactionTiming)
-                            #     if x < 3 and msg.note == "64": #Under time limit and West pad pressed
-                            #         global projCount
-                            #         projCount += 1
-                            #         if projCount == 5: #Enough projectiles deflected to beat stage
-                            #             deflectDirection(direction)
-                            #             stageClear()
-                            #             stageNo += 1
-                            #             print(stageNo)
-                            #         elif projCount < 5: #Not enough proctiles deflected to beat stage
-                            #             deflectDirection(direction)
-                            #             counting = "True"
-                            #             gameTimeCounter(counting)
-                            #             time.sleep(1)
-                            #             stg2projectilesRandom()
-                            #     elif (x < 3 and msg.note != "64") or (x == 3 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
-                            #         stageFail()
-                            #         time.sleep(8) #Change with length of stage fail sound cue
-                            #         Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                            #         Lisa_GrandMa3_Functions.clear_all()
-                            #         reaper_markers.play_stop()            #Pause audio after fail audio is over
-                            #         exit()  #Comment out and replace when restart feature is implemented
-                    #To here#
-                    elif stageNo == 3:            
-                         #Uncomment if errors in stage 3 code
-                        """ gameCount = 0
-                        counting = "True"
-                        gameTimeCounter(counting)
-                        if gameCount > 0:
-                            stageFail()
-                            time.sleep(8) #Change with length of stage fail sound cue
-                            Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                            Lisa_GrandMa3_Functions.clear_all()
-                            reaper_markers.play_stop()            #Pause audio after fail audio is over
-                            exit()  #Comment out and replace when restart feature is implemented """
-                
-                        #Comment out code below if stage 2 not working and require quick patch
-                        #Comment from here#
-                        gameCount = 0
-                        counting = "True"
-                        gameTimeCounter(counting)
-                        while gameCount > 0:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq22() # [West]
-                            direction = "West"
-                        if gameCount == 0.5 and direction == "West":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 2
-                            reactionTime(reactionTiming)
-                            if x < 3 and msg.note == "64": #Under time limit and West pad pressed
-                                global projCount
-                                projCount += 6
-                                if projCount == 5: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 6: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(2)
-                                    stg2projectilesRandom()
-                            elif (x < 2 and msg.note != "64") or (x == 2 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
-                                stageFail()
-                                time.sleep(8) #Change with length of stage fail sound cue
-                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                Lisa_GrandMa3_Functions.clear_all()
-                                reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                exit()  #Comment out and replace when restart feature is implemented
-                        elif gameCount == 1.5:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq25() # [East]
-                            direction = "East"
-                        elif gameCount == 3 and direction == "East":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 2
-                            reactionTime(reactionTiming)
-                            if x < 2 and msg.note == "62": #Under time limit and East pad pressed
-                                global projCount
-                                projCount += 1
-                                if projCount == 6: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 6: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(3)
-                                    stg2projectilesRandom()
-                            elif (x < 2 and msg.note != "62") or (x == 2 and EastPressed == "False"): #Either wrong pad pressed or East isn't pressed under time limit
-                                stageFail()
-                                time.sleep(8) #Change with length of stage fail sound cue
-                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                Lisa_GrandMa3_Functions.clear_all()
-                                reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                exit()  #Comment out and replace when restart feature is implemented
-                        elif gameCount == 4:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq29() # [North]
-                            direction = "North"
-                        elif gameCount == 6 and direction == "North":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 3
-                            reactionTime(reactionTiming)
-                            if x < 2 and msg.note == "60": #Under time limit and North pad pressed
-                                projCount += 1
-                                if projCount == 6: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 5: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(1)
-                                    stg2projectilesRandom()
-                            elif (x < 2 and msg.note != "60") or (x == 2 and NorthPressed == "False"): #Either wrong pad pressed or North isn't pressed under time limit
-                                stageFail()
-                                time.sleep(8) #Change with length of stage fail sound cue
-                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                Lisa_GrandMa3_Functions.clear_all()
-                                reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                exit()  #Comment out and replace when restart feature is implemented
-                        elif gameCount == 6.5:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq24() # [South]
-                            direction = "South"
-                        elif gameCount == 7 and direction == "South":
+                            elif gameCount == 1.5:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq25() # [East]
+                                direction = "East"
+                            elif gameCount == 3 and direction == "East":
+                                counting = "False"
+                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                reactionTiming = 2
+                                reactionTime(reactionTiming)
+                                if x < 2 and msg.note == "62": #Under time limit and East pad pressed
+                                    projCount += 1
+                                    if projCount == 6: #Enough projectiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        stageClear()
+                                        stageNo += 1
+                                        print(stageNo)
+                                    elif projCount < 6: #Not enough proctiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        counting = "True"
+                                        gameTimeCounter(counting)
+                                        time.sleep(3)
+                                        stg2projectilesRandom()
+                                elif (x < 2 and msg.note != "62") or (x == 2 and EastPressed == "False"): #Either wrong pad pressed or East isn't pressed under time limit
+                                    stageFail()
+                                    time.sleep(8) #Change with length of stage fail sound cue
+                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                    Lisa_GrandMa3_Functions.clear_all()
+                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                    exit()  #Comment out and replace when restart feature is implemented
+                            elif gameCount == 4:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq29() # [North]
+                                direction = "North"
+                            elif gameCount == 6 and direction == "North":
+                                counting = "False"
+                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                reactionTiming = 3
+                                reactionTime(reactionTiming)
+                                if x < 2 and msg.note == "60": #Under time limit and North pad pressed
+                                    projCount += 1
+                                    if projCount == 6: #Enough projectiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        stageClear()
+                                        stageNo += 1
+                                        print(stageNo)
+                                    elif projCount < 5: #Not enough proctiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        counting = "True"
+                                        gameTimeCounter(counting)
+                                        time.sleep(1)
+                                        stg2projectilesRandom()
+                                elif (x < 2 and msg.note != "60") or (x == 2 and NorthPressed == "False"): #Either wrong pad pressed or North isn't pressed under time limit
+                                    stageFail()
+                                    time.sleep(8) #Change with length of stage fail sound cue
+                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                    Lisa_GrandMa3_Functions.clear_all()
+                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                    exit()  #Comment out and replace when restart feature is implemented
+                            elif gameCount == 6.5:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq24() # [South]
+                                direction = "South"
+                            elif gameCount == 7 and direction == "South":
+                                    counting = "False"
+                                    gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                    reactionTiming = 2
+                                    reactionTime(reactionTiming)
+                                    if x < 2 and msg.note == "65": #Under time limit and South pad pressed
+                                        projCount += 1
+                                        if projCount == 5: #Enough projectiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            stageClear()
+                                            stageNo += 1
+                                            print(stageNo)
+                                        elif projCount < 6: #Not enough proctiles deflected to beat stage
+                                            deflectDirection(direction)
+                                            counting = "True"
+                                            gameTimeCounter(counting)
+                                            time.sleep(3.5)
+                                            stg2projectilesRandom()
+                                    elif (x < 2 and msg.note != "65") or (x == 2 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
+                                        stageFail()
+                                        time.sleep(8) #Change with length of stage fail sound cue
+                                        Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                        Lisa_GrandMa3_Functions.clear_all()
+                                        reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                        exit()  #Comment out and replace when restart feature is implemented
+                            elif gameCount == 9:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq26() # [West]
+                                direction = "West"
+                            elif gameCount == 10.5 and direction == "West":
+                                counting = "False"
+                                gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
+                                reactionTiming = 2
+                                reactionTime(reactionTiming)
+                                if x < 2 and msg.note == "64": #Under time limit and West pad pressed
+                                    projCount += 1
+                                    if projCount == 6: #Enough projectiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        stageClear()
+                                        stageNo += 1
+                                        print(stageNo)
+                                    elif projCount < 6: #Not enough proctiles deflected to beat stage
+                                        deflectDirection(direction)
+                                        counting = "True"
+                                        gameTimeCounter(counting)
+                                        time.sleep(5)
+                                        stg2projectilesRandom()
+                                elif (x < 2 and msg.note != "64") or (x == 2 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
+                                    stageFail()
+                                    time.sleep(8) #Change with length of stage fail sound cue
+                                    Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
+                                    Lisa_GrandMa3_Functions.clear_all()
+                                    reaper_markers.play_stop()            #Pause audio after fail audio is over
+                                    exit()  #Comment out and replace when restart feature is implemented
+                            elif gameCount == 14:
+                                #snapshotsRandom() [For soft coding]
+                                Lisa_GrandMa3_Functions.Seq24() # [South]
+                                direction = "South"
+                            elif gameCount == 15.5 and direction == "South":
                                 counting = "False"
                                 gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
                                 reactionTiming = 2
                                 reactionTime(reactionTiming)
                                 if x < 2 and msg.note == "65": #Under time limit and South pad pressed
-                                    global projCount
                                     projCount += 1
                                     if projCount == 5: #Enough projectiles deflected to beat stage
                                         deflectDirection(direction)
@@ -695,71 +746,13 @@ def launchpad_listen():
                                     Lisa_GrandMa3_Functions.clear_all()
                                     reaper_markers.play_stop()            #Pause audio after fail audio is over
                                     exit()  #Comment out and replace when restart feature is implemented
-                        elif gameCount == 9:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq26() # [West]
-                            direction = "West"
-                        elif gameCount == 10.5 and direction == "West":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 2
-                            reactionTime(reactionTiming)
-                            if x < 2 and msg.note == "64": #Under time limit and West pad pressed
-                                global projCount
-                                projCount += 1
-                                if projCount == 6: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 6: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(5)
-                                    stg2projectilesRandom()
-                            elif (x < 2 and msg.note != "64") or (x == 2 and WestPressed == "False"): #Either wrong pad pressed or West isn't pressed under time limit
-                                stageFail()
-                                time.sleep(8) #Change with length of stage fail sound cue
-                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                Lisa_GrandMa3_Functions.clear_all()
-                                reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                exit()  #Comment out and replace when restart feature is implemented
-                        elif gameCount == 14:
-                            #snapshotsRandom() [For soft coding]
-                            Lisa_GrandMa3_Functions.Seq24() # [South]
-                            direction = "South"
-                        elif gameCount == 15.5 and direction == "South":
-                            counting = "False"
-                            gameTimeCounter(counting) #Stops gameCount from incrementing while deflect code is running
-                            reactionTiming = 2
-                            reactionTime(reactionTiming)
-                            if x < 2 and msg.note == "65": #Under time limit and South pad pressed
-                                global projCount
-                                projCount += 1
-                                if projCount == 5: #Enough projectiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    stageClear()
-                                    stageNo += 1
-                                    print(stageNo)
-                                elif projCount < 6: #Not enough proctiles deflected to beat stage
-                                    deflectDirection(direction)
-                                    counting = "True"
-                                    gameTimeCounter(counting)
-                                    time.sleep(3.5)
-                                    stg2projectilesRandom()
-                            elif (x < 2 and msg.note != "65") or (x == 2 and SouthPressed == "False"): #Either wrong pad pressed or South isn't pressed under time limit
-                                stageFail()
-                                time.sleep(8) #Change with length of stage fail sound cue
-                                Lisa_GrandMa3_Functions.clear_all()   #Clear lights after fail audio is over
-                                Lisa_GrandMa3_Functions.clear_all()
-                                reaper_markers.play_stop()            #Pause audio after fail audio is over
-                                exit()  #Comment out and replace when restart feature is implemented
                         
                         #To here#
         except KeyboardInterrupt:
             print("stopped listening to MIDI messages.")
-            
+        
+
+
 if __name__ == "__main__":
     
     launchpad_listen()
