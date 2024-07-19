@@ -71,7 +71,7 @@ def page2():
     buttonPause = tk.Button(pageWindow, text="Pause", font=fontS, bg="black", fg="white", command=pause, height= 2, width=15).grid(row=2, column=1, padx=(20, 20))
     buttonOops = tk.Button(pageWindow, text="Clear", font=fontS, bg="black", fg="white", command=clear, height= 2, width=15).grid(row=3, column=1, padx=(20, 20))
     buttonClear = tk.Button(pageWindow, text="Clear All", font=fontS, bg="black", fg="white", command=clear_all, height= 2, width=15).grid(row=4, column=1, padx=(20, 20))
-    buttonAI = tk.Button(pageWindow, text="A I(Seq73)", font=fontS, bg="black", fg="white", command=AI, height= 2, width=15).grid(row=5, column=1, padx=(20, 20))
+    buttonAI = tk.Button(pageWindow, text="A I(Seq74)", font=fontS, bg="black", fg="white", command=AI, height= 2, width=15).grid(row=5, column=1, padx=(20, 20))
     
 def page3():
     pageclear(pageWindow)
