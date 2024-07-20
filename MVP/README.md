@@ -50,10 +50,207 @@ Here, are all the varying assets used for the POC. This includes:
 3. **[GrandMA3](./Assets/GrandMA3)** - Includes a Master GrandMA3 file (With lights and IP addresses patched.)
 
 ## Code Files
-In this folder, there are multiple python files. We will break them into 2 seperate folders.
-1. Laser Show
-2. Reaction Time Game
+In this folder, there are multiple python files. We will take a dive into the details of the codes.
 
-Below, there are more detailed explanations of the codes in their respective folders.
-<details><summary><h2>Laser Show</h2></summary></details>
+Below, there are more detailed explanations of the codes in their respective uses.
+<details><summary><h2>Laser Show</h2></summary>
+
+In the laser show, it mainly revolves around [laser_gui.py](./laser_gui.py), [osclaser_server_V2.py](./osclaser_server_V2.py) and [osclaser_trigger_V2.py](./osclaser_trigger_V2.py).
+
+For the laser show, this is how the code hierarchy would look like:
+```mermaid
+graph LR
+A[laser_gui.py] --> B[osclaser_server_V2.py]
+B --> C[osclaser_trigger_V2.py]
+```
+<details><summary><h3>laser_gui.py</h3></summary>
+  
+In laser_gui.py, there are a few things to note. Firstly, are the imports. Importing in the pythonosc library to be able to communicate with the Master Raspberry Pi and the Slave Raspberry Pi after. Also importing the [reaper_markers.py](./reaper_markers.py) code. These are all seen from lines 1 to 7.
+  
+```
+from pythonosc import osc_server, dispatcher
+
+from pythonosc import udp_client
+
+import tkinter as tk
+
+import reaper_markers
+
+# import RPi.GPIO as GPIO
+
+import time
+```
+With that, there is a need to set a send_addr, send_port and addr to be able to send a message to the Master Raspberry Pi, this can be seen from lines 131 to 133 where in this example, the send_addr is listed as `192.168.254.49`, then send_port listed as `2000` and the addr listed as `/print` which are the respective IP address and port of the Master Raspberry Pi
+```
+send_addr = "192.168.254.49"
+send_port = 2000
+addr = "/print"
+```
+
+Slightly late down in the code, there is another IP address and port used to send commands to a Neopixel LED Strip as well. This was set to `192.168.254.242` and the port is listed as `2005` following the functions above. This can be seen from lines 185 to 194.
+```
+def send_color(receiver_ip, receiver_port, r, g, b):  # Sends colour commands to the Neopixel
+    client = udp_client.SimpleUDPClient(receiver_ip, receiver_port) 
+    client.send_message("/color", [r, g, b])
+
+def send_brightness(receiver_ip, receiver_port, brightness): # Sends brightness commands to the Neopixel
+    client = udp_client.SimpleUDPClient(receiver_ip, receiver_port)
+    client.send_message("/brightness", [brightness])
+
+PI_B_ADDR = "192.168.254.242"  # Change to your RPi's IP address
+PORT2 = 2005
+```
+
+After this, are the functions for the lasers. In here, we will just take a random function as an example since majority of them are similar.
+```
+def AllOffOneByOne():
+    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
+           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
+           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
+           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"] # The messages to be sent to the Master Pi
+    
+    y = int(0) # Creating a variable called y.
+    while y < len(msg): # A while loop that stays true for as long as y is not longer than the array called msg.
+        time.sleep(0.03) # Can be removed based on whether you want a delay in between actions. e.g From first message to second message
+        send_message(send_addr, send_port, addr, msg[y]) # To send command to Master Raspberry Pi
+        print(msg[y]) 
+        y += 1 # To increase the variable called y.
+
+        if y == len(msg): # An if statement, when y is equals to the length of the array, it will stop the while loop.
+            break 
+```
+Functions like these are then integrated into one big function for the laser show which can be seen here, along with explanations of what different lines do.
+```
+def lasersequence():
+    try:
+        Laser_SequenceRP() # A function that calls for Reaper to start playing the music.
+    except Exception as e:
+        print(f"Error in Laser_SequenceRP: {e}")
+        return
+
+    print("test")
+
+    beat_gap = 60 / 101  # Time interval between beats 
+    count = 0 # Start a variable count
+    start_time = time.time() # Set start_time as the present time that the code was ran.
+
+    try:
+        while time.time() - start_time < 30: # For as long as when the current time minus starting time duration is lesser than 30, the loop will continue
+            time.sleep(beat_gap) # To set the interval between actions as the gap between beats
+
+            if count % 2 == 0: # Does it every even number.
+                send_color(PI_B_ADDR, PORT2, 0, 0, 0) # Set no colour to Neopixels
+                send_brightness(PI_B_ADDR, PORT2, 0) # Set no brightness to Neopixels
+            else:
+                send_color(PI_B_ADDR, PORT2, 255, 0, 0)
+                send_brightness(PI_B_ADDR, PORT2, 0.3)
+
+            # Using a dictionary to map counts to functions
+            actions = {
+                0: AllOff,
+                1: AllOn,
+                2: OddSpk,
+                3: AllOff,
+                4: AllOnOneByOne,
+                5: AllOffOneByOne,
+                6: crossfire,
+                7: crossfireOpp,
+                8: AllOff,
+                9: AllOn,
+                10: AllOffOneByOne,
+                11: OneToThreeOn,
+                12: FourToSixOn,
+                13: SevenToNineOn,
+                14: TenToTwelveOn,
+                15: AllOff,
+                16: OddSpk,
+                17: EvenSpk,
+                18: AllOff,
+                19: OneToThreeOn,
+                20: AllOff,
+                21: AllOn,
+                22: AllOff,
+                23: OddSpk,
+                24: EvenSpk,
+                25: AllOnOneByOne,
+                26: crossfire,
+                27: crossfireOpp,
+                28: TopHalf,
+                29: BottomHalf,
+                30: AllOffOneByOne,
+                31: LeftHalf,
+                32: RightHalf,
+                33: AllOffOneByOne,
+                34: AllOn,
+                35: AllOff,
+                36: OneToThreeOnOneByOne,
+                37: SevenToNineOnOneByOne,
+                38: AllOffOneByOne,
+                39: AllOnOneByOne,
+                40: AllOnOneByOne,
+            }
+
+            if count in actions: # Checking if the count still exists in the actions
+                try:
+                    actions[count]() # If the count has a definition in the dictionary, it will retrieve and call that function
+                except Exception as e:
+                    print(f"Error executing action for count {count}: {e}")
+
+            print(count)
+            count += 1 # Will increase the count each after delaying for each beat gap.
+
+    except Exception as e:
+        print(f"Error in main loop: {e}")
+
+    try:
+        AllOff()
+        send_color(PI_B_ADDR, PORT2, 0, 0, 0)
+        send_brightness(PI_B_ADDR, PORT2, 0)
+        reaper_markers.play_stop()
+        print(f"Counted {count} beats in 30 seconds.")  # max Count = 73/72
+    except Exception as e:
+        print(f"Error during cleanup: {e}")
+```
+
+</details>
+
+<details><summary><h3>osclaser_server_V2.py</h3></summary>
+
+In osclaser_server_V2.py, it is a code to be put into the Master Raspberry Pi to carry out 2 functions. One, receiving the commands from the Laser_Gui. Two, to send the received commands to the Slave Raspberry Pi which holds [osclaser_trigger_V2.py](./osclaser_trigger_V2.py). First, the receiver_ip and receiver_port is to be set to the respective values of the Master Raspberry Pi which in this example is `192.168.254.49` and `2003`. This was set on lines 10 and 11 of the code as seen below:
+```
+receiver_ip = "192.168.254.49" # Team A
+receiver_port = 2003
+```
+Following this, is the function to enable the Master Raspberry Pi to receive the commands and re-send them out to the Slave Raspberry Pi. There will be explanation next to the respective codes to talk about their functions seen from lines 13 to 35.
+```
+# this function prints the arguments in received OSC messages
+def print_args(addr, *args):
+  if addr == "/print": # An If statement to detect for the messages with the address /print
+    print(f"message received {args[0]}")
+    msg = args[0] 
+    var = args[0].split(',')
+    spk = int(var[0].strip()) 
+    addr = "/trigger" # Sets a new address before sending out the message to slave raspberry pi
+
+    if 1 <= spk <= 3:
+       send_addr = "192.168.254.197" #Team C (Updates the send_addr and send_port to the respective Slave Raspberry Pis)
+       send_port = 2001
+    elif 4 <= spk <= 6:
+      send_addr = "192.168.254.101" #Team E
+      send_port = 2002
+    elif 7 <= spk <= 9:
+      send_addr = "192.168.254.72" #Team B
+      send_port = 2003
+    elif 10 <= spk <= 12:
+      send_addr = "192.168.254.236" #Team F
+      send_port = 2004
+    
+    osc_client.send_message(send_addr, send_port, addr, msg)
+```
+</details>
+
+<details><summary><h3>osclaser_trigger_V2.py</h3></summary>
+</details>
+
+
 <details><summary><h2>Reaction Time Game</summary></details>
