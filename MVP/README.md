@@ -250,6 +250,90 @@ def print_args(addr, *args):
 </details>
 
 <details><summary><h3>osclaser_trigger_V2.py</h3></summary>
+
+In osclaser_trigger_V2.py, it is a code to be put into the Slave Raspberry Pis, this code will receive the commands from the Master Raspberry Pi and followed by using RPi.GPIO to trigger the different relay channels that will then turn on and off the lasers respectively. Since there is going to be a use of the RPi.GPIO pins, there will be a need to setup these GPIO pins as shown below and can be found from Lines 10 to 23:
+```
+# GPIO pin setup
+r1_c1 = 21
+r1_c2 = 20
+r2_c1 = 26
+r2_c2 = 19
+r3_c1 = 3
+r3_c2 = 2
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(r1_c1, GPIO.OUT, initial=GPIO.HIGH) # Default on HIGH since the Relay is set on Normally Open.
+GPIO.setup(r1_c2, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(r2_c1, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(r2_c2, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(r3_c1, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(r3_c2, GPIO.OUT, initial=GPIO.HIGH)
+```
+Following that, since it is receiving commands from the Master Raspberry Pi via OSC, there is a need to set a receiving_ip and receiving_port. In this example we will be using Team B's addresses set to `192.168.254.72` and `2003` respectively. This can be set at lines 26 and 27.
+```
+# Change the receiver_ip value to your RPi's IP address
+receiver_ip = "192.168.254.72" # IP address of your Pi
+receiver_port = 2003 # Team C: 2001, Team E: 2002, Team B: 2003, Team F: 2004
+```
+After this, would be the function to control the relays. Details and explanations of the code will appear as comments below:
+```
+# This function handles the received OSC messages and controls the GPIO pins
+def control_relay(addr, *args):
+    if addr == "/trigger": # Detects for messages with the address "/trigger"
+        msg = args[0].split(',') # Splits the message received from the Master Raspberry Pi
+        spk = int(msg[0].strip())
+        channel = int(msg[1].strip()) # Will assign the value based on the split from the msg (e.g spk, channel, value) 
+        value = int(msg[2].strip())  # First value of msg array will be speaker number,
+                                      # second will be the relay channel and last will be the value to turn it on or Off
+        print(f"The spk {spk} controlling channel {channel} and the value is {value}")
+        if spk == 7: # Change according to spk number (refer to S536 drawing)
+            if channel == 1:
+                if value == 1:
+                    GPIO.output(r1_c1, GPIO.LOW)
+                    print("Relay 1 channel 1 turned ON")
+                elif value == 0:
+                    GPIO.output(r1_c1, GPIO.HIGH)
+                    print("Relay 1 channel 1 turned OFF")
+            elif channel == 2:
+                if value == 1:
+                    GPIO.output(r1_c2, GPIO.LOW)
+                    print("Relay 1 channel 2 turned ON")
+                elif value == 0:
+                    GPIO.output(r1_c2, GPIO.HIGH)
+                    print("Relay 1 channel 2 turned OFF")
+
+        elif spk == 8: # Change according to spk number (refer to S536 drawing)
+            if channel == 1:
+                if value == 1:
+                    GPIO.output(r2_c1, GPIO.LOW)
+                    print("Relay 2 channel 1 turned ON")
+                elif value == 0:
+                    GPIO.output(r2_c1, GPIO.HIGH)
+                    print("Relay 2 channel 1 turned OFF")
+            elif channel == 2:
+                if value == 1:
+                    GPIO.output(r2_c2, GPIO.LOW)
+                    print("Relay 2 channel 2 turned ON")
+                elif value == 0:
+                    GPIO.output(r2_c2, GPIO.HIGH)
+                    print("Relay 2 channel 2 turned OFF")
+
+        elif spk == 9: # Change according to spk number (refer to S536 drawing)
+            if channel == 1:
+                if value == 1:
+                    GPIO.output(r3_c1, GPIO.LOW)
+                    print("Relay 3 channel 1 turned ON")
+                elif value == 0:
+                    GPIO.output(r3_c1, GPIO.HIGH)
+                    print("Relay 3 channel 1 turned OFF")
+            elif channel == 2:
+                if value == 1:
+                    GPIO.output(r3_c2, GPIO.LOW)
+                    print("Relay 3 channel 2 turned ON")
+                elif value == 0:
+                    GPIO.output(r3_c2, GPIO.HIGH)
+                    print("Relay 3 channel 2 turned OFF")
+```
 </details>
 
 
