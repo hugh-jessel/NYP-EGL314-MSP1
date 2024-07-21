@@ -336,8 +336,8 @@ def control_relay(addr, *args):
 ```
 </details>
 
-
-<details><summary><h2>Reaction Time Game</summary></details>
+</details>
+<details><summary><h2>Reaction Time Game</summary>
 
 In the reaction time game , it mainly revolves around [StartGame.py](./StartGame.py) and [Gamestart_wipV2.py](./Gamestart_wipV2.py)
 
@@ -347,7 +347,7 @@ graph LR
 A[StartGame.py] --> B[Gamestart_wipV2.py]
 ```
 
-</details>
+
 
 <details><summary><h3>StartGame.py</h3></summary>
 
@@ -573,7 +573,7 @@ LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
         print(f"Listening to {LaunchpadPro_Name} for note messages" )
 ```
 
-This code is what we use to listen to our device, in this case the **"Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"**, which will change based on what device you are using. If no device is connected, it will print out a message saying so, otherwise it will begin listening to messages from the device.
+This code is what we use to listen to our device, in this case the `"Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"`, which will change based on what device you are using. If no device is connected, it will print out a message saying so, otherwise it will begin listening to messages from the device.
 
 From lines 89 to 124,
 ```
@@ -617,5 +617,7 @@ if msg.type == 'note_on':
 ```
 It encompasses the core functionality of the other sections in this functions. When a projectile is fired out from the speaker, a count begins to track if the player reacts in time. 
 Afterwards it moves on to check if the player presses the right button in under 3 seconds, which if true they deflect the projectile, stoping the count for their reaction speed and jumping to a random projectile marker and this repeats until they either fail to react in time, press the wrong note, or they pass to the next stage
+
+</details>
 
 </details>
