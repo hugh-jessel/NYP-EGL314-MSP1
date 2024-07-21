@@ -254,3 +254,284 @@ def print_args(addr, *args):
 
 
 <details><summary><h2>Reaction Time Game</summary></details>
+
+In the reaction time game , it mainly revolves around [StartGame.py](./StartGame.py) and [Gamestart_wipV2.py](./Gamestart_wipV2.py)
+
+For the reactiom time game , this is how the code hierarchy would look like:
+```mermaid
+graph LR
+A[StartGame.py] --> B[Gamestart_wipV2.py]
+```
+
+</details>
+
+<details><summary><h3>StartGame.py</h3></summary>
+
+In StartGame.py, the first thing to note are the imports, from lines 1 to 8, [reaper_markers](./reaper_markers.py), [Lisa_GrandMa3_Functions](./Lisa_GrandMa3_Functions.py) and [Gamestart_wipV2](./Gamestart_wipV2.py)
+
+```
+#Imports
+import mido 
+import reaper_markers
+import sys
+import Lisa_GrandMa3_Functions
+import Gamestart_wipV2
+from pythonosc import osc_server, dispatcher
+import time
+```
+Right after the imports, is the main function of this file, the most important part of the code is from lines 25 to 35
+
+```
+if msg.note == 67: #start
+    print ('Game Start')
+    
+    reaper_markers.play_stop() # Stop any currently playing track 
+    
+    Lisa_GrandMa3_Functions.clear_all()   
+    Lisa_GrandMa3_Functions.clear_all()
+    Lisa_GrandMa3_Functions.playing()
+    Lisa_GrandMa3_Functions.playing()
+    reaper_markers.startMk()
+    Gamestart_wipV2.launchpad_listen()
+```
+The code simply requires input from launchpad, specifically in this case msg.note == 67 to trigger this if statement, sending messages to GrandMa3, Reaper and the function in [Gamestart_wipV2,py](./Gamestart_wipV2.py), launchpad_listen() to start the game function.
+
+
+</details>
+
+<details><summary><h3>Gamestart_wipV2.py</h3></summary>
+
+In Gamestart_wipV2.py, it begins with the imports, play_stop, reaper_markers and Lisa_GrandMa3_Functions are to utilize the functions within each file to send messages to Reaper, L-isa and GrandMa3. These can be seen from line  1 to 11
+
+```
+#Imports
+import mido 
+import play_stop
+import reaper_markers
+import sys
+import Lisa_GrandMa3_Functions
+from pythonosc import osc_server, dispatcher
+import time
+import random
+import threading
+import definitions
+```
+Right after, lines 13 to 62 are functions for our main game function launch_listen
+```
+def North():
+    global tracker1
+    countToSG2(tracker1)
+    if tracker1 == 4:
+        definitions.nextstage()
+        countT_stop(count_timing)
+    else:
+        definitions.North()
+    
+def South():
+    global tracker1
+    countToSG2(tracker1)
+    if tracker1 == 4:
+        definitions.nextstage()
+    else:
+        definitions.South()
+
+def East():
+    global tracker1
+    countToSG2(tracker1)
+    if tracker1 == 4:
+        definitions.nextstage()
+    else:
+        definitions.East()
+
+def West():
+    countToSG2(tracker1)
+    if tracker1 == 4:
+        definitions.nextstage()
+    else:
+        definitions.West()
+
+def countT_start(count_timing):
+    print('count_timing start')
+    count = 0
+    count += 0.5
+    print(count)
+    return count
+
+def countT_stop(count_timing):
+    print('count_timing Stopped')
+    count = 0
+    print(count)
+    return count
+
+def countToSG2(tracker1):
+    count = 0
+    count += 1
+    return count
+```
+
+launchpad_listen  starts from line  63 to 166
+
+```
+def launchpad_listen():
+    LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
+    if LaunchpadPro_Name not in mido.get_input_names():
+        print(f"Device {LaunchpadPro_Name} not found. Please check the device name")
+        return
+    with mido.open_input(LaunchpadPro_Name) as inport,mido.open_output(LaunchpadPro_Name) as outport:
+        print(f"Listening to {LaunchpadPro_Name} for note messages" )
+        global count_timing
+        count_game = 0
+        NorthPressed = 'False'
+        SouthPressed = 'False'
+        EastPressed = 'False'
+        WestPressed = 'False'
+        
+        game_fail = 'False'
+        directional_Var = 0
+        tracker1 = 0
+        count_timing = 0
+        try:
+            while True:
+                #for msg in inport:
+                time.sleep(0.5)                            
+                count_game += 0.5
+                print(f"The game has been going for {count_game} seconds")
+                for msg in inport.iter_pending():
+                    if msg.type == 'note_on':
+                        print(f"Note On:Note={msg.note}")
+                        if count_game == 37: #28 is when tutorial ends
+                            Lisa_GrandMa3_Functions.Seq21()
+                            #################Projectile 1 (Hardcoded)################
+                        elif 40 >= count_game >= 38: #Count for first projectile
+                            count_game2 = 0  
+                            
+                            
+                            time.sleep(0.5)            
+                            count_timing += 0.5
+                            print(f"How many seconds has it been since the projectile has been fired {count_timing}")
+                            if count_timing <= 3: #if they react under 4 sec
+                                if msg.note == 60 and NorthPressed == 'False': #actual snapshot coresponding to north
+                                    countToSG2(tracker1)
+                                    print(f"How many projectiles have been fired:{tracker1}")
+                                    if tracker1 == 4:
+                                        definitions.nextstage()
+                                    else:
+                                        NorthPressed = 'True'
+                                        print(NorthPressed)
+                                        print("North deflected")
+                                        countT_stop(count_timing)
+                                        definitions.North()
+                                        break
+                                elif msg.note != 60 and NorthPressed == 'False':
+                                    definitions.game_over()
+                                    #trigger for restart
+                                    game_fail = 'True'
+                                    exit()
+                                         
+                                           
+                                elif count_timing > 4 and NorthPressed == 'False':
+                                    definitions.game_over()
+                                    #trigger for restart
+                                    game_fail = 'True'
+                                    exit() 
+                                    
+                                    
+                        elif 40 >= count_game >= 38  and NorthPressed == 'True':
+                            pass
+                        
+                        elif count_game == 41:
+                            definitions.resetVar()
+                            Lisa_GrandMa3_Functions.Seq24()
+                        elif count_game >= 40: #Second Projectiles
+                            if msg.note == 65:
+                                definitions.deflect_success()
+                                definitions.nextstage()
+                                time.sleep(5)
+                                exit()
+                            exit()
+                            countT_start(count_timing)
+                            if count_timing <= 3:
+                                if msg.note == 60 and directional_Var == 'North':
+                                    North()
+                                elif msg.note == 65 and directional_Var == 'South':
+                                    South()
+                                elif msg.note == 62 and directional_Var == 'East':
+                                    East()
+                                elif msg.note == 64 and directional_Var == 'West':
+                                    West()
+                            elif count_timing > 4 and (NorthPressed and SouthPressed and EastPressed and WestPressed) == 'False' :
+                                        definitions.game_over()
+                                        #trigger for restart
+                                        game_fail = 'True'
+                                        exit()
+                                         
+                                
+                        elif 47 >= count_game >= 44 and SouthPressed == 'True':
+                            pass
+                        elif count_game == 48:
+                            definitions.resetVar()
+                        
+                                
+                    else:
+                        print(f'Note Off: Note={msg.note}')
+        except KeyboardInterrupt:
+            print("stopped listening to MIDI messages.")
+```
+
+Breaking the function down into parts, with lines 64 to 69,
+
+```
+LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
+    if LaunchpadPro_Name not in mido.get_input_names():
+        print(f"Device {LaunchpadPro_Name} not found. Please check the device name")
+        return
+    with mido.open_input(LaunchpadPro_Name) as inport,mido.open_output(LaunchpadPro_Name) as outport:
+        print(f"Listening to {LaunchpadPro_Name} for note messages" )
+```
+
+This code is what we use to listen to our device, in this case the **"Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"**, which will change based on what device you are using. If no device is connected, it will print out a message saying so, otherwise it will begin listening to messages from the device.
+
+From lines 89 to 124,
+```
+if msg.type == 'note_on':
+                        print(f"Note On:Note={msg.note}")
+                        if count_game == 37: #28 is when tutorial ends
+                            Lisa_GrandMa3_Functions.Seq21()
+                            #################Projectile 1 (Hardcoded)################
+                        elif 40 >= count_game >= 38: #Count for first projectile
+                            count_game2 = 0  
+                            
+                            
+                            time.sleep(0.5)            
+                            count_timing += 0.5
+                            print(f"How many seconds has it been since the projectile has been fired {count_timing}")
+                            if count_timing <= 3: #if they react under 4 sec
+                                if msg.note == 60 and NorthPressed == 'False': #actual snapshot coresponding to north
+                                    countToSG2(tracker1)
+                                    print(f"How many projectiles have been fired:{tracker1}")
+                                    if tracker1 == 4:
+                                        definitions.nextstage()
+                                    else:
+                                        NorthPressed = 'True'
+                                        print(NorthPressed)
+                                        print("North deflected")
+                                        countT_stop(count_timing)
+                                        definitions.North()
+                                        break
+                                elif msg.note != 60 and NorthPressed == 'False':
+                                    definitions.game_over()
+                                    #trigger for restart
+                                    game_fail = 'True'
+                                    exit()
+                                         
+                                           
+                                elif count_timing > 4 and NorthPressed == 'False':
+                                    definitions.game_over()
+                                    #trigger for restart
+                                    game_fail = 'True'
+                                    exit() 
+```
+It encompasses the core functionality of the other sections in this functions. When a projectile is fired out from the speaker, a count begins to track if the player reacts in time. 
+Afterwards it moves on to check if the player presses the right button in under 3 seconds, which if true they deflect the projectile, stoping the count for their reaction speed and jumping to a random projectile marker and this repeats until they either fail to react in time, press the wrong note, or they pass to the next stage
+
+</details>
