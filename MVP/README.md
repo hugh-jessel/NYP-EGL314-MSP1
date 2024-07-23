@@ -55,7 +55,7 @@ In this folder, there are multiple python files. We will take a dive into the de
 Below, there are more detailed explanations of the codes in their respective uses.
 <details><summary><h2>Laser Show</h2></summary>
 
-In the laser show, it mainly revolves around [laser_gui.py](./laser_gui.py), [osclaser_server_V2.py](./osclaser_server_V2.py) and [osclaser_trigger_V2.py](./osclaser_trigger_V2.py).
+In the laser show, it mainly revolves around [laser_gui.py](./Laser_Gui.py), [osclaser_server_V2.py](./osclaser_server_V2.py) and [osclaser_trigger_V2.py](./osclaser_trigger_V2.py).
 
 For the laser show, this is how the code hierarchy would look like:
 ```mermaid
