@@ -1,6 +1,5 @@
 #Imports
 import mido 
-import play_stop
 import reaper_markers
 import sys
 import Lisa_GrandMa3_Functions
@@ -92,8 +91,6 @@ def launchpad_listen():
                             #################Projectile 1 (Hardcoded)################
                         elif 40 >= count_game >= 38: #Count for first projectile
                             count_game2 = 0  
-                            
-                            
                             time.sleep(0.5)            
                             count_timing += 0.5
                             print(f"How many seconds has it been since the projectile has been fired {count_timing}")
@@ -114,16 +111,12 @@ def launchpad_listen():
                                     definitions.game_over()
                                     #trigger for restart
                                     game_fail = 'True'
-                                    exit()
-                                         
-                                           
+                                    exit()      
                                 elif count_timing > 4 and NorthPressed == 'False':
                                     definitions.game_over()
                                     #trigger for restart
                                     game_fail = 'True'
                                     exit() 
-                                    
-                                    
                         elif 40 >= count_game >= 38  and NorthPressed == 'True':
                             pass
                         

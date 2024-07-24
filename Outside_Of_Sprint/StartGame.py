@@ -1,9 +1,8 @@
 #Imports
 import mido 
-import reaper_markers
+import ReactionTest
 import sys
-import Lisa_GrandMa3_Functions
-import Gamestart_wipV2
+
 from pythonosc import osc_server, dispatcher
 import time
 
@@ -23,15 +22,13 @@ def Midi_LaunchPad_MK3():
                     if msg.note == 67: #start
                         print ('Game Start')
                         
-                        reaper_markers.play_stop() # Stop any currently playing track 
-                        
-                        Lisa_GrandMa3_Functions.clear_all()   
-                        Lisa_GrandMa3_Functions.clear_all()
-                        Lisa_GrandMa3_Functions.playing()
-                        Lisa_GrandMa3_Functions.playing()
-                        reaper_markers.startMk()
-                        Gamestart_wipV2.launchpad_listen()
-                    
+                        ReactionTest.reaperSendMessage(ReactionTest.R_PlayStop_ADD) # Stop any currently playing track 
+                        ReactionTest.grandMa3SendMessage(ReactionTest.G_clearAll_MSG)   
+                        ReactionTest.grandMa3SendMessage(ReactionTest.G_clearAll_MSG)
+                        ReactionTest.grandMa3SendMessage(ReactionTest.G_gameLights_MSG)
+
+                        ReactionTest.reaperSendMessage(ReactionTest.R_StartGame_ADD)
+                        ReactionTest.reactionTest()
                     else:
                         pass
                 elif msg.type == 'note_off':

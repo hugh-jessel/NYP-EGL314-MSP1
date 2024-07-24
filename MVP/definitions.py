@@ -2,7 +2,6 @@
 import Lisa_GrandMa3_Functions
 import reaper_markers
 import time
-import play_stop
 import random
 
 #definitions
@@ -11,7 +10,7 @@ def game_over():
     Lisa_GrandMa3_Functions.stageFail()
     reaper_markers.fail()
     time.sleep(8)
-    play_stop.play_stop()
+    reaper_markers.play_stop()
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.clear_all()
     
