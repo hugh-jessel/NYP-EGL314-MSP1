@@ -253,17 +253,6 @@ def nextstage(count):
             return count
         else:
             pass #win
-    
-    # if count >= 4 and stageNo == 1:
-    #     stageNo =+ 1
-    #     count = 0
-    # elif count >= 5 and stageNo == 2:
-    #     stageNo =+ 1
-    #     count = 0
-    # elif count >= 7 and stageNo == 3:
-    #     #Win
-    #     pass
-        
 direction_map = {
     "North": 60,
     "South": 65,
@@ -283,7 +272,6 @@ def reactionTest():
     SouthPressed = False
     EastPressed = False
     WestPressed = False
-    #launchpadListen()
     LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
     if LaunchpadPro_Name not in mido.get_input_names():
         print(f"Device {LaunchpadPro_Name} not found. Please check the device name")
@@ -298,8 +286,8 @@ def reactionTest():
                     if msg.type == "note_on":
                         print(f"Note On:Note={msg.note}")
                         if stageNo == 1:
-                            if msg.note == direction_map[direction] and gameCount < 7 and directionPressed[direction] == False:
-                                deflect(direction)                                     #direction pressed == false
+                            if msg.note == direction_map[direction] and 38 < gameCount < 42 and directionPressed[direction] == False:
+                                deflect(direction)                                     
                                 print(direction)
                                 directionPressed[direction] == True
                                 nextstage(count)
@@ -307,25 +295,23 @@ def reactionTest():
                                 time.sleep(0.5)
                                 snapshotRandom()
                                 reaperSendMessage(R_S1Proj2_ADD)
-                            elif msg.note == direction_map[direction] and gameCount < 9:
+                            elif msg.note == direction_map[direction] and 38 < gameCount < 44:
                                 deflect(direction)
                                 print(direction)
-                                #NorthPressed = True
                                 nextstage(count)
                                 print(f"{count} projectiles have been deflected")
                                 time.sleep(0.5)
                                 snapshotRandom()
                                 reaperSendMessage(R_S1Proj3_ADD)
-                            elif msg.note == direction_map[direction] and gameCount < 12:
+                            elif msg.note == direction_map[direction] and 38 < gameCount < 46:
                                 deflect(direction)
                                 print(direction)
-                                #NorthPressed = True
                                 nextstage(count)
                                 print(f"{count} projectiles have been deflected")
                                 time.sleep(0.5)
                                 snapshotRandom()
                                 reaperSendMessage(R_S1Proj4_ADD)
-                            elif gameCount > 11:
+                            elif gameCount > 45:
                                 stage_pass()
                             elif msg.note != direction_map[direction]:
                                 stage_fail()
@@ -335,17 +321,17 @@ def reactionTest():
                             pass
                     elif msg.type == "note_off":
                             print(f"Note Off:Note={msg.note}")
-                if gameCount == 2:
+                if gameCount == 36:
                     snapshotRandom()
-                elif gameCount == 3:
+                elif gameCount == 37:
                     gameTimeCounter(False)
                     reactionTimeCounter(True,4)
                 # elif gameCount > 7 and directionPressed[direction] == False:
                 #     stage_fail()
-                elif gameCount == 5:
+                elif gameCount == 39:
                     gameTimeCounter(False)
                     reactionTimeCounter(True,4)
-                elif gameCount == 9:
+                elif gameCount == 41:
                     gameTimeCounter(False)
                     reactionTimeCounter(True,4) 
                     # if msg.type == "note_on":
