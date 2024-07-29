@@ -315,6 +315,15 @@ def playing():
 
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
 
+def LightShow():
+	global PI_A_ADDR_GrandMa3
+	global PORT_GrandMa3
+	global addr_GrandMa3
+
+	msg = "Go+: Sequence 76"
+
+	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
+
 
 def pause_osc():
 

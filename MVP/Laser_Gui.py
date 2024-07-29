@@ -6,6 +6,8 @@ import tkinter as tk
 
 import reaper_markers
 
+import Lisa_GrandMa3_Functions 
+
 # import RPi.GPIO as GPIO
 
 import time
@@ -190,74 +192,51 @@ def send_brightness(receiver_ip, receiver_port, brightness):
     client = udp_client.SimpleUDPClient(receiver_ip, receiver_port)
     client.send_message("/brightness", [brightness])
 
-PI_B_ADDR = "192.168.254.242"  # Change to your RPi's IP address
-PORT2 = 2005
+PI_Truss_Pixel = "192.168.254.242"  # Change to your RPi's IP address
+PORT_Truss_Pixel = 2005
+client_Truss_Pixel = udp_client.SimpleUDPClient(PI_Truss_Pixel, PORT_Truss_Pixel)
 
-def AllOff():
-    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
-           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
-           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
-           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
+# Truss Neopixel
+def send_color_array(colors):
+    address = "/color_array"
+    flattened_colors = [color for rgb in colors for color in rgb]
+    client_Truss_Pixel.send_message(address, flattened_colors)
+    print(f"Sent color array: {flattened_colors}")
 
-        if y == len(msg):
-            break
+def send_brightness(brightness):
+    client_Truss_Pixel.send_message("/brightness", brightness)
+    print(f"Sent brightness {brightness}")
 
-def AllOn():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
-           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
-           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
-           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
+def send_off():
+    client_Truss_Pixel.send_message("/off", [])
+    print("Sent off message")
 
-        if y == len(msg):
-            break
+PI_Balloon_Pixel = "192.168.254.102"
+PORT_Balloon_Pixel = 2006
+client_Balloon_Pixel = udp_client.SimpleUDPClient(PI_Balloon_Pixel, PORT_Balloon_Pixel)
 
-def OddSpk():
-    msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
-           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
-           "7,1,1", "7,2,1", "8,1,0", "8,2,0", "9,1,1", "9,2,1",
-           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
+# Ballon Neopixel
+def send_color_array2(colors):
+    address = "/color_array"
+    flattened_colors = [color for rgb in colors for color in rgb]
+    client_Balloon_Pixel.send_message(address, flattened_colors)
+    print(f"Sent color array: {flattened_colors}")
 
-        if y == len(msg):
-            break
+def send_brightness2(brightness):
+    client_Balloon_Pixel.send_message("/brightness", brightness)
+    print(f"Sent brightness {brightness}")
 
-def EvenSpk():
-    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
-           "4,1,1", "4,2,1", "5,1,0", "5,2,0", "6,1,1", "6,2,1",
-           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
-           "10,1,1", "10,2,1", "11,1,0", "11,2,0", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
+def send_off2():
+    client_Balloon_Pixel.send_message("/off", [])
+    print("Sent off message")
 
-        if y == len(msg):
-            break
+# Laser Functions
 
 def crossfire():
-    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
-           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
-           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
-           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
+    msg = ["2,1,1", "2,2,1",
+           "5,1,1", "5,2,1",
+           "8,1,1", "8,2,1",
+           "11,1,1", "11,2,1"]
     
     y = int(0)
     while y < len(msg):
@@ -267,92 +246,12 @@ def crossfire():
 
         if y == len(msg):
             break
-
-def AllOnOneByOne():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
-           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
-           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
-           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
     
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def AllOffOneByOne():
-    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
-           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
-           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
-           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"]
-    
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def crossfireOpp():
-    msg = ["1,1,1", "1,2,1", "2,1,0", "2,2,0", "3,1,1", "3,2,1",
-           "4,1,1", "4,2,1", "5,1,0", "5,2,0", "6,1,1", "6,2,1",
-           "7,1,1", "7,2,1", "8,1,0", "8,2,0", "9,1,1", "9,2,1",
-           "10,1,1", "10,2,1", "11,1,0", "11,2,0", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def OneToThreeOn():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def FourToSixOn():
-    msg = ["4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def SevenToNineOn():
-    msg = ["7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-        
-        if y == len(msg):
-            break
-
-def TenToTwelveOn():
-    msg = ["10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
+def crossfireOff():
+    msg = ["2,1,0", "2,2,0",
+           "5,1,0", "5,2,0",
+           "8,1,0", "8,2,0",
+           "11,1,0", "11,2,0"]
     
     y = int(0)
     while y < len(msg):
@@ -372,117 +271,14 @@ def Laser_SequenceRP():
     reaper_markers.play_stop()
     reaper_markers.lasershow()
 
-def TopHalf():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,0", "3,2,0",
-           "4,1,0", "4,2,0", "5,1,0", "5,2,0", "6,1,0", "6,2,0",
-           "7,1,0", "7,2,0", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
-           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
+def GrandMA3_Sequence():
+    Lisa_GrandMa3_Functions.LightShow()
 
-        if y == len(msg):
-            break
+def GrandMa3_Go():
+    Lisa_GrandMa3_Functions.go()
 
-def BottomHalf():
-    msg = ["1,1,0", "1,2,0", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
-           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
-           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,0", "9,2,0",
-           "10,1,0", "10,2,0", "11,1,0", "11,2,0", "12,1,0", "12,2,0"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def LeftHalf():
-    msg = ["1,1,0", "1,2,0", "2,1,0", "2,2,0", "3,1,0", "3,2,0",
-           "4,1,0", "4,2,0", "5,1,1", "5,2,1", "6,1,1", "6,2,1",
-           "7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1",
-           "10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,0", "12,2,0"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-        
-def RightHalf():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1",
-           "4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,0", "6,2,0",
-           "7,1,0", "7,2,0", "8,1,0", "8,2,0", "9,1,0", "9,2,0",
-           "10,1,0", "10,2,0", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def OneToThreeOnOneByOne():
-    msg = ["1,1,1", "1,2,1", "2,1,1", "2,2,1", "3,1,1", "3,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def FourToSixOnOneByOne():
-    msg = ["4,1,1", "4,2,1", "5,1,1", "5,2,1", "6,1,1", "6,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
-
-def SevenToNineOnOneByOne():
-    msg = ["7,1,1", "7,2,1", "8,1,1", "8,2,1", "9,1,1", "9,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-        
-        if y == len(msg):
-            break
-    
-def TenToTwelveOnOneByOne():
-    msg = ["10,1,1", "10,2,1", "11,1,1", "11,2,1", "12,1,1", "12,2,1"]
-    
-    y = int(0)
-    while y < len(msg):
-        time.sleep(0.03)
-        send_message(send_addr, send_port, addr, msg[y])
-        print(msg[y])
-        y += 1
-
-        if y == len(msg):
-            break
+def GrandMa3_Clear():
+    Lisa_GrandMa3_Functions.clear_all()
 
 def lasersequence():
     try:
@@ -501,56 +297,9 @@ def lasersequence():
         while time.time() - start_time < 30:
             time.sleep(beat_gap)
 
-            if count % 2 == 0:
-                send_color(PI_B_ADDR, PORT2, 0, 0, 0)
-                send_brightness(PI_B_ADDR, PORT2, 0)
-            else:
-                send_color(PI_B_ADDR, PORT2, 255, 0, 0)
-                send_brightness(PI_B_ADDR, PORT2, 0.3)
-
             # Using a dictionary to map counts to functions
             actions = {
-                0: AllOff,
-                1: AllOn,
-                2: OddSpk,
-                3: AllOff,
-                4: AllOnOneByOne,
-                5: AllOffOneByOne,
-                6: crossfire,
-                7: crossfireOpp,
-                8: AllOff,
-                9: AllOn,
-                10: AllOffOneByOne,
-                11: OneToThreeOn,
-                12: FourToSixOn,
-                13: SevenToNineOn,
-                14: TenToTwelveOn,
-                15: AllOff,
-                16: OddSpk,
-                17: EvenSpk,
-                18: AllOff,
-                19: OneToThreeOn,
-                20: AllOff,
-                21: AllOn,
-                22: AllOff,
-                23: OddSpk,
-                24: EvenSpk,
-                25: AllOnOneByOne,
-                26: crossfire,
-                27: crossfireOpp,
-                28: TopHalf,
-                29: BottomHalf,
-                30: AllOffOneByOne,
-                31: LeftHalf,
-                32: RightHalf,
-                33: AllOffOneByOne,
-                34: AllOn,
-                35: AllOff,
-                36: OneToThreeOnOneByOne,
-                37: SevenToNineOnOneByOne,
-                38: AllOffOneByOne,
-                39: AllOnOneByOne,
-                40: AllOnOneByOne,
+                0: crossfireOff,
             }
 
             if count in actions:
@@ -566,93 +315,14 @@ def lasersequence():
         print(f"Error in main loop: {e}")
 
     try:
-        AllOff()
-        send_color(PI_B_ADDR, PORT2, 0, 0, 0)
-        send_brightness(PI_B_ADDR, PORT2, 0)
+        crossfireOff()
+        GrandMa3_Clear()
+        send_off()
+        send_off2()
         reaper_markers.play_stop()
         print(f"Counted {count} beats in 30 seconds.")  # max Count = 73/72
     except Exception as e:
         print(f"Error during cleanup: {e}")
-
-""" without server
-
-def laser1_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(21, GPIO.OUT)
-    GPIO.output(21, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser1_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(21, GPIO.OUT)
-    GPIO.output(21, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()
-
-def laser2_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(20, GPIO.OUT)
-    GPIO.output(20, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser2_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(20, GPIO.OUT)
-    GPIO.output(20, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()
-
-def laser3_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(26, GPIO.OUT)
-    GPIO.output(26, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser3_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(26, GPIO.OUT)
-    GPIO.output(26, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()
-
-def laser4_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(19, GPIO.OUT)
-    GPIO.output(19, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser4_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(19, GPIO.OUT)
-    GPIO.output(19, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()
-
-def laser5_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(3, GPIO.OUT)
-    GPIO.output(3, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser5_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(3, GPIO.OUT)
-    GPIO.output(3, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup()
-
-def laser6_onS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(2, GPIO.OUT)
-    GPIO.output(2, GPIO.LOW)
-    print('Relay ON - The relay will stay on until the program is terminated')
-
-def laser6_offS():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(2, GPIO.OUT)
-    GPIO.output(2, GPIO.HIGH)  # Turn off the relay
-    print('Relay OFF - Cleaning up GPIO.')
-    GPIO.cleanup() """
 
 #default page on start-up
 
