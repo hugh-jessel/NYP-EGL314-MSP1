@@ -293,14 +293,14 @@ def lasersequence():
     count = 0
     start_time = time.time()
 
+    # Using a dictionary to map counts to functions
+    actions = {
+        0: [crossfireOff, GrandMA3_Sequence],
+        }
+
     try:
         while time.time() - start_time < 30:
             time.sleep(beat_gap)
-
-            # Using a dictionary to map counts to functions
-            actions = {
-                0: crossfireOff,
-            }
 
             if count in actions:
                 try:
