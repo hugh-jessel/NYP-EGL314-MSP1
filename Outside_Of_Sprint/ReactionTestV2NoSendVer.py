@@ -100,13 +100,23 @@ projectile_direction = {
     "West": 64
 }
 #Initializing variables
-projCount = 0
+# Global variables
 gameCount = 0
 timeCount = 0
-count = 0
 game_fail = False
-direction = ""
-x = 0.0
+direction = None
+buttonPressed = False
+last_button_press_time = 0
+last_note_on_time = time.time()
+game_active = False
+successful_deflects = 0
+
+# Constants
+button_press_delay = 4
+note_timeout_threshold = 5
+win_threshold = 4
+LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
+
 #Functions
 ##########Send Messaages function
 def reaperSendMessage(addr):
@@ -128,7 +138,7 @@ def send_message(receiver_ip, receiver_port, address, message):
 def stage_pass():
     print("Stage Cleared!")
     gameTimeCounter(False)
-    reaperSendMessage(R_StageTrans_ADD)
+    reaperSendMessage(R_FullVictoru_ADD)
     grandMa3SendMessage(G_stagePass_MSG)
     #gameTimeCounter(True)
     time.sleep(11) #Delay to allow AI voice to finish
@@ -151,7 +161,7 @@ def stage_fail():
     game_fail = True
 def stage_fail_Restart():
     global game_fail
-    print("Game Over!")
+    print("Game Over! Restart?")
     reaperSendMessage(R_gameOver_ADD)
     grandMa3SendMessage(G_stageFail_MSG)
     time.sleep(8) #Replace with length of fail audio
@@ -160,7 +170,28 @@ def stage_fail_Restart():
     grandMa3SendMessage(G_centerSpotlight_MSG)
     reaperSendMessage(R_PlayStop_ADD)
     grandMa3SendMessage(G_centerSpotlight_MSG)
-    
+
+def gameRestart():
+    global gameCount
+    global timeCount
+    global game_fail
+    global direction
+    global buttonPressed
+    global last_button_press_time
+    global last_note_on_time
+    global game_active
+    global successful_deflects
+
+    gameCount = 0
+    timeCount = 0
+    game_fail = False
+    buttonPressed = False
+    last_button_press_time = 0
+    last_note_on_time = time.time()
+    game_active = False
+    successful_deflects = 0
+    snapshotRandom()  # Reset the initial direction
+
 def gameTimeCounter(gameTime):
     global gameCount
     while gameTime == True:
@@ -208,7 +239,6 @@ def stage1Projectile():
     # projectiles = [reaperSendMessage(R_S1Proj2_ADD),
     #                reaperSendMessage(R_S1Proj3_ADD),
     #                reaperSendMessage(R_S1Proj4_ADD)]
-
 def stage2Projectile():
     projectiles = {
         1: (reaperSendMessage(R_S2Proj2_ADD)),
@@ -270,123 +300,84 @@ direction_map = {
     "East": 62,
     "West": 64
 }
-#directionPressed = {direction: False for direction in ["North", "South", "East", "West"]}
+
 def reactionTest():
-    #global msg
     global gameCount
-    #global projCount
-    global timeCount
     global game_fail
-    # NorthPressed = False
-    # SouthPressed = False
-    # EastPressed = False
-    # WestPressed = False
-    buttonPressed = False
-    stage_fail = False
-    LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
+    global direction
+    global buttonPressed
+    global last_button_press_time
+    global last_note_on_time
+    global game_active
+    global successful_deflects
     if LaunchpadPro_Name not in mido.get_input_names():
         print(f"Device {LaunchpadPro_Name} not found. Please check the device name")
         return
-    with mido.open_input(LaunchpadPro_Name) as inport,mido.open_output(LaunchpadPro_Name) as outport:
-        print(f"Listening to {LaunchpadPro_Name} for note messages" )
+    with mido.open_input(LaunchpadPro_Name) as inport, mido.open_output(LaunchpadPro_Name) as outport:
+        print(f"Listening to {LaunchpadPro_Name} for note messages")
+        snapshotRandom()  # Set the initial direction
         try:
             while True:
                 gameTimeCounter(True)
                 print(f"The game has been going for {gameCount} seconds")
-                print (direction_map)
-                print()
+                current_time = time.time()  # Get the current timestamp
+                
+                # Reset buttonPressed if the delay has passed
+                if buttonPressed and (current_time - last_button_press_time >= button_press_delay):
+                    buttonPressed = False
+                    print(f"Button press reset after {button_press_delay} seconds")
+                    
+                # Check for game over due to inactivity, only if the game is active
+                if game_active and (current_time - last_note_on_time >= note_timeout_threshold):
+                    print(f"Game over due to inactivity. Time since last note_on: {current_time - last_note_on_time:.2f} seconds")
+                    game_fail = True
+                    stage_fail_Restart()  # Handle game over and restart
+                    gameRestart()  # Reset game state for restart
+                    print("Game has been reset. Waiting for next start...")
+                    continue  # Continue to the next iteration to wait for a restart
+                
+                # Ensure game is active after gameCount reaches 5
+                if gameCount >= 5:
+                    if not game_active:
+                        last_note_on_time = current_time
+                        game_active = True  # Set the game as active once gameCount reaches 5
+                        print("Game is now active")
                 for msg in inport.iter_pending():
-                    if msg.type == "note_on":
-                        print(f"Note On:Note={msg.note}")
-                        #if stageNo == 1:
-                        #Stage 1 start
-                        if  38 < gameCount < 42 and direction_map[direction] != None and msg.note == direction_map[direction] and buttonPressed == False:
-                            deflect(direction)                                     
-                            print(direction)
-                            buttonPressed = True
-                            time.sleep(0.5)
-                            snapshotRandom()
-                            reaperSendMessage(R_S1Proj2_ADD)
-                        elif msg.note == direction_map[direction] and 40 < gameCount < 44 and buttonPressed == False:
-                            deflect(direction)
-                            print(direction)
-                            buttonPressed = True
-                            time.sleep(0.5)
-                            snapshotRandom()
-                            reaperSendMessage(R_S1Proj3_ADD)
-                        elif msg.note == direction_map[direction] and 42 < gameCount < 46 and buttonPressed == False:
-                            deflect(direction)
-                            print(direction)
-                            buttonPressed = True
-                            time.sleep(0.5)
-                            snapshotRandom()
-                            reaperSendMessage(R_S1Proj4_ADD)
-                        elif gameCount > 44 and msg.note == direction_map[direction] and buttonPressed == False:
-                            deflect(direction)
-                            print(direction)
-                            buttonPressed = True
-                            time.sleep(0.5)
-                            stage_pass()
-                        #Stage 1 End 
-                        #Stage 2 Start
-                        elif gameCount > 39 and msg.note != direction_map[direction] and msg.note != 67 and buttonPressed == False:
-                            stage_fail_Restart()
-                            game_fail = True
-                        #elif stageNo == 2:
-                        #elif stageNo == 3:
-                        elif msg.note == 67 and stage_fail == True:
-                            reaperSendMessage(R_PlayStop_ADD) # Stop any currently playing track 
-                            grandMa3SendMessage(G_clearAll_MSG)   
-                            grandMa3SendMessage(G_clearAll_MSG)
-                            grandMa3SendMessage(G_gameLights_MSG)
-                            gameTimeCounter(False)
-                            gameCount = 0
-                            gameTimeCounter(True)
-                            print(f"The game has been going for {gameCount} seconds")
-                        elif gameCount < 36:
-                            pass
-                    elif msg.type == "note_off":
-                            print(f"Note Off:Note={msg.note}")
-                # elif gameCount == 36:
-                #     snapshotRandom()
-                if gameCount == 37:
-                    buttonPressed = False
-                    gameTimeCounter(False)
-                    reactionTimeCounter(True,4)
-                elif gameCount == 39:
-                    buttonPressed = False
-                    gameTimeCounter(False)
-                    reactionTimeCounter(True,4)
-                elif gameCount == 41:
-                    buttonPressed = False
-                    gameTimeCounter(False)
-                    reactionTimeCounter(True,4) 
-                    # if msg.type == "note_on":
-                    #     print(f"Note On:Note={msg.note}")
-                    #     if stageNo == 1:
-                    #         if 7 > gameCount > 3: #38
-                    #             reactionTimeCounter(True,4)
-                    #             print(f"Projectile was fired {timeCount} seconds ago")
-                    #             if msg.note == direction_map[direction] and timeCount < 4 and NorthPressed == False:
-                    #                 deflect(direction)
-                    #                 print (direction)
-                    #                 NorthPressed == True
-                    #             elif msg.note == direction_map[direction] and NorthPressed == True:
-                    #                 pass
-                    #             else:
-                    #                 stage_fail()
-                    #     elif stageNo == 2:
-                    #         pass
-                    #     elif stageNo == 3:
-                    #         pass
-                    # elif msg.type == "note_off" and gameCount == 1: #36
-                    #             snapshotRandom()
-                    #             print (direction)
-                    # else:
-                    #     print(f"Note Off:Note={msg.note}")
-        except KeyboardInterrupt:
-            print("stopped listening to MIDI messages.")
-            
+                    if msg.type == "note_on" and game_active == True:
+                        print(f"Note On: Note={msg.note}")
 
-if __name__ == "__main__":
-    reactionTest()
+                        last_note_on_time = current_time  # Update the timestamp for the last note_on message
+
+                        if not buttonPressed:
+                            buttonPressed = True
+                            if direction and msg.note == direction_map[direction]:
+                                print(f"Successful deflect: Direction {direction}, Note {msg.note}")
+                                deflect(direction)
+                                successful_deflects += 1  # Increment the successful deflect counter
+                                print(f"Total successful deflects: {successful_deflects}")
+
+                                if successful_deflects >= win_threshold:
+                                    print(f"Congratulations! You've won the game with {successful_deflects} successful deflects!")
+                                    game_fail = False
+                                    stage_pass()  # Call a function to handle the win scenario
+                                    break  # Exit the loop, ending the game
+
+                                time.sleep(0.5)
+                                snapshotRandom()  # Determine the next projectile direction
+                                # Send appropriate message based on the game state
+                            else:
+                                print(f"Failed deflect: Note {msg.note} does not match direction {direction}")
+                                game_fail = True
+                                stage_fail_Restart()  # Handle game over and restart
+                                gameRestart()  # Reset game state for restart
+                                print("Game has been reset. Waiting for next start...")
+                                break  # Exit the loop to wait for restart
+                    elif msg.note == 67:  # Check if restart note is pressed
+                        if game_fail == True:
+                            print("Restarting game...")
+                            gameRestart()  # Reset game state for restart
+                            continue  # Continue to the next iteration to wait for the restart
+                    else:
+                        print(f"Ignoring input: Note={msg.note} before gameCount reaches 5")
+        except KeyboardInterrupt:
+            print("Stopped listening to MIDI messages.")

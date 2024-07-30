@@ -1,6 +1,6 @@
 #Imports
 import mido 
-import ReactionTest
+import ReactionTestV2
 import sys
 
 from pythonosc import osc_server, dispatcher
@@ -20,15 +20,23 @@ def Midi_LaunchPad_MK3():
                     # Note on messages represent pad presses
                     print(f'For Game Start Note On: Note={msg.note}')
                     if msg.note == 67: #start
-                        print ('Game Start')
-                        
-                        ReactionTest.reaperSendMessage(ReactionTest.R_PlayStop_ADD) # Stop any currently playing track 
-                        ReactionTest.grandMa3SendMessage(ReactionTest.G_clearAll_MSG)   
-                        ReactionTest.grandMa3SendMessage(ReactionTest.G_clearAll_MSG)
-                        ReactionTest.grandMa3SendMessage(ReactionTest.G_gameLights_MSG)
-
-                        ReactionTest.reaperSendMessage(ReactionTest.R_StartGame_ADD)
-                        ReactionTest.reactionTest()
+                        if ReactionTestV2.game_fail == True:
+                            ReactionTestV2.gameCount = 0
+                            print ('Game Restarting')
+                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track 
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
+                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_Restart_ADD)
+                            ReactionTestV2.reactionTest()
+                        else:
+                            print ('Game Start')
+                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track 
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
+                            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
+                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_StartGame_ADD)
+                            ReactionTestV2.reactionTest()
                     else:
                         pass
                 elif msg.type == 'note_off':
