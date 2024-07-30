@@ -83,44 +83,11 @@ def page1():
     buttonLaser6Off = tk.Button(pageWindow, text="Laser6 Off", font=fontM, bg="black", fg="white", command=laser6_off).grid(row=6, column=1, padx=(20, 0))
 
     buttonLaserSeq = tk.Button(pageWindow, text="Laser Show", font=fontM, bg="black", fg="white", command=lasersequence).grid(row=7, column=0, padx=(20, 0))
-
-def page2():
-
-    pageclear(pageWindow)
-
-    button_active(pageNavButton2)
-
-    button_inactive(pageNavButton1)
-
-    tk.Label(pageWindow, text="Page 2", font="helvetica 12 bold").grid(row=0, column=0, columnspan=2, pady=(0, 10))
-
-    """ buttonLaser1OnS = tk.Button(pageWindow, text="Laser1 On", font=fontM, bg="black", fg="white", command=laser1_onS).grid(row=1, column=0, padx=(20, 0))
-    buttonLaser1OffS = tk.Button(pageWindow, text="Laser1 Off", font=fontM, bg="black", fg="white", command=laser1_offS).grid(row=1, column=1, padx=(20, 0))
-
-    buttonLaser2OnS = tk.Button(pageWindow, text="Laser2 On", font=fontM, bg="black", fg="white", command=laser2_onS).grid(row=2, column=0, padx=(20, 0))
-    buttonLaser2OffS = tk.Button(pageWindow, text="Laser2 Off", font=fontM, bg="black", fg="white", command=laser2_offS).grid(row=2, column=1, padx=(20, 0))
-
-    buttonLaser3OnS = tk.Button(pageWindow, text="Laser3 On", font=fontM, bg="black", fg="white", command=laser3_onS).grid(row=3, column=0, padx=(20, 0))
-    buttonLaser3OffS = tk.Button(pageWindow, text="Laser3 Off", font=fontM, bg="black", fg="white", command=laser3_offS).grid(row=3, column=1, padx=(20, 0))
-
-    buttonLaser4OnS = tk.Button(pageWindow, text="Laser4 On", font=fontM, bg="black", fg="white", command=laser4_onS).grid(row=4, column=0, padx=(20, 0))
-    buttonLaser4OffS = tk.Button(pageWindow, text="Laser4 Off", font=fontM, bg="black", fg="white", command=laser4_offS).grid(row=4, column=1, padx=(20, 0))
-
-    buttonLaser5OnS = tk.Button(pageWindow, text="Laser5 On", font=fontM, bg="black", fg="white", command=laser5_onS).grid(row=5, column=0, padx=(20, 0))
-    buttonLaser5OffS = tk.Button(pageWindow, text="Laser5 Off", font=fontM, bg="black", fg="white", command=laser5_offS).grid(row=5, column=1, padx=(20, 0))
-
-    buttonLaser6OnS = tk.Button(pageWindow, text="Laser6 On", font=fontM, bg="black", fg="white", command=laser6_onS).grid(row=6, column=0, padx=(20, 0))
-    buttonLaser6OffS = tk.Button(pageWindow, text="Laser6 Off", font=fontM, bg="black", fg="white", command=laser6_offS).grid(row=6, column=1, padx=(20, 0)) """
-
-#page navigation buttons
+    buttonMA = tk.Button(pageWindow, text="Laser Show", font=fontM, bg="black", fg="white", command=GrandMA3_Sequence).grid(row=7, column=1, padx=(20, 0))
 
 pageNavButton1 = tk.Button(pageNav, text="Laser w/ Server", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page1, height= 2, width=10)
 
 pageNavButton1.grid(row=1, column=0)
-
-pageNavButton2 = tk.Button(pageNav, text="Laser w/o Server", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page2, height= 2, width=10)
-
-pageNavButton2.grid(row=2, column=0)
 
 # button colour change on press
 
@@ -262,14 +229,45 @@ def crossfireOff():
         if y == len(msg):
             break
 
+def crossfireOneByOne():
+    msg = ["2,1,1", "2,2,1",
+           "5,1,1", "5,2,1",
+           "8,1,1", "8,2,1",
+           "11,1,1", "11,2,1"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+        time.sleep(0.03)
+
+        if y == len(msg):
+            break
+
+def crossfireOffOneByOne():
+    msg = ["2,1,0", "2,2,0",
+           "5,1,0", "5,2,0",
+           "8,1,0", "8,2,0",
+           "11,1,0", "11,2,0"]
+    
+    y = int(0)
+    while y < len(msg):
+        send_message(send_addr, send_port, addr, msg[y])
+        print(msg[y])
+        y += 1
+        time.sleep(0.03)
+
+        if y == len(msg):
+            break
+
 def Laser_SequenceRP():
 
     print("Laser Sequence")
 
     #play_stop.play_stop()
-
-    reaper_markers.play_stop()
     reaper_markers.lasershow()
+    reaper_markers.play_stop()
 
 def GrandMA3_Sequence():
     Lisa_GrandMa3_Functions.LightShow()
@@ -280,9 +278,66 @@ def GrandMa3_Go():
 def GrandMa3_Clear():
     Lisa_GrandMa3_Functions.clear_all()
 
+def NeoRise():
+    send_off()
+    send_off2()
+    colors = [(0,0,0)] * 170
+    delay = 29/170
+ 
+    for i in range(170):
+        colors[i] = (255,165,0)
+        send_color_array(colors)
+        time.sleep(delay)
+
+def NeoBalloon():
+    send_off2()
+    balloon_colors = [(255,165,0)]
+    send_color_array2(balloon_colors * 170)
+
+def NeoStrobe():
+    strobe_colors =  [(255,165,0)]
+    strobe_duration = 1
+    strobe_delay = 0.03
+
+    end_time = time.time() + strobe_duration
+    while time.time() < end_time:
+        for color in strobe_colors:
+            send_color_array2([color] * 170)
+            send_color_array([color]* 170)
+
+            time.sleep(strobe_delay)
+            send_off()
+            send_off2()
+
+            time.sleep(strobe_delay)
+    
+    send_off()
+    send_off2()
+
+def NeoStrobeBlue():
+    strobe_colors =  [(0,0,255)]
+    strobe_duration = 10
+    strobe_delay = 0.3
+
+    end_time = time.time() + strobe_duration
+    while time.time() < end_time:
+        for color in strobe_colors:
+            send_color_array2([color] * 170)
+            send_color_array([color]* 170)
+
+            time.sleep(strobe_delay)
+            send_off()
+            send_off2()
+
+            time.sleep(strobe_delay)
+    
+    send_off()
+    send_off2()
+
 def lasersequence():
     try:
         Laser_SequenceRP()
+        GrandMA3_Sequence()
     except Exception as e:
         print(f"Error in Laser_SequenceRP: {e}")
         return
@@ -295,18 +350,21 @@ def lasersequence():
 
     # Using a dictionary to map counts to functions
     actions = {
-        0: [crossfireOff, GrandMA3_Sequence],
+        0: [NeoRise],
+        1: [GrandMA3_Sequence, NeoBalloon],
+        10: [NeoStrobe],
+        11: [NeoStrobeBlue]
         }
 
     try:
-        while time.time() - start_time < 30:
+        while time.time() - start_time < 60:
             time.sleep(beat_gap)
-
             if count in actions:
-                try:
-                    actions[count]()
-                except Exception as e:
-                    print(f"Error executing action for count {count}: {e}")
+                for action in actions[count]:
+                    try:
+                        action()
+                    except Exception as e:
+                        print(f"Error executing action for count {count}: {e}")
 
             print(count)
             count += 1
@@ -320,7 +378,7 @@ def lasersequence():
         send_off()
         send_off2()
         reaper_markers.play_stop()
-        print(f"Counted {count} beats in 30 seconds.")  # max Count = 73/72
+        print(f"Counted {count} beats in 60 seconds.")  # max Count = 73/72
     except Exception as e:
         print(f"Error during cleanup: {e}")
 

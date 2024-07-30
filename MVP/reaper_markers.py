@@ -151,3 +151,11 @@ def stg2projectile6():
 	global msg
 	send_message(PI_A_ADDR, PORT, addr, msg)
 	print("Stage 2 Projectile 6")
+
+def lasershow():
+	global PI_A_ADDR
+	global PORT
+	addr = "/marker/64"
+	global msg
+	send_message(PI_A_ADDR, PORT, addr, msg)
+	print("Show Starting")
