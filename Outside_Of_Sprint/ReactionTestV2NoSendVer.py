@@ -138,10 +138,10 @@ def send_message(receiver_ip, receiver_port, address, message):
 def stage_pass():
     print("Stage Cleared!")
     gameTimeCounter(False)
-    reaperSendMessage(R_FullVictoru_ADD)
+    reaperSendMessage(R_StageTrans_ADD)
     grandMa3SendMessage(G_stagePass_MSG)
     #gameTimeCounter(True)
-    time.sleep(11) #Delay to allow AI voice to finish
+    time.sleep(11) #Delay to allow AI voice to finish 
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_gameLights_MSG)
@@ -161,7 +161,7 @@ def stage_fail():
     game_fail = True
 def stage_fail_Restart():
     global game_fail
-    print("Game Over! Restart?")
+    print("Game Over!")
     reaperSendMessage(R_gameOver_ADD)
     grandMa3SendMessage(G_stageFail_MSG)
     time.sleep(8) #Replace with length of fail audio
@@ -373,7 +373,7 @@ def reactionTest():
                                 print("Game has been reset. Waiting for next start...")
                                 break  # Exit the loop to wait for restart
                     elif msg.note == 67:  # Check if restart note is pressed
-                        if game_fail == True:
+                        if game_fail:
                             print("Restarting game...")
                             gameRestart()  # Reset game state for restart
                             continue  # Continue to the next iteration to wait for the restart

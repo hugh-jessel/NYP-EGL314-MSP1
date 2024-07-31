@@ -89,7 +89,8 @@ G_directions_MSG = "Go+: Sequence 70"  #direction showcase during explanation
 G_murugunLights_MSG = "Go+: Sequence 71"  #Station marker;lead people to station
 G_centerSpotlight_MSG = "Go+: Sequence 72" #game area spotlight
 G_gameLights_MSG = "Go+: Sequence 73"   #game lights
-G_AIsaac_MSG = "Go+: Sequence 74"    #spotlight for artifact holder       
+G_AIsaac_MSG = "Go+: Sequence 74"    #spotlight for artifact holder      
+G_FaceLights_MSG = "Go+: Sequence 75" 
 G_clearAll_MSG = "Off MyRunningSequence"  #clear sequences
 #Other definitions
 pressed_flag = {directions: False for directions in ["North","South","East","West"]}
@@ -109,10 +110,12 @@ last_button_press_time = 0
 last_note_on_time = time.time()
 game_active = False
 successful_deflects = 0
+restarted = False
+current_stage = 1
+is_transitioning = False
 
 # Constants
 button_press_delay = 4
-note_timeout_threshold = 5
 win_threshold = 4
 LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
 
@@ -121,7 +124,7 @@ LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
 def reaperSendMessage(addr):
     send_message(LR_ADD,R_PORT,addr,float(1))
 def lisaSendMessage(addr):
-    send_message(LR_ADD,R_PORT,addr,L_MSG)
+    send_message(LR_ADD,L_PORT,addr,L_MSG)
 def grandMa3SendMessage(msg):
     send_message(G_ADD,G_PORT,G_ADDR,msg)
     
@@ -173,22 +176,43 @@ def gameTimeCounter(gameTime):
         return gameCount
     else:
         pass
+def sendMSG_North1():
+    send_message(LR_ADD,L_PORT,L_Snap29_ADD,L_MSG)
+def sendMSG_North2():
+    send_message(LR_ADD,L_PORT,L_Snap21_ADD,L_MSG)
+def sendMSG_North3():
+    send_message(LR_ADD,L_PORT,L_Snap27_ADD,L_MSG)
+    
+def sendMSG_South1():
+    send_message(LR_ADD,L_PORT,L_Snap28_ADD,L_MSG)
+def sendMSG_South2():
+    send_message(LR_ADD,L_PORT,L_Snap24_ADD,L_MSG)
+    
+def sendMSG_East1():
+    send_message(LR_ADD,L_PORT,L_Snap25_ADD,L_MSG)
+def sendMSG_East2():
+    send_message(LR_ADD,L_PORT,L_Snap23_ADD,L_MSG)
+
+def sendMSG_West2():
+    send_message(LR_ADD,L_PORT,L_Snap22_ADD,L_MSG)
+def sendMSG_West3():
+    send_message(LR_ADD,L_PORT,L_Snap26_ADD,L_MSG)
 def snapshotRandom():
     global direction
-    random_number = random.randint(1,10)
+    random_number = random.randint(1, 9)
     SequenceRandom = {
-        1: (reaperSendMessage(L_Snap21_ADD), "North"),
-        2: (reaperSendMessage(L_Snap21_ADD), "West"),
-        3: (reaperSendMessage(L_Snap21_ADD), "East"),
-        4: (reaperSendMessage(L_Snap21_ADD), "South"),
-        5: (reaperSendMessage(L_Snap21_ADD), "East"),
-        6: (reaperSendMessage(L_Snap21_ADD), "West"),
-        7: (reaperSendMessage(L_Snap21_ADD), "North"),
-        8: (reaperSendMessage(L_Snap21_ADD), "South"),
-        9: (reaperSendMessage(L_Snap21_ADD), "North"),
-        10: (reaperSendMessage(L_Snap21_ADD), "South")
+        1: (lambda: sendMSG_North1(), "North"),
+        2: (lambda: sendMSG_West2(), "West"),
+        3: (lambda: sendMSG_East1(), "East"),
+        4: (lambda: sendMSG_South1(), "South"),
+        5: (lambda: sendMSG_East2(), "East"),
+        6: (lambda: sendMSG_West3(), "West"),
+        7: (lambda: sendMSG_North2(), "North"),
+        8: (lambda: sendMSG_South2(), "South"),
+        9: (lambda: sendMSG_North3(), "North")
     }
     function, direction = SequenceRandom[random_number]
+    function()  # Call the function stored in 'function'
     print(f"Snapshot has been sent to the {direction}")
 def randomProjectiles(projectileList,projectileAmount):
     random_number = random.randint(1,projectileAmount)
@@ -210,8 +234,24 @@ def stage2Projectile():
         5: lambda: (reaperSendMessage(R_S2Proj6_ADD))
     }
     randomProjectiles(projectiles, 5)
+stage_parameters = {
+    1: {
+        "projectiles": [stage1Projectile],
+        "win_threshold": 4,
+        "note_timeout_threshold": 5,
+        # Add other stage-specific parameters
+    },
+    2: {
+        "projectiles": [stage2Projectile],
+        "win_threshold": 6,
+        "note_timeout_threshold": 2,
+        # Add other stage-specific parameters
+    },
+    # Define more stages as needed
+}
 def deflect(direction):
     reaperSendMessage(R_Deflect_ADD)
+    time.sleep(0.5)
     # if direction in pressedDirection:
     #     pressedDirection = pressedDirection[direction]
     #     globals()[pressedDirection] = True
@@ -225,79 +265,112 @@ direction_map = {
     "East": 62,
     "West": 64
 }
+def start_stage(stage):
+    global successful_deflects, game_active, last_note_on_time, current_stage, direction
+    successful_deflects = 0
+    game_active = False
+    last_note_on_time = 0
+    current_stage = stage
+    print(f"Starting Stage {stage}")
+
+    # Set up for the next stage
+    # For example, if you need to randomize the initial direction or other setup tasks:
+def next_stage():
+    global current_stage, is_transitioning
+    is_transitioning = True
+    current_stage += 1
+    if current_stage in stage_parameters:
+        start_stage(current_stage)
+    else:
+        print("Congratulations! You've completed all stages!")
+        # Handle end of game
+    is_transitioning = False
 def reactionTest():
-    global gameCount
-    global game_fail
-    global direction
-    global buttonPressed
-    global last_button_press_time
-    global last_note_on_time
-    global game_active
-    global successful_deflects
+    global gameCount, game_fail, direction, buttonPressed, last_button_press_time, last_note_on_time, game_active, successful_deflects, restarted, is_transitioning
 
     last_button_press_time = 0
     game_active = False
     successful_deflects = 0
+    button_press_delay = 1
+
     if LaunchpadPro_Name not in mido.get_input_names():
         print(f"Device {LaunchpadPro_Name} not found. Please check the device name")
         return
     with mido.open_input(LaunchpadPro_Name) as inport, mido.open_output(LaunchpadPro_Name) as outport:
         print(f"Listening to {LaunchpadPro_Name} for note messages")
-        snapshotRandom()  # Set the initial direction
+        if restarted:
+            reaperSendMessage(R_Restart_ADD)
+        else:
+            reaperSendMessage(R_StartGame_ADD)
+        time.sleep(0.5)
+        start_stage(1)
+        snapshotRandom()
         try:
             while True:
                 gameTimeCounter(True)
                 print(f"The game has been going for {gameCount} seconds")
-                current_time = time.time()  # Get the current timestamp
-                # Reset buttonPressed if the delay has passed
+                current_time = time.time()
+
+                if is_transitioning:
+                    continue
+
                 if buttonPressed == True and (current_time - last_button_press_time >= button_press_delay):
                     buttonPressed = False
                     print(f"Button press reset after {button_press_delay} seconds")
-                    
-                # Check for game over due to inactivity, only if the game is active
-                if game_active == True and (current_time - last_note_on_time >= note_timeout_threshold):
+                
+                params = stage_parameters[current_stage]
+                note_timeout_threshold = params["note_timeout_threshold"]
+                win_threshold = params["win_threshold"]
+                projectiles = params["projectiles"]
+
+                if game_active and (current_time - last_note_on_time >= note_timeout_threshold):
                     print(f"Game over due to inactivity. Time since last note_on: {current_time - last_note_on_time:.2f} seconds")
                     game_fail = True
                     game_active = False
                     gameTimeCounter(False)
-                    stage_fail_Restart()  # Handle game over and restart
-                    print("Game has been reset. Waiting for next start...")
+                    stage_fail_Restart()
                     return
-                # Ensure game is active after gameCount reaches 5
-                if gameCount >= 5:
-                    if not game_active:
+                if restarted:
+                    if gameCount >= 12 and not game_active:
                         last_note_on_time = current_time
-                        game_active = True  # Set the game as active once gameCount reaches 5
+                        game_active = True
                         print("Game is now active")
+                else:
+                    if gameCount >= 39 and not game_active:
+                        last_note_on_time = current_time
+                        game_active = True
+                        print("Game is now active")
+
                 for msg in inport.iter_pending():
-                    if msg.type == "note_on" and game_active == True:
+                    if msg.type == "note_on" and game_active:
                         print(f"Note On: Note={msg.note}")
-                        last_note_on_time = current_time  # Update the timestamp for the last note_on message
+                        last_note_on_time = current_time
                         if not buttonPressed:
                             buttonPressed = True
                             if direction and msg.note == direction_map[direction]:
                                 print(f"Successful deflect: Direction {direction}, Note {msg.note}")
                                 deflect(direction)
-                                successful_deflects += 1  # Increment the successful deflect counter
+                                successful_deflects += 1
                                 print(f"Total successful deflects: {successful_deflects}")
 
                                 if successful_deflects >= win_threshold:
-                                    print(f"Congratulations! You've won the game with {successful_deflects} successful deflects!")
-                                    stage_pass()  # Call a function to handle the win scenario
+                                    #print(f"Congratulations! You've won stage {current_stage} with {successful_deflects} successful deflects!")
+                                    #next_stage()
+                                    print("Game Won!")
+                                    stage_pass()
+                                    return
+                                random.choice(projectiles)()
                                 time.sleep(0.5)
-                                snapshotRandom()  # Determine the next projectile direction
-                                stage1Projectile()
-                                # Send appropriate message based on the game state
+                                snapshotRandom()
                             else:
                                 print(f"Failed deflect: Note {msg.note} does not match direction {direction}")
                                 game_fail = True
                                 game_active = False
                                 gameTimeCounter(False)
-                                stage_fail_Restart()  # Handle game over and restart
-                                print("Game has been reset. Waiting for next start...")
-                                return# Exit the loop to wait for restart
+                                stage_fail_Restart()
+                                return
                     else:
-                        print(f"Ignoring input: Note={msg.note} before gameCount reaches 5")
+                        print(f"Ignoring input: Note={msg.note} before game becomes active")
 
         except KeyboardInterrupt:
             print("Stopped listening to MIDI messages.")

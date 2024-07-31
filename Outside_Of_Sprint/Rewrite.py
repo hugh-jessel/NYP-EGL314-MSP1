@@ -64,7 +64,7 @@ R_S1Proj4_ADD = "/action/41267"   #marker for stage 1 projectile 4
 R_StageTrans_ADD = "/action/41268" #marker for stage 1 transition to stage 2/2 to 3
 R_Deflect_ADD = "/action/41263"   #marker for deflect
 R_gameOver_ADD = "/action/41264"  #marker for game over
-R_FullVictoru_ADD = "/marker/27"  #marker for victory
+R_FullVictory_ADD = "/marker/27"  #marker for victory
 R_Restart_ADD = "/marker/9"       #marker for restart;after tutorial message
 R_S2Proj2_ADD = "/marker/14"      #marker for stage 2 projectile 2
 R_S2Proj3_ADD = "/marker/15"      #marker for stage 2 projectile 3
@@ -139,10 +139,10 @@ def stage_pass():
     #if else for ig it's transition or full victory
     print("Stage Cleared!")
     gameTimeCounter(False)
-    reaperSendMessage(R_StageTrans_ADD)
+    reaperSendMessage(R_FullVictory_ADD)
     grandMa3SendMessage(G_stagePass_MSG)
     #gameTimeCounter(True)
-    time.sleep(11) #Delay to allow AI voice to finish
+    time.sleep(15) #Delay to allow AI voice to finish
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_gameLights_MSG)
@@ -150,7 +150,7 @@ def stage_pass():
     exit()
 def stage_fail_Restart():
     global game_fail
-    print("Game Over!")
+    print("Game Over! Restart?")
     reaperSendMessage(R_gameOver_ADD)
     grandMa3SendMessage(G_stageFail_MSG)
     time.sleep(8) #Replace with length of fail audio
@@ -159,6 +159,12 @@ def stage_fail_Restart():
     grandMa3SendMessage(G_centerSpotlight_MSG)
     reaperSendMessage(R_PlayStop_ADD)
     grandMa3SendMessage(G_centerSpotlight_MSG)
+def stageRestart():
+    grandMa3SendMessage(G_clearAll_MSG)
+    grandMa3SendMessage(G_clearAll_MSG)
+    grandMa3SendMessage(G_gameLights_MSG)
+    reaperSendMessage(R_Restart_ADD)
+    reactionTest()
 def gameTimeCounter(gameTime):
     global gameCount
     while gameTime == True:
@@ -167,22 +173,20 @@ def gameTimeCounter(gameTime):
         return gameCount
     else:
         pass
-    global game_fail
-    print("Game Over!")
 def snapshotRandom():
     global direction
     random_number = random.randint(1,10)
     SequenceRandom = {
-        1: (reaperSendMessage(L_Snap21_ADD), "North"),
-        2: (reaperSendMessage(L_Snap21_ADD), "West"),
-        3: (reaperSendMessage(L_Snap21_ADD), "East"),
-        4: (reaperSendMessage(L_Snap21_ADD), "South"),
-        5: (reaperSendMessage(L_Snap21_ADD), "East"),
-        6: (reaperSendMessage(L_Snap21_ADD), "West"),
-        7: (reaperSendMessage(L_Snap21_ADD), "North"),
-        8: (reaperSendMessage(L_Snap21_ADD), "South"),
-        9: (reaperSendMessage(L_Snap21_ADD), "North"),
-        10: (reaperSendMessage(L_Snap21_ADD), "South")
+        1: (lisaSendMessage(L_Snap21_ADD), "North"),
+        2: (lisaSendMessage(L_Snap21_ADD), "West"),
+        3: (lisaSendMessage(L_Snap21_ADD), "East"),
+        4: (lisaSendMessage(L_Snap21_ADD), "South"),
+        5: (lisaSendMessage(L_Snap21_ADD), "East"),
+        6: (lisaSendMessage(L_Snap21_ADD), "West"),
+        7: (lisaSendMessage(L_Snap21_ADD), "North"),
+        8: (lisaSendMessage(L_Snap21_ADD), "South"),
+        9: (lisaSendMessage(L_Snap21_ADD), "North"),
+        10: (lisaSendMessage(L_Snap21_ADD), "South")
     }
     function, direction = SequenceRandom[random_number]
     print(f"Snapshot has been sent to the {direction}")
@@ -192,18 +196,18 @@ def randomProjectiles(projectileList,projectileAmount):
     print(f"For {projectileAmount}, Projectile {random_number} is firing")
 def stage1Projectile():
     projectiles = {
-        1: (reaperSendMessage(R_S1Proj2_ADD)),
-        2: (reaperSendMessage(R_S1Proj3_ADD)),
-        3: (reaperSendMessage(R_S1Proj4_ADD))
+        1: lambda: (reaperSendMessage(R_S1Proj2_ADD)),
+        2: lambda: (reaperSendMessage(R_S1Proj3_ADD)),
+        3: lambda: (reaperSendMessage(R_S1Proj4_ADD))
     }
     randomProjectiles(projectiles, 3)
 def stage2Projectile():
     projectiles = {
-        1: (reaperSendMessage(R_S2Proj2_ADD)),
-        2: (reaperSendMessage(R_S2Proj3_ADD)),
-        3: (reaperSendMessage(R_S2Proj4_ADD)),
-        4: (reaperSendMessage(R_S2Proj5_ADD)),
-        5: (reaperSendMessage(R_S2Proj6_ADD))
+        1: lambda: (reaperSendMessage(R_S2Proj2_ADD)),
+        2: lambda: (reaperSendMessage(R_S2Proj3_ADD)),
+        3: lambda: (reaperSendMessage(R_S2Proj4_ADD)),
+        4: lambda: (reaperSendMessage(R_S2Proj5_ADD)),
+        5: lambda: (reaperSendMessage(R_S2Proj6_ADD))
     }
     randomProjectiles(projectiles, 5)
 def deflect(direction):
@@ -231,9 +235,6 @@ def reactionTest():
     global game_active
     global successful_deflects
 
-    gameCount = 0
-    game_fail = False
-    buttonPressed = False
     last_button_press_time = 0
     game_active = False
     successful_deflects = 0
@@ -242,7 +243,7 @@ def reactionTest():
         return
     with mido.open_input(LaunchpadPro_Name) as inport, mido.open_output(LaunchpadPro_Name) as outport:
         print(f"Listening to {LaunchpadPro_Name} for note messages")
-        snapshotRandom()  # Set the initial direction
+        L()  # Set the initial direction
         try:
             while True:
                 gameTimeCounter(True)
@@ -257,11 +258,11 @@ def reactionTest():
                 if game_active == True and (current_time - last_note_on_time >= note_timeout_threshold):
                     print(f"Game over due to inactivity. Time since last note_on: {current_time - last_note_on_time:.2f} seconds")
                     game_fail = True
-                    stage_fail_Restart()  # Handle game over and restart
                     game_active = False
+                    gameTimeCounter(False)
+                    stage_fail_Restart()  # Handle game over and restart
                     print("Game has been reset. Waiting for next start...")
-                    continue  # Continue to the next iteration to wait for a restart
-                
+                    return
                 # Ensure game is active after gameCount reaches 5
                 if gameCount >= 5:
                     if not game_active:
@@ -282,25 +283,24 @@ def reactionTest():
 
                                 if successful_deflects >= win_threshold:
                                     print(f"Congratulations! You've won the game with {successful_deflects} successful deflects!")
-                                    game_fail = False
                                     stage_pass()  # Call a function to handle the win scenario
-                                    break  # Exit the loop, ending the game
-
                                 time.sleep(0.5)
                                 snapshotRandom()  # Determine the next projectile direction
+                                stage1Projectile()
                                 # Send appropriate message based on the game state
                             else:
                                 print(f"Failed deflect: Note {msg.note} does not match direction {direction}")
                                 game_fail = True
+                                game_active = False
+                                gameTimeCounter(False)
                                 stage_fail_Restart()  # Handle game over and restart
                                 print("Game has been reset. Waiting for next start...")
-                                break  # Exit the loop to wait for restart
-                    elif msg.note == 67 and game_fail == True:  # Check if restart note is pressed
-                        print("Restarting game...")
-                        continue  # Continue to the next iteration to wait for the restart
+                                return# Exit the loop to wait for restart
                     else:
                         print(f"Ignoring input: Note={msg.note} before gameCount reaches 5")
 
         except KeyboardInterrupt:
             print("Stopped listening to MIDI messages.")
             
+if __name__ == "__main__":
+    reactionTest()

@@ -22,12 +22,12 @@ def Midi_LaunchPad_MK3():
                     if msg.note == 67: #start
                         if ReactionTestV2.game_fail == True:
                             ReactionTestV2.gameCount = 0
+                            ReactionTestV2.restarted = True
                             print ('Game Restarting')
                             ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track 
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
-                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_Restart_ADD)
                             ReactionTestV2.reactionTest()
                         else:
                             print ('Game Start')
@@ -35,7 +35,6 @@ def Midi_LaunchPad_MK3():
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
                             ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
-                            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_StartGame_ADD)
                             ReactionTestV2.reactionTest()
                     else:
                         pass
