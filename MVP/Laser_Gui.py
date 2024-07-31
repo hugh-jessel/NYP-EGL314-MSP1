@@ -83,7 +83,7 @@ def page1():
     buttonLaser6Off = tk.Button(pageWindow, text="Laser6 Off", font=fontM, bg="black", fg="white", command=laser6_off).grid(row=6, column=1, padx=(20, 0))
 
     buttonLaserSeq = tk.Button(pageWindow, text="Laser Show", font=fontM, bg="black", fg="white", command=lasersequence).grid(row=7, column=0, padx=(20, 0))
-    buttonMA = tk.Button(pageWindow, text="Laser Show", font=fontM, bg="black", fg="white", command=GrandMA3_Sequence).grid(row=7, column=1, padx=(20, 0))
+    buttonMA = tk.Button(pageWindow, text="xd", font=fontM, bg="black", fg="white", command=send_off2).grid(row=7, column=1, padx=(20, 0))
 
 pageNavButton1 = tk.Button(pageNav, text="Laser w/ Server", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page1, height= 2, width=10)
 
@@ -334,6 +334,21 @@ def NeoStrobeBlue():
     send_off()
     send_off2()
 
+def NeoBalloonAndTrussBlue():
+    send_off()
+    send_off2()
+    balloon_colors = [(0,0,255)]
+    send_color_array(balloon_colors * 170)
+    send_color_array2(balloon_colors * 170)
+
+def NeoBallonAndTrussOrange():
+    send_off()
+    send_off2()
+    balloon_colors = [(255,169,0)]
+    send_color_array(balloon_colors * 170)
+    send_color_array2(balloon_colors * 170)
+
+
 def lasersequence():
     try:
         Laser_SequenceRP()
@@ -352,8 +367,13 @@ def lasersequence():
     actions = {
         0: [NeoRise],
         1: [GrandMA3_Sequence, NeoBalloon],
-        10: [NeoStrobe],
-        11: [NeoStrobeBlue]
+        7: [crossfire],
+        10: [crossfireOff,NeoStrobeBlue],
+        11: [NeoBalloonAndTrussBlue],
+        12:[GrandMA3_Sequence],
+        23:[NeoBallonAndTrussOrange],
+        24:[crossfireOneByOne],
+        31:[GrandMA3_Sequence]
         }
 
     try:
@@ -373,10 +393,6 @@ def lasersequence():
         print(f"Error in main loop: {e}")
 
     try:
-        crossfireOff()
-        GrandMa3_Clear()
-        send_off()
-        send_off2()
         reaper_markers.play_stop()
         print(f"Counted {count} beats in 60 seconds.")  # max Count = 73/72
     except Exception as e:
