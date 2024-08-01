@@ -71,6 +71,14 @@ R_S2Proj3_ADD = "/marker/15"      #marker for stage 2 projectile 3
 R_S2Proj4_ADD = "/marker/16"      #marker for stage 2 projectile 4
 R_S2Proj5_ADD = "/marker/17"      #marker for stage 2 projectile 5
 R_S2Proj6_ADD = "/marker/18"      #marker for stage 2 projectile 6
+R_Stage3Trans_ADD = "/marker/19"
+R_S3Proj2_ADD = "/marker/20"      #marker for stage 3 projectile 2
+R_S3Proj3_ADD = "/marker/21"      #marker for stage 3 projectile 3
+R_S3Proj4_ADD = "/marker/22"      #marker for stage 3 projectile 4
+R_S3Proj5_ADD = "/marker/23"      #marker for stage 3 projectile 5
+R_S3Proj6_ADD = "/marker/24"      #marker for stage 3 projectile 6
+R_S3Proj7_ADD = "/marker/25"      #marker for stage 3 projectile 7
+R_S3Proj8_ADD = "/marker/26"      #marker for stage 3 projectile 8
 ## L-isa definitions ##
 L_Snap21_ADD = "/ext/snap/21/f"    
 L_Snap22_ADD = "/ext/snap/22/f"
@@ -234,19 +242,36 @@ def stage2Projectile():
         5: lambda: (reaperSendMessage(R_S2Proj6_ADD))
     }
     randomProjectiles(projectiles, 5)
+def stage3Projectile():
+    projectiles = {
+        1: lambda: (reaperSendMessage(R_S3Proj2_ADD)),
+        2: lambda: (reaperSendMessage(R_S3Proj3_ADD)),
+        3: lambda: (reaperSendMessage(R_S3Proj4_ADD)),
+        4: lambda: (reaperSendMessage(R_S3Proj5_ADD)),
+        5: lambda: (reaperSendMessage(R_S3Proj6_ADD)),
+        6: lambda: (reaperSendMessage(R_S3Proj7_ADD)),
+        7: lambda: (reaperSendMessage(R_S3Proj8_ADD))
+    }
+    randomProjectiles(projectiles, 7)
 stage_parameters = {
     1: {
         "projectiles": [stage1Projectile],
         "win_threshold": 4,
-        "note_timeout_threshold": 5,
+        "note_timeout_threshold": 4,
         # Add other stage-specific parameters
     },
     2: {
         "projectiles": [stage2Projectile],
         "win_threshold": 6,
-        "note_timeout_threshold": 2,
+        "note_timeout_threshold": 5,
         # Add other stage-specific parameters
     },
+    3: {
+        "projectiles": [stage3Projectile],
+        "win_threshold": 8,
+        "note_timeout_threshold": 8,
+        # Add other stage-specific parameters
+    }
     # Define more stages as needed
 }
 def deflect(direction):
@@ -266,10 +291,11 @@ direction_map = {
     "West": 64
 }
 def start_stage(stage):
-    global successful_deflects, game_active, last_note_on_time, current_stage, direction
+    global successful_deflects, game_active, last_note_on_time, current_stage, direction, gameCount
     successful_deflects = 0
     game_active = False
     last_note_on_time = 0
+    gameCount = 0
     current_stage = stage
     print(f"Starting Stage {stage}")
 
@@ -280,11 +306,20 @@ def next_stage():
     is_transitioning = True
     current_stage += 1
     if current_stage in stage_parameters:
+        if current_stage == 2:
+            reaperSendMessage(R_StageTrans_ADD)
+        elif current_stage == 3:
+            reaperSendMessage(R_Stage3Trans_ADD)
         start_stage(current_stage)
-    else:
-        print("Congratulations! You've completed all stages!")
-        # Handle end of game
+        gameTimeCounter(True)
+        snapshotRandom()
     is_transitioning = False
+    
+    
+    
+    
+    
+    
 def reactionTest():
     global gameCount, game_fail, direction, buttonPressed, last_button_press_time, last_note_on_time, game_active, successful_deflects, restarted, is_transitioning
 
@@ -318,11 +353,13 @@ def reactionTest():
                     buttonPressed = False
                     print(f"Button press reset after {button_press_delay} seconds")
                 
+                #Setting stage params
                 params = stage_parameters[current_stage]
                 note_timeout_threshold = params["note_timeout_threshold"]
                 win_threshold = params["win_threshold"]
                 projectiles = params["projectiles"]
 
+                #Time out game over
                 if game_active and (current_time - last_note_on_time >= note_timeout_threshold):
                     print(f"Game over due to inactivity. Time since last note_on: {current_time - last_note_on_time:.2f} seconds")
                     game_fail = True
@@ -330,17 +367,28 @@ def reactionTest():
                     gameTimeCounter(False)
                     stage_fail_Restart()
                     return
+                #game start
                 if restarted:
                     if gameCount >= 12 and not game_active:
                         last_note_on_time = current_time
                         game_active = True
                         print("Game is now active")
-                else:
-                    if gameCount >= 39 and not game_active:
+                elif current_stage == 1:
+                    if gameCount >= 37.5 and not game_active:
                         last_note_on_time = current_time
                         game_active = True
                         print("Game is now active")
-
+                elif current_stage == 2:
+                    if gameCount >= 11 and not game_active:
+                        last_note_on_time = current_time
+                        game_active = True
+                        print("Game is now active")
+                elif current_stage == 3:
+                    if gameCount >= 8.5 and not game_active:
+                        last_note_on_time = current_time
+                        game_active = True
+                        print("Game is now active")
+                #main game code
                 for msg in inport.iter_pending():
                     if msg.type == "note_on" and game_active:
                         print(f"Note On: Note={msg.note}")
@@ -353,15 +401,20 @@ def reactionTest():
                                 successful_deflects += 1
                                 print(f"Total successful deflects: {successful_deflects}")
 
-                                if successful_deflects >= win_threshold:
+                                if successful_deflects >= win_threshold and current_stage != 3:
                                     #print(f"Congratulations! You've won stage {current_stage} with {successful_deflects} successful deflects!")
                                     #next_stage()
+                                    gameTimeCounter(False)
+                                    print("Stage Won!")
+                                    next_stage()
+                                elif successful_deflects >= win_threshold and current_stage == 3:
                                     print("Game Won!")
                                     stage_pass()
                                     return
-                                random.choice(projectiles)()
-                                time.sleep(0.5)
-                                snapshotRandom()
+                                else:
+                                    random.choice(projectiles)()
+                                    time.sleep(0.5)
+                                    snapshotRandom()
                             else:
                                 print(f"Failed deflect: Note {msg.note} does not match direction {direction}")
                                 game_fail = True
