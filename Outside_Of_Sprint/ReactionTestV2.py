@@ -154,9 +154,6 @@ def stage_pass():
     grandMa3SendMessage(G_stagePass_MSG)
     #gameTimeCounter(True)
     time.sleep(15) #Delay to allow AI voice to finish
-    grandMa3SendMessage(G_clearAll_MSG)
-    grandMa3SendMessage(G_clearAll_MSG)
-    grandMa3SendMessage(G_gameLights_MSG)
     reaperSendMessage(R_PlayStop_ADD)
     exit()
 def stage_fail_Restart():
