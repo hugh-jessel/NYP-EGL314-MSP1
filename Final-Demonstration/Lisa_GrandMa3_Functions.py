@@ -1,17 +1,17 @@
 # Huats 2023 oscstarterkit
-
 from pythonosc import udp_client
+
 def send_messageLISA(receiver_ip, receiver_PORT_LISA, address, message):
 	try:
 		# Create an OSC client to send messages
 		client = udp_client.SimpleUDPClient(receiver_ip, receiver_PORT_LISA)
-
+		
 		# Send an OSC message to the receiver
 		client.send_message(address, message)
 		print("Message sent successfully.")
 	except:
 		print("Message not sent")
-
+		
 def send_messageGrandMa3(receiver_ip, receiver_PORT_LISA, address, message):
 	try:
 		# Create an OSC client to send messages
@@ -52,6 +52,7 @@ def Seq23():
 	msg_LISA = ""
 	send_messageLISA(PI_A_ADDR_LISA, PORT_LISA, addr_GrandMa3, msg_LISA)
 
+	
 def Seq24():
 	global PI_A_ADDR_LISA
 	global PORT_LISA
@@ -60,6 +61,7 @@ def Seq24():
 	msg_LISA = ""
 	send_messageLISA(PI_A_ADDR_LISA, PORT_LISA, addr_GrandMa3, msg_LISA)
 
+
 def Seq25():
 	global PI_A_ADDR_LISA
 	global PORT_LISA
@@ -67,6 +69,7 @@ def Seq25():
 	addr_GrandMa3 = "/ext/snap/25/f "	
 	msg_LISA = ""
 	send_messageLISA(PI_A_ADDR_LISA, PORT_LISA, addr_GrandMa3, msg_LISA)
+
 
 def Seq26():
 	global PI_A_ADDR_LISA
@@ -142,6 +145,7 @@ def murugunLight():
 	msg = "Go+: Sequence 71"	
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
 
+	
 def directToCTR():
 	global PI_A_ADDR_GrandMa3
 	global PORT_GrandMa3
@@ -162,19 +166,12 @@ def facelight(): #75
 	global addr_GrandMa3
 	msg = "Go+: Sequence 75"	
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
-  
+	
 def playing():
 	global PI_A_ADDR_GrandMa3
 	global PORT_GrandMa3
 	global addr_GrandMa3
 	msg = "Go+: Sequence 73"	
-	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
-
-def LightShow():
-	global PI_A_ADDR_GrandMa3
-	global PORT_GrandMa3
-	global addr_GrandMa3
-	msg = "Go+: Sequence 76"
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
 
 def pause_osc():
@@ -197,7 +194,7 @@ def go():
 	global addr_GrandMa3
 	msg = "Go+"	
 	send_messageGrandMa3(PI_A_ADDR_GrandMa3, PORT_GrandMa3, addr_GrandMa3, msg)
-	
+
 def clear():
 	global PI_A_ADDR_GrandMa3
 	global PORT_GrandMa3
