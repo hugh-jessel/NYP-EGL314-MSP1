@@ -51,6 +51,9 @@ Here, are all the varying assets used for the POC. This includes:
 2. **[Audio Assets](./Assets/Audio%20Assets)** - Includes a Master Reaper File, a Master L-ISA Controller File and the varying audio assets.
 3. **[GrandMA3](./Assets/GrandMA3)** - Includes a Master GrandMA3 file (With lights and IP addresses patched.)
 
+In the final demonstration, there are a few updates to the various files.
+1. **Reaper**
+   In the Reaper File, there are new audio assets for the various teams and their laser shows. In this case, it would be for Team B.
 ## Code Files
 In this folder, there are multiple python files. We will take a dive into the details of the codes.
 
