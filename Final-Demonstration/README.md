@@ -54,6 +54,9 @@ Here, are all the varying assets used for the POC. This includes:
 In the final demonstration, there are a few updates to the various files.
 1. **Reaper**
    In the Reaper File, there are new audio assets for the various teams and their laser shows. In this case, it would be for Team B.
+2. **GrandMA3**
+   In this GrandMA3 file, there are 2 new sequences. One for the Laser Show for Team B and the other for Face Lights, to ensure that the industry guests are able to see the various team members faces.
+
 ## Code Files
 In this folder, there are multiple python files. We will take a dive into the details of the codes.
 
