@@ -521,6 +521,18 @@ import time
 import random
 from pythonosc import udp_client
 ```
+Following that, 2 different IP addresses and 3 different Ports are set for various applications with Reaper and L-ISA Controller sharing the same IP address of `192.168.254.30` and 2 different port with them being `6800` and `8880` respectively. The 2nd IP address and port is for the GrandMA3 console. With the IP address being set as `192.168.254.229` and  the port at `8888`. With the only difference being that for the GrandMA3 console, there is an address set as `"/gma3/cmd"`. All of this can be seen from lines 45 to 54 below.
+```
+LR_ADD = "192.168.254.30"  #IP Address of Laptop with L-isa & Reaper(Same Laptop)
+R_PORT = 6800             #Port of Reaper
+
+L_PORT = 8880             #Port of L-isa
+L_MSG = ""                #Message to be sent to L-isa
+
+G_ADD = "192.168.254.229"
+G_PORT = 8888
+G_ADDR = "/gma3/cmd"
+```
 
 It encompasses the core functionality of the other sections in this functions. When a projectile is fired out from the speaker, a count begins to track if the player reacts in time. 
 Afterwards it moves on to check if the player presses the right button in under 3 seconds, which if true they deflect the projectile, stoping the count for their reaction speed and jumping to a random projectile marker and this repeats until they either fail to react in time, press the wrong note, or they pass to the next stage
