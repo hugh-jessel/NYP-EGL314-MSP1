@@ -2,7 +2,6 @@
 import mido 
 import ReactionTestV2
 import sys
-
 from pythonosc import osc_server, dispatcher
 import time
 
@@ -15,7 +14,6 @@ def Midi_LaunchPad_MK3():
         print(f"Listening to {LaunchpadPro_Name} for note messages...")
         try:
             for msg in inport:
-                
                 if msg.type == 'note_on':
                     # Note on messages represent pad presses
                     print(f'For Game Start Note On: Note={msg.note}')
