@@ -164,9 +164,8 @@ def stage_fail_Restart():
     time.sleep(8) #Replace with length of fail audio
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_clearAll_MSG)
-    grandMa3SendMessage(G_centerSpotlight_MSG)
+    grandMa3SendMessage(G_gameLights_MSG)
     reaperSendMessage(R_PlayStop_ADD)
-    grandMa3SendMessage(G_centerSpotlight_MSG)
 def stageRestart():
     grandMa3SendMessage(G_clearAll_MSG)
     grandMa3SendMessage(G_clearAll_MSG)
@@ -204,17 +203,17 @@ def sendMSG_West3():
     send_message(LR_ADD,L_PORT,L_Snap26_ADD,L_MSG)
 def snapshotRandom():
     global direction
-    random_number = random.randint(1, 9)
+    random_number = random.randint(1, 4)
     SequenceRandom = {
-        1: (lambda: sendMSG_North1(), "North"),
-        2: (lambda: sendMSG_West2(), "West"),
-        3: (lambda: sendMSG_East1(), "East"),
-        4: (lambda: sendMSG_South1(), "South"),
-        5: (lambda: sendMSG_East2(), "East"),
-        6: (lambda: sendMSG_West3(), "West"),
-        7: (lambda: sendMSG_North2(), "North"),
-        8: (lambda: sendMSG_South2(), "South"),
-        9: (lambda: sendMSG_North3(), "North")
+        #1: (lambda: sendMSG_North1(), "North"),
+        1: (lambda: sendMSG_West2(), "West"),
+        #3: (lambda: sendMSG_East1(), "East"),
+        #4: (lambda: sendMSG_South1(), "South"),
+        2: (lambda: sendMSG_East2(), "East"),
+        #6: (lambda: sendMSG_West3(), "West"),
+        3: (lambda: sendMSG_North2(), "North"),
+        4: (lambda: sendMSG_South2(), "South"),
+        #9: (lambda: sendMSG_North3(), "North")
     }
     function, direction = SequenceRandom[random_number]
     function()  # Call the function stored in 'function'
@@ -260,7 +259,7 @@ stage_parameters = {
     2: {
         "projectiles": [stage2Projectile],
         "win_threshold": 6,
-        "note_timeout_threshold": 5,
+        "note_timeout_threshold": 6,
         # Add other stage-specific parameters
     },
     3: {
@@ -312,6 +311,11 @@ def next_stage():
         snapshotRandom()
     is_transitioning = False
     
+    
+    
+    
+    
+    
 def reactionTest():
     global gameCount, game_fail, direction, buttonPressed, last_button_press_time, last_note_on_time, game_active, successful_deflects, restarted, is_transitioning
 
@@ -361,7 +365,7 @@ def reactionTest():
                     return
                 #game start
                 if restarted:
-                    if gameCount >= 12 and not game_active:
+                    if gameCount >= 11.5 and not game_active:
                         last_note_on_time = current_time
                         game_active = True
                         print("Game is now active")
@@ -371,12 +375,12 @@ def reactionTest():
                         game_active = True
                         print("Game is now active")
                 elif current_stage == 2:
-                    if gameCount >= 11 and not game_active:
+                    if gameCount >= 10.5 and not game_active:
                         last_note_on_time = current_time
                         game_active = True
                         print("Game is now active")
                 elif current_stage == 3:
-                    if gameCount >= 8.5 and not game_active:
+                    if gameCount >= 8 and not game_active:
                         last_note_on_time = current_time
                         game_active = True
                         print("Game is now active")
