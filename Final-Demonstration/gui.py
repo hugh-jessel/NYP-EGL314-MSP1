@@ -11,16 +11,23 @@ fontM = "helvetica 12 bold"
 fontS = "helvetica 12"
 
 # set up page sections
+
 pageNav = tk.Frame(main)
+
 pageNav.grid(row=0, column=0, sticky='N')
+
 pageNavTitle = tk.Label(pageNav, text="Devices", font="helvetica 12 bold").grid(row=0, column=0, pady=(0, 10))
 
 # set up page window
+
 pageWindow = tk.Frame(main)
+
 pageWindow.grid(row=0, column=1)
 
 # clear page function
+
 def pageclear(object):
+
     rdmshit = object.grid_slaves()
 
     for x in rdmshit:
@@ -95,8 +102,11 @@ def page4():
     buttonGameStartandLights = tk.Button(pageWindow, text="GameStart (Mark21) and \n Gamelights(Seq73)", font=fontS, bg="black", fg="white", command=gameStartandLights, height= 4, width=18).grid(row=1, column=0, padx=(20, 0))
     buttonGameFailSeq = tk.Button(pageWindow, text="Fail Lights (Seq69) and \n Fail Audio (Mark24)", font=fontS, bg="black", fg="white", command=gameFailSeq, height= 4, width=18).grid(row=1, column=1, padx=(0, 0))
     buttonGamePassSeq = tk.Button(pageWindow, text="Pass Lights (Seq68) and \n Pass Audio (Mark28)", font=fontS, bg="black", fg="white", command=gamePassSeq, height= 4, width=18).grid(row=2, column=0, padx=(20, 0))
+    buttonClearAll =  tk.Button(pageWindow, text="Clear GrandMa and Reaper", font=fontS, bg="black", fg="white", command=clearAll, height= 4, width=18).grid(row=2, column=1, padx=(0, 0))
+    
 
 # page navigation buttons
+
 pageNavButton1 = tk.Button(pageNav, text="L-ISA Studio", font ="30", bg="#1f2a70", fg="white", activebackground="#545e9c", command=page1, height= 2, width=10)
 pageNavButton1.grid(row=1, column=0, padx=(20, 0))
 
@@ -110,79 +120,120 @@ pageNavButton4 = tk.Button(pageNav, text="Reaper\nand\nGrandMa3", font ="30", bg
 pageNavButton4.grid(row=4, column=0, padx=(20, 0))
 
 # button colour change on press
+
 def button_active(x):
+
     x.config(bg="#7d8adb")
 
 def button_inactive(x):
+
     x.config(bg="#1f2a70")
 
 # L-ISA button functions
+
 def snapshot21():
+
     print("Snapshot 21 pressed")
+
     Lisa_GrandMa3_Functions.Seq21()
 
 def snapshot22():
+
     print("Snapshot 22 pressed")
+
     Lisa_GrandMa3_Functions.Seq22()
 
 def snapshot23():
+
     print("Snapshot 23 pressed")
+
     Lisa_GrandMa3_Functions.Seq23()
 
 def snapshot24():
+
     print("Snapshot 24 pressed")
+
     Lisa_GrandMa3_Functions.Seq24()
 
 def snapshot25():
+
     print("Snapshot 25 ")
+
     Lisa_GrandMa3_Functions.Seq25()
 
 def snapshot26():
+
     print("Snapshot 26 pressed")
+
     Lisa_GrandMa3_Functions.Seq26()
 
 def snapshot27():
+
     print("Snapshot 27 pressed")
+
     Lisa_GrandMa3_Functions.Seq27()
 
 def snapshot28():
+
     print("Snapshot 28 pressed")
+
     Lisa_GrandMa3_Functions.Seq28()
 
 def snapshot29():
+
     print("Snapshot 29 pressed")
+
     Lisa_GrandMa3_Functions.Seq29()
 
 def snapshot30():
+
     print("Snapshot 30 pressed")
+
     Lisa_GrandMa3_Functions.Seq30()
 
 def test0():
+
     print("Test 0 pressed")
+
     Lisa_GrandMa3_Functions.Test0()
-  
+
 def test1(): 
     print("Test 1 pressed")
+    
     Lisa_GrandMa3_Functions.Test1()
 0
 
 # GrandMA3 button functions
+
+
 def spotlightMA3():
+
     print("spotlightMA3 pressed")
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.directToCTR()
 
 def stageFailedMa3():
+
     print("stageFailedMa3 pressed")
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.stageFail()
 
 def stagePassedMa3():
+
     print("stagePassedMa3 pressed")
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.clear_all()
+
     Lisa_GrandMa3_Functions.stagePass()
 
 def stationMarkerMa3():
@@ -277,6 +328,7 @@ def RestartRp():
     reaper_markers.restart() 
 
 #Reaper andGrandMa3
+
 def gameStartandLights():
     print ("game lights and game start")
     reaper_markers.play_stop()
@@ -284,6 +336,8 @@ def gameStartandLights():
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.playing()
+
+    
 
 def gameFailSeq():
     print("Fail audio and lights")
@@ -300,6 +354,13 @@ def gamePassSeq():
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.stagePass()
+    
+def clearAll():
+    print ("Clear All")
+    print ("Seems like the restart button isn't fixed!")
+    reaper_markers.play_stop()
+    Lisa_GrandMa3_Functions.clear_all()
+    Lisa_GrandMa3_Functions.clear_all()
 
 #default page on start-up
 page1()
