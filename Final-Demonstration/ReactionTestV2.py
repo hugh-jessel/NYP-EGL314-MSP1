@@ -123,8 +123,6 @@ current_stage = 1
 is_transitioning = False
 
 # Constants
-button_press_delay = 4
-win_threshold = 4
 LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
 
 #Functions

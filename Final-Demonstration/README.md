@@ -468,44 +468,44 @@ A[StartGame.py] --> B[ReactionTestV2.py]
 
 <details><summary><h3>StartGame.py</h3></summary>
 
-In [StartGame.py](./StartGame.py), the first thing to note are the imports, from lines 1 to 7, [ReactionTestV2.py](./ReactionTestV2.py) along with several python libraries.
+In [StartGame.py](./StartGame.py), the first thing to note are the imports, from lines 1 to 6, [ReactionTestV2.py](./ReactionTestV2.py) along with several python libraries.
 
 ```
 #Imports
 import mido 
 import ReactionTestV2
 import sys
-
 from pythonosc import osc_server, dispatcher
 import time
 ```
-Right after the imports, is the main function of this file, the most important part of the code is from lines 25 to 35
+Right after the imports, is the main function of this file, the most important part of the code is from lines 17 to 38
 
 ```
 if msg.type == 'note_on':
-# Note on messages represent pad presses
-  print(f'For Game Start Note On: Note={msg.note}')
+    # Note on messages represent pad presses
+    print(f'For Game Start Note On: Note={msg.note}')
     if msg.note == 67: #start
-      if ReactionTestV2.game_fail == True:
-        ReactionTestV2.gameCount = 0
-        ReactionTestV2.restarted = True
-        print ('Game Restarting')
-        ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
-        ReactionTestV2.reactionTest()
-      else:
-        print ('Game Start')
-        ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
-        ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
-        ReactionTestV2.reactionTest()
-      else:
+        if ReactionTestV2.game_fail == True:
+            ReactionTestV2.gameCount = 0
+            ReactionTestV2.restarted = True
+            print ('Game Restarting')
+            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track 
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
+            ReactionTestV2.reactionTest()
+        else:
+            print ('Game Start')
+            ReactionTestV2.reaperSendMessage(ReactionTestV2.R_PlayStop_ADD) # Stop any currently playing track 
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)   
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_clearAll_MSG)
+            ReactionTestV2.grandMa3SendMessage(ReactionTestV2.G_gameLights_MSG)
+            ReactionTestV2.reactionTest()
+    else:
         pass
 ```
-The code simply requires input from launchpad, specifically in this case msg.note == 67 to trigger this if statement, sending messages to GrandMa3, Reaper via the functions in [ReactionTestV2,py](./ReactionTestV2.py), launchpad_listen() to start the game function.
+The code requires input from launchpad, specifically in this case msg.note == 67 to trigger this if-else statement, sending messages to GrandMa3, Reaper via the functions in [ReactionTestV2,py](./ReactionTestV2.py), launchpad_listen() to start the game function.
+If the game has already failed once, the variable game_fail will be true, so if the player presses note 67 after failing, it will trigger the restart of the game, instead of the begining with the tutorial.
 
 
 </details>
@@ -521,6 +521,7 @@ import time
 import random
 from pythonosc import udp_client
 ```
+
 Following that, 2 different IP addresses and 3 different Ports are set for various applications with Reaper and L-ISA Controller sharing the same IP address of `192.168.254.30` and 2 different port with them being `6800` and `8880` respectively. The 2nd IP address and port is for the GrandMA3 console. With the IP address being set as `192.168.254.229` and  the port at `8888`. With the only difference being that for the GrandMA3 console, there is an address set as `"/gma3/cmd"`. All of this can be seen from lines 45 to 54 below.
 ```
 LR_ADD = "192.168.254.30"  #IP Address of Laptop with L-isa & Reaper(Same Laptop)
@@ -533,9 +534,174 @@ G_ADD = "192.168.254.229"
 G_PORT = 8888
 G_ADDR = "/gma3/cmd"
 ```
+Below those, from lines 58 to 109, are the definitions for different reaper L-Isa addresses or grandma3 messages and directions below.
+```
+R_PlayStop_ADD = "/action/40044"  #Play/Stop toggle on reaper
+R_StartGame_ADD = "/action/41261" #marker for game start
+#No Projectile 1 since it runs after the start naturally
+R_S1Proj2_ADD = "/action/41265"   #marker for stage 1 projectile 2
+R_S1Proj3_ADD = "/action/41266"   #marker for stage 1 projectile 3
+R_S1Proj4_ADD = "/action/41267"   #marker for stage 1 projectile 4
+R_StageTrans_ADD = "/action/41268" #marker for stage 1 transition to stage 2/2 to 3
+R_Deflect_ADD = "/action/41263"   #marker for deflect
+R_gameOver_ADD = "/action/41264"  #marker for game over
+R_FullVictory_ADD = "/marker/27"  #marker for victory
+R_Restart_ADD = "/marker/9"       #marker for restart;after tutorial message
+R_S2Proj2_ADD = "/marker/14"      #marker for stage 2 projectile 2
+R_S2Proj3_ADD = "/marker/15"      #marker for stage 2 projectile 3
+R_S2Proj4_ADD = "/marker/16"      #marker for stage 2 projectile 4
+R_S2Proj5_ADD = "/marker/17"      #marker for stage 2 projectile 5
+R_S2Proj6_ADD = "/marker/18"      #marker for stage 2 projectile 6
+R_Stage3Trans_ADD = "/marker/19"
+R_S3Proj2_ADD = "/marker/20"      #marker for stage 3 projectile 2
+R_S3Proj3_ADD = "/marker/21"      #marker for stage 3 projectile 3
+R_S3Proj4_ADD = "/marker/22"      #marker for stage 3 projectile 4
+R_S3Proj5_ADD = "/marker/23"      #marker for stage 3 projectile 5
+R_S3Proj6_ADD = "/marker/24"      #marker for stage 3 projectile 6
+R_S3Proj7_ADD = "/marker/25"      #marker for stage 3 projectile 7
+R_S3Proj8_ADD = "/marker/26"      #marker for stage 3 projectile 8
+## L-isa definitions ##
+L_Snap21_ADD = "/ext/snap/21/f"    
+L_Snap22_ADD = "/ext/snap/22/f"
+L_Snap23_ADD = "/ext/snap/23/f"
+L_Snap24_ADD = "/ext/snap/24/f"
+L_Snap25_ADD = "/ext/snap/25/f"
+L_Snap26_ADD = "/ext/snap/26/f"
+L_Snap27_ADD = "/ext/snap/27/f"
+L_Snap28_ADD = "/ext/snap/28/f"
+L_Snap29_ADD = "/ext/snap/29/f"
+L_Snap30_ADD = "/ext/snap/30/f"
+## GrandMa3 definitons ##
+G_stagePass_MSG = "Go+: Sequence 68"   #stage pass/win
+G_stageFail_MSG = "Go+: Sequence 69"   #game over
+G_directions_MSG = "Go+: Sequence 70"  #direction showcase during explanation
+G_murugunLights_MSG = "Go+: Sequence 71"  #Station marker;lead people to station
+G_centerSpotlight_MSG = "Go+: Sequence 72" #game area spotlight
+G_gameLights_MSG = "Go+: Sequence 73"   #game lights
+G_AIsaac_MSG = "Go+: Sequence 74"    #spotlight for artifact holder      
+G_FaceLights_MSG = "Go+: Sequence 75" 
+G_clearAll_MSG = "Off MyRunningSequence"  #clear sequences
+#Other definitions
+pressed_flag = {directions: False for directions in ["North","South","East","West"]}
+projectile_direction = {
+    "North": 60,
+    "South": 65,
+    "East": 62,
+    "West": 64
+}
+```
 
-It encompasses the core functionality of the other sections in this functions. When a projectile is fired out from the speaker, a count begins to track if the player reacts in time. 
-Afterwards it moves on to check if the player presses the right button in under 3 seconds, which if true they deflect the projectile, stoping the count for their reaction speed and jumping to a random projectile marker and this repeats until they either fail to react in time, press the wrong note, or they pass to the next stage
+From lines 113 to 123 are the games variables
+```
+gameCount = 0
+game_fail = False
+direction = None
+buttonPressed = False
+last_button_press_time = 0
+last_note_on_time = time.time()
+game_active = False
+successful_deflects = 0
+restarted = False
+current_stage = 1
+is_transitioning = False
+
+# Constants
+LaunchpadPro_Name = "Launchpad Pro MK3:Launchpad Pro MK3 LPProMK3 MIDI 28:0"
+```
+Below these are the game's functions with the main few being the 3 send message functions and the reactionTest function.
+
+From lines 130 to 135, 
+```
+def reaperSendMessage(addr):
+    send_message(LR_ADD,R_PORT,addr,float(1))
+def lisaSendMessage(addr):
+    send_message(LR_ADD,L_PORT,addr,L_MSG)
+def grandMa3SendMessage(msg):
+    send_message(G_ADD,G_PORT,G_ADDR,msg)
+```
+the 3 send message functions for reaper, l-isa and grandma3 are stored, utilizing the send_message function from lines 137 to 145,
+```
+def send_message(receiver_ip, receiver_port, address, message):
+	try:
+		# Create an OSC client to send messages
+		client = udp_client.SimpleUDPClient(receiver_ip, receiver_port)
+		# Send an OSC message to the receiver
+		client.send_message(address, message)
+		#print("Message sent successfully.")
+	except:
+		print("Message not sent")
+```
+
+and these send message commands are used with the previously defined messages and addresses.
+
+With the reaction reactionTest function, it encompasses the core functionality of the other sections in this functions. 
+As the game begins, a count starts, mainly used to prevent inputs being registered before a certain point in time (A.I. voice talking etc), the codes involved being from 339 to 341 and  366 to 384 respectively,
+```
+gameTimeCounter(True)
+print(f"The game has been going for {gameCount} seconds")
+current_time = time.time()
+```
+```
+if restarted:
+    if gameCount >= 11.5 and not game_active:
+        last_note_on_time = current_time
+        game_active = True
+        print("Game is now active")
+    elif current_stage == 1:
+    if gameCount >= 37.5 and not game_active:
+        last_note_on_time = current_time
+        game_active = True
+        print("Game is now active")
+    elif current_stage == 2:
+    if gameCount >= 10.5 and not game_active:
+        last_note_on_time = current_time
+        game_active = True
+        print("Game is now active")
+    elif current_stage == 3:
+    if gameCount >= 8 and not game_active:
+        last_note_on_time = current_time
+        game_active = True
+        print("Game is now active")
+```
+
+For the majority of the game, the code spans from lines 386 to 418,
+```
+for msg in inport.iter_pending():
+    if msg.type == "note_on" and game_active:
+        print(f"Note On: Note={msg.note}")
+        last_note_on_time = current_time
+        if not buttonPressed:
+            buttonPressed = True
+            if direction and msg.note == direction_map[direction]:
+                print(f"Successful deflect: Direction {direction}, Note {msg.note}")
+                deflect(direction)
+                successful_deflects += 1
+                print(f"Total successful deflects: {successful_deflects}")
+
+                if successful_deflects >= win_threshold and current_stage != 3:
+                    #print(f"Congratulations! You've won stage {current_stage} with {successful_deflects} successful deflects!")
+                    #next_stage()
+                    gameTimeCounter(False)
+                    print("Stage Won!")
+                    next_stage()
+                elif successful_deflects >= win_threshold and current_stage == 3:
+                    print("Game Won!")
+                    stage_pass()
+                    return
+                else:
+                    random.choice(projectiles)()
+                    time.sleep(0.5)
+                    snapshotRandom()
+            else:
+                print(f"Failed deflect: Note {msg.note} does not match direction {direction}")
+                game_fail = True
+                game_active = False
+                gameTimeCounter(False)
+                stage_fail_Restart()
+                return
+```
+
+When a projectile is fired out from the speaker, there will be a function to check the time between button presses, where exceeding a certain time will result in a game over, while otherwise  it moves on to check if the player presses the right button, which if true they deflect the projectile, jumping to a random projectile marker and this repeats until they either fail to react in time, press the wrong note, or they pass to the next stage
 
 </details>
 
