@@ -102,6 +102,8 @@ def page4():
     buttonGameStartandLights = tk.Button(pageWindow, text="GameStart (Mark21) and \n Gamelights(Seq73)", font=fontS, bg="black", fg="white", command=gameStartandLights, height= 4, width=18).grid(row=1, column=0, padx=(20, 0))
     buttonGameFailSeq = tk.Button(pageWindow, text="Fail Lights (Seq69) and \n Fail Audio (Mark24)", font=fontS, bg="black", fg="white", command=gameFailSeq, height= 4, width=18).grid(row=1, column=1, padx=(0, 0))
     buttonGamePassSeq = tk.Button(pageWindow, text="Pass Lights (Seq68) and \n Pass Audio (Mark28)", font=fontS, bg="black", fg="white", command=gamePassSeq, height= 4, width=18).grid(row=2, column=0, padx=(20, 0))
+    buttonClearAll =  tk.Button(pageWindow, text="Clear GrandMa and Reaper", font=fontS, bg="black", fg="white", command=clearAll, height= 4, width=18).grid(row=2, column=1, padx=(0, 0))
+    
 
 # page navigation buttons
 
@@ -352,6 +354,13 @@ def gamePassSeq():
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.clear_all()
     Lisa_GrandMa3_Functions.stagePass()
+    
+def clearAll():
+    print ("Clear All")
+    print ("Seems like the restart button isn't fixed!")
+    reaper_markers.play_stop()
+    Lisa_GrandMa3_Functions.clear_all()
+    Lisa_GrandMa3_Functions.clear_all()
 
 #default page on start-up
 page1()
